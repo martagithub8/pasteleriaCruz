@@ -50,7 +50,7 @@
                 <div id="login1"><a href=""><i class="bi bi-person-circle iconHeader"></i></a></div>';
 
             if ($_SESSION['usuario'] != "") {
-                echo '<div id="login2"><a href=""><i class="bi bi-cart2 iconHeader"></i></a></div>
+                echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
                     <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
     
                 </div>';

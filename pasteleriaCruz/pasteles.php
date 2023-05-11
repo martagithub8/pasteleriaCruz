@@ -43,12 +43,12 @@ $conexion = new Conexion("root", "", "pasteleria");
                 <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
     
                 </div>';
-            }else{
+            } else {
                 echo '<div id="login2"><a href=""></a></div>
                       <div id="login2"><a href="index.php"></i></a></div>
       
                   </div>';
-              }
+            }
 
             ?>
 
@@ -59,11 +59,11 @@ $conexion = new Conexion("root", "", "pasteleria");
                 <?php
                 if ($_SESSION['usuario'] != "") {
                     echo "<p><i class='bi bi-person-fill'></i>";
-                    
-                 echo $_SESSION['usuario']; echo "<p>";
-                }else{
-                    echo '<p><p>';
 
+                    echo $_SESSION['usuario'];
+                    echo "<p>";
+                } else {
+                    echo '<p><p>';
                 }
                 ?>
             </div>
@@ -77,18 +77,17 @@ $conexion = new Conexion("root", "", "pasteleria");
             <nav class="navbar navbar-expand-lg navbar-light  " style="background-color: #f5f5f5;">
                 <div class="container-fluid">
 
-                   <?php
-          
-          echo '<a class="navbar-brand margin1"'; 
-          if ($_SESSION['usuario'] != "") {
-            echo 'href="tienda.php"';
+                    <?php
 
-          }else{
-          echo 'href="index.php"';
-          }
-          
-          echo '>INICIO</a>';
-          ?>
+                    echo '<a class="navbar-brand margin1"';
+                    if ($_SESSION['usuario'] != "") {
+                        echo 'href="tienda.php"';
+                    } else {
+                        echo 'href="index.php"';
+                    }
+
+                    echo '>INICIO</a>';
+                    ?>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -113,25 +112,42 @@ $conexion = new Conexion("root", "", "pasteleria");
         </section>
     </header>
 
+    <form style="margin-top: 2%;" action="#" method="POST" class="row justify-content-center">
+        <select class="form-select" style="width: 150px; margin-right: 10px;" name="filtro" id="filtro">
+            <option value="todos" selected>TODOS</option>
+            <option value="perro">CHOCOLATE</option>
+            <option value="gato">FRESA</option>
+            <option value="cobaya">NATA</option>
+        </select>
+        <input type="submit" class="btn btn-success" style="width: 150px;" value="FILTRAR" name="filtrar">
+        </select>
+    </form>
 
     <div id="contenedorTartas">
-        <div class="container porSabor" style="background-color:  #FFA07A;">
+        <div class="container porSabor">
 
             <?php
             for ($i = 0; $i < 36; $i++) {
-                echo ' 
-                <div id="tarta1">
+                echo '<div class="card col-4 m-4" style="width: 23rem;">
                 <img src="img/pastel.png" alt="esfera" width="320" height="320">
-                <div class="datos">
-                  <p class="sinNegrita" >TARTA DE FRESA </p>
-                  <p class="negrita" >2,80€ </p>';
-
+                <div class="card-body">
+                <h5 class="card-title">PASTEL</h5>
+                <p class="card-text">Informacion sobre la tarta</p>
+                <p class="card-text">Stock: 0</p>
+                <p class="card-text">Precio: 2.50€ €</p>
+                <form  method="post">
+                    <input type="hidden" name="raza" value="raza">
+                    <input type="hidden" name="precio" value="precio">';
                 if ($_SESSION['usuario'] != "") {
-                    echo ' <input type="submit" value="AÑADIR" class="botonAnadir">';
+                    echo ' <input type="submit" class="btn btn-success" name="anadir" value="AÑADIR">';
                 }
 
-                echo '</div></div>';
+                echo '</form>
+                    </div>
+                </div>';
             }
+
+
             ?>
 
 

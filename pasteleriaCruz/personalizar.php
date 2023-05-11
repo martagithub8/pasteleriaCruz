@@ -157,7 +157,7 @@ $conexion = new Conexion("root", "", "pasteleria");
                             <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px;border: 1px #7D5A48 solid;"></textarea>
                             <label for="floatingTextarea2" style="font-weight: bold;color: #7D5A48;">Diseño personalizado:</label>
                         </div>
-                        <input type="submit" value="AÑADIR PERSONALIZACIÓN" class="botonAnadir">
+                        <input style="margin-bottom: 3%;" type="submit" value="AÑADIR PERSONALIZACIÓN" class="botonAnadir" >
 
                     </form>
                 </div>

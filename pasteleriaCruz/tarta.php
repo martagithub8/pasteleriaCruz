@@ -110,23 +110,39 @@
     </section>
 </header>
 
+<form style="margin-top: 2%;" action="#" method="POST" class="row justify-content-center" >
+        <select class="form-select" style="width: 150px; margin-right: 10px;" name="filtro" id="filtro">
+            <option value="todos" selected>TODOS</option>
+            <option value="perro">CHOCOLATE</option>
+            <option value="gato">FRESA</option>
+            <option value="cobaya">NATA</option>
+        </select>
+        <input type="submit" class="btn btn-success" style="width: 150px;" value="FILTRAR" name="filtrar">
+        </select>
+    </form>
 
   <div id="contenedorTartas" >
 
-    <div class="container porSabor" style="background-color:  #FFA07A;">
+    <div class="container porSabor" >
             <?php
             for ($i=0; $i < 9; $i++) { 
-                echo '<div id="tarta1">
-                <img src="img/3chocolates.png" alt="esfera" width="380" height="370">
-                <div class="datos">
-                  <p class="sinNegrita" >TARTA 3 CHOCOLATES </p>
-                  <p class="negrita" >35€ </p>';
-
+              echo '<div class="card col-4 m-4" style="width: 23rem;">
+              <img src="img/3chocolates.png" alt="esfera" width="320" height="320">
+              <div class="card-body">
+              <h5 class="card-title">TARTA DE FRESA</h5>
+              <p class="card-text">Informacion sobre la tarta</p>
+              <p class="card-text">Stock: 0</p>
+              <p class="card-text">Precio: 30€ €</p>
+              <form  method="post">
+                  <input type="hidden" name="raza" value="raza">
+                  <input type="hidden" name="precio" value="precio">';
                   if ($_SESSION['usuario'] != "") {
-                    echo '<input type="submit" value="AÑADIR" class="botonAnadir">';
-                }
-
-                echo '</div></div> ';
+                     echo ' <input type="submit" class="btn btn-success" name="anadir" value="AÑADIR">';
+                  }
+  
+              echo '</form>
+                  </div>
+              </div>';
             }
             ?>
             
