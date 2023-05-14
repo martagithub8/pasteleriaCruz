@@ -129,7 +129,7 @@ $conexion = new Conexion("root", "", "pasteleria");
             <?php
             for ($i = 0; $i < 36; $i++) {
                 echo '<div class="card col-4 m-4" style="width: 23rem;">
-                <img src="img/pastel.png" alt="esfera" width="320" height="320">
+                <img src="img/fresa.png" alt="esfera" width="320" height="320">
                 <div class="card-body">
                 <h5 class="card-title">PASTEL</h5>
                 <p class="card-text">Informacion sobre la tarta</p>

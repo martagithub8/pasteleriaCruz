@@ -1,56 +1,57 @@
 <?php
-class Conexion{
+class Conexion
+{
     public $conexion;
 
-  
-    function __construct($user,$pwd,$bd=""){
-        
-        
-        try{
+
+    function __construct($user, $pwd, $bd = "")
+    {
+
+
+        try {
             //construir la conexion
             $dsn = "mysql:host=localhost;dbname=$bd";
 
             //le damos valores a la conexion
-            $this->conexion= new PDO($dsn,$user,$pwd);
+            $this->conexion = new PDO($dsn, $user, $pwd);
             //le crea un atributo de errores y excepciones
             $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "<h1>Ok la conexión</h1>";
-
-
         } catch (PDOException $e) {
             //ideal personalizar el mensaje
-            echo "Error ". $e->getMessage();
-            $this->conexion=null;
+            echo "Error " . $e->getMessage();
+            $this->conexion = null;
         }
     }
 }
 
-class Basededatos extends Conexion{
+class Basededatos extends Conexion
+{
 
-    function __construct($user,$pwd,$bd){
-        
+    function __construct($user, $pwd, $bd)
+    {
 
-    //ahora al llamar al constructor del parent se hace un new de la clase parent con su propiedad conexion
-    parent::__construct($user,$pwd);
-    //creamos la bd
-    $sql="CREATE DATABASE $bd";
-    try{
-        //aquí usamos conexion que es propiedad de la clase conexion donde ya hay una conexion validada
-        //y ahora ya hacemos el exec
-        $this-> conexion ->exec($sql);
-        echo "BASE DE DATOS CREADA";
 
-    }catch(PDOException $error){
-        echo "<h1>".$error->getMessage()."</h1>";
+        //ahora al llamar al constructor del parent se hace un new de la clase parent con su propiedad conexion
+        parent::__construct($user, $pwd);
+        //creamos la bd
+        $sql = "CREATE DATABASE $bd";
+        try {
+            //aquí usamos conexion que es propiedad de la clase conexion donde ya hay una conexion validada
+            //y ahora ya hacemos el exec
+            $this->conexion->exec($sql);
+            echo "BASE DE DATOS CREADA";
+        } catch (PDOException $error) {
+            echo "<h1>" . $error->getMessage() . "</h1>";
+        }
     }
 }
-}
 
-$bd=new Basededatos("root","","pasteleria");
-$con=new Conexion("root","","pasteleria");
+$bd = new Basededatos("root", "", "pasteleria");
+$con = new Conexion("root", "", "pasteleria");
 
 
-    $sql = 
+$sql =
     "
     create table usuarios(
         id int(50) NOT NULL AUTO_INCREMENT,
@@ -123,15 +124,45 @@ $con=new Conexion("root","","pasteleria");
     ADD FOREIGN KEY (decoracion_fk) REFERENCES decoracion(nombre);
     
     INSERT INTO usuarios(nombre, correo, usuario, password) VALUES ('Marta', 'marta@gmail.com', 'marta0','c23499dba1407c74aaa8c17386a6d6f9');
+    INSERT INTO usuarios(nombre, correo, usuario, password) VALUES ('Usuario', 'usuario@gmail.com', 'usuario','f8032d5cae3de20fcec887f395ec9a6a');
 
+INSERT INTO base(nombre) VALUES ('chocolate');
+INSERT INTO base(nombre) VALUES ('chocolateBlanco');
+INSERT INTO base(nombre) VALUES ('fresa');
+INSERT INTO base(nombre) VALUES ('vainilla');
+INSERT INTO base(nombre) VALUES ('nata');
+INSERT INTO base(nombre) VALUES ('queso');
+
+
+INSERT INTO relleno(nombre) VALUES ('chocolate');
+INSERT INTO relleno(nombre) VALUES ('chocolateBlanco');
+INSERT INTO relleno(nombre) VALUES ('fresa');
+INSERT INTO relleno(nombre) VALUES ('vainilla');
+INSERT INTO relleno(nombre) VALUES ('nata');
+INSERT INTO relleno(nombre) VALUES ('kinderBueno');
+INSERT INTO relleno(nombre) VALUES ('oreo');
+INSERT INTO relleno(nombre) VALUES ('queso');
+
+INSERT INTO decoracion(nombre) VALUES ('mermelada');
+INSERT INTO decoracion(nombre) VALUES ('chocolate');
+INSERT INTO decoracion(nombre) VALUES ('chocolateBlanco');
+INSERT INTO decoracion(nombre) VALUES ('fresa');
+INSERT INTO decoracion(nombre) VALUES ('vainilla');
+INSERT INTO decoracion(nombre) VALUES ('nata');
+INSERT INTO decoracion(nombre) VALUES ('kinderBueno');
+INSERT INTO decoracion(nombre) VALUES ('oreo');
+INSERT INTO decoracion(nombre) VALUES ('queso');
+INSERT INTO decoracion(nombre) VALUES ('felicitacion');
+INSERT INTO decoracion(nombre) VALUES ('olaf');
+INSERT INTO decoracion(nombre) VALUES ('superMario');
+INSERT INTO decoracion(nombre) VALUES ('pokemon');
+INSERT INTO decoracion(nombre) VALUES ('mickey');
+INSERT INTO decoracion(nombre) VALUES ('mini');
+
+
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('choco (1).png', 'Tarta 3 chocolates', 'tarta','chocolate', '30€','5');
     
     ";
 
-    $con-> conexion ->exec($sql);
-    echo "<h1>Insertado con éxito</h1>";
-
-
-
-
-
-?>
+$con->conexion->exec($sql);
+echo "<h1>Insertado con éxito</h1>";
