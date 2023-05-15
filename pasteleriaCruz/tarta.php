@@ -2,15 +2,17 @@
 session_start();
 include "conexion_con_CLASE.php";
 
-//creamos conexion
-$conexion = new Conexion("root", "", "pasteleria");
-
+//variables
+$listaTartas = "";
+$filtro = '';
+$nombre = '';
+$precio = 0;
+$cantidadPorDefecto = 1;
+$cantidad = 0;
+$stockBD = 0;
+$mensaje = '';
 
 //sesiones
-if (!isset($_SESSION['usuario'])) {
-  $_SESSION['usuario'] = '';
-}
-
 if (!isset($_SESSION['cantidad'])) {
   $_SESSION['cantidad'] = 0;
 }
@@ -21,18 +23,96 @@ if (!isset($_SESSION['filtro'])) {
   $_SESSION['filtro'] = '';
 }
 
-//variables
-$listaTartas="";
-$filtro='';
-$raza='';
-$precio=0;
-$cantidadPorDefecto=1;
-$cantidad=0;
-$stockBD=0;
-$mensaje='';
+
+
+//creamos conexion
+$conexion = new Conexion("root", "", "pasteleria");
+
+//MUESTRA ANIMALES SEGÚN EL FILTRO SELECCIONADO
+if (!isset($_POST['filtro'])) {
+  $_POST['filtro'] = '';
+  $_SESSION['filtro'] = '';
+
+  $sql = "SELECT * FROM producto WHERE categoria = 'tarta'; ";
+
+
+  $consulta = $conexion->conexion->prepare($sql);
+  $consulta->execute();
+  while ($fila = $consulta->fetch()) {
+
+
+    //control del stock
+    if ($fila['stock'] > 0) {
+      $listaTartas .= '<div class="card col-4 m-4" style="width: 18rem;">
+      <div class="row">
+      <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
+      <form class="col-6 " method="post">
+          <input type="hidden" name="raza" value="' . $fila["nombre"] . '">
+          <input type="hidden" name="precio" value="' . $fila["precio"] . '">
+          <input type="submit" class="btn btn-secondary text-right" name="anadir" value="AÑADIR">
+      </form>
+      </div>
+      <img src="img/' . $fila['img'] . '" width="100px" height="250px" class="card-img-top" alt="...">
+      <div style="text-align:center" class="card-body">
+      <h5 class="card-title">' . $fila['nombre'] . '</h5>
+      <p class="card-text">Precio: ' . $fila['precio'] . ' €</p>
+
+      
+      
+          </div>
+      </div>';
+    }
+  }
+}
+
+
+//MIENTRAS HAYA ALGO SELECCIONADO EN EL FILTRO MOSTRARÁ LO SELECCIONADO
+if (isset($_POST['filtro'])) {
+  $_SESSION['filtro'] = $_POST['filtro'];
+
+
+  if ($_SESSION['filtro'] == 'todos') {
+    $sql = "SELECT * FROM producto WHERE categoria = 'tarta'; ";
+  } else {
+    $sql = "SELECT * FROM producto WHERE categoria = 'tarta' AND detalle = '" . $_SESSION['filtro'] . "'; ";
+  }
+
+  $consulta = $conexion->conexion->prepare($sql);
+  $consulta->execute();
+  while ($fila = $consulta->fetch()) {
+
+    //Control del stock
+    if ($fila['stock'] > 0) {
+
+
+      $listaTartas .= '<div class="card col-4 m-4" style="width: 18rem;">
+      <div class="row">
+      <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
+      <form class="col-6 " method="post">
+          <input type="hidden" name="raza" value="' . $fila["nombre"] . '">
+          <input type="hidden" name="precio" value="' . $fila["precio"] . '">
+          <input type="submit" class="btn btn-secondary text-right" name="anadir" value="AÑADIR">
+      </form>
+      </div>
+      <img src="img/' . $fila['img'] . '" width="100px" height="250px" class="card-img-top" alt="...">
+      <div style="text-align:center" class="card-body">
+      <h5 class="card-title">' . $fila['nombre'] . '</h5>
+      <p class="card-text">Precio: ' . $fila['precio'] . ' €</p>
+
+      
+      
+          </div>
+      </div>';
+    }
+  }
+}
 
 
 
+//SI NO HAY PRODUCTOS
+if ($listaTartas == '') {
+  $mensaje = "NO EXISTEN PRODUCTOS EN ESTA TIENDA";
+}
 
 ?>
 
@@ -67,13 +147,12 @@ $mensaje='';
                 </div>';
       } else {
         echo '<div id="login2"><a href=""></a></div>
-                    <div id="login2"><a href="index.php"></i></a></div>
-    
-                </div>';
+                      <div id="login2"><a href="index.php"></i></a></div>
+      
+                  </div>';
       }
 
       ?>
-
 
 
       <h1>PASTELERÍA CRUZ</h1>
@@ -95,9 +174,11 @@ $mensaje='';
 
 
     </section>
+
     <section id="menumenu">
       <nav class="navbar navbar-expand-lg navbar-light  " style="background-color: #f5f5f5;">
         <div class="container-fluid">
+
           <?php
 
           echo '<a class="navbar-brand margin1"';
@@ -133,49 +214,39 @@ $mensaje='';
     </section>
   </header>
 
-  <form style="margin-top: 2%;" action="#" method="POST" class="row justify-content-center">
-    <select class="form-select" style="width: 150px; margin-right: 10px;" name="filtro" id="filtro">
-      <option value="todos" selected>TODOS</option>
-      <option value="perro">CHOCOLATE</option>
-      <option value="gato">FRESA</option>
-      <option value="cobaya">NATA</option>
-    </select>
-    <input type="submit" class="btn btn-success" style="width: 150px;" value="FILTRAR" name="filtrar">
-    </select>
-  </form>
+  <div class="mt4" id="contenidoPagina">
+    <p class="text-center"><?php echo $mensaje; ?></p>
+
+  </div>
+
+
+
+
+  <form action="#" method="POST" class="row justify-content-center">
+        <select class="form-select" style="width: 150px; margin-right: 10px;" name="filtro" id="filtro">
+          <option value="todos" selected>TODOS</option>
+          <option value="chocolate">CHOCOLATE</option>
+          <option value="vainilla">VAINILLA</option>
+          <option value="fresa">FRESA</option>
+        </select>
+        <input type="submit" class="btn btn-secondary" style="width: 150px;" value="FILTRAR" name="filtrar">
+        </select>
+      </form>
 
   <div id="contenedorTartas">
-
     <div class="container porSabor">
-      <?php
-      for ($i = 0; $i < 9; $i++) {
-        echo '<div class="card col-4 m-4" style="width: 23rem;">
-              <img src="img/queso (1).png" alt="esfera" width="320" height="320">
-              <div class="card-body">
-              <h5 class="card-title">TARTA DE FRESA</h5>
-              <p class="card-text">Informacion sobre la tarta</p>
-              <p class="card-text">Stock: 0</p>
-              <p class="card-text">Precio: 30€ €</p>
-              <form  method="post">
-                  <input type="hidden" name="raza" value="raza">
-                  <input type="hidden" name="precio" value="precio">';
-        if ($_SESSION['usuario'] != "") {
-          echo ' <input type="submit" class="btn btn-success" name="anadir" value="AÑADIR">';
-        }
 
-        echo '</form>
-                  </div>
-              </div>';
-      }
-      ?>
 
+      
+
+        <?php
+        echo $listaTartas;
+        ?>
 
 
     </div>
-
-
-
   </div>
+
 
 
 

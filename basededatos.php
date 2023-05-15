@@ -160,8 +160,49 @@ INSERT INTO decoracion(nombre) VALUES ('mickey');
 INSERT INTO decoracion(nombre) VALUES ('mini');
 
 
-INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('choco (1).png', 'Tarta 3 chocolates', 'tarta','chocolate', '30€','5');
-    
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel1.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel2.png', 'Pastel', 'pastel','vainilla', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel3.png', 'Pastel', 'pastel','chocolate', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel4.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel5.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel6.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel7.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel8.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel9.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel10.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel11.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel12.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel13.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel14.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel15.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel16.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel17.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel18.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel19.png', 'Pastel', 'pastel','fresa', '3€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel20.png', 'Pastel', 'pastel','fresa', '3€','5');
+
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta1.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta2.png', 'Tarta', 'tarta','fresa', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta3.png', 'Tarta', 'tarta','vainilla', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta4.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta5.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta6.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta7.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta8.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta9.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta10.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta11.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta12.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta13.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta14.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta15.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta16.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta17.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta18.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta19.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta20.png', 'Tarta', 'tarta','chocolate', '30€','5');
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta21.png', 'Tarta', 'tarta','chocolate', '30€','5');
+
     ";
 
 $con->conexion->exec($sql);
