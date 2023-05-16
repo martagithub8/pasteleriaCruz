@@ -157,7 +157,7 @@ if (isset($_POST['btnIniciarSesion'])) {
                 <img src="img/oferta0.jpg" alt="esfera" width="380" height="370">
             </div>
             <div class="texto">
-                <p class="sinNegrita" style="text-align: justify;"> Movilidad sostenible y conectada, con la que reforzará su posición además como nodo estratégico de Cercanías Madrid y del transporte urbano y metropolitano.</p>
+                <p class="sinNegrita" style="text-align: justify;"> <strong>¿Aún no conoces nuestra oferta?</strong><br> Por la compra de una de nuestras tartas personalizadas llévese una de nuestro catálogo gratis.</p>
                 <a class="consultar" href="oferta.php">CONSULTAR</a>
             </div>
 
@@ -166,10 +166,10 @@ if (isset($_POST['btnIniciarSesion'])) {
         <div id="noticia1">
             <p class="negrita">CATÁLOGO TARTAS </p>
             <div id="imagenn">
-                <img src="img/choc.png" alt="esfera" width="380" height="370">
+                <img src="img/chocoo.png" alt="esfera" width="380" height="370">
             </div>
             <div class="texto">
-                <p class="sinNegrita" style="text-align: justify;"> Movilidad sostenible y conectada, con la que reforzará su posición además como nodo estratégico de Cercanías Madrid y del transporte urbano y metropolitano.</p>
+                <p class="sinNegrita" style="text-align: justify;"><strong> Ya ha llegado la hora de disfrutar con los tuyos de nuestras tartas artesanas.</strong><br> Esperamos que os guste probarlas tanto como a nosotras elaborarlas.</p>
                 <a class="consultar" href="tarta.php">CONSULTAR</a>
             </div>
 
@@ -181,7 +181,7 @@ if (isset($_POST['btnIniciarSesion'])) {
                 <img src="img/tarta.jpg" alt="esfera" width="380" height="370">
             </div>
             <div class="texto">
-                <p class="sinNegrita" style="text-align: justify;"> Movilidad sostenible y conectada, con la que reforzará su posición además como nodo estratégico de Cercanías Madrid y del transporte urbano y metropolitano.</p>
+                <p class="sinNegrita" style="text-align: justify;"><strong>¿Quieres una tarta personalizada?</strong><br> Prueba con nosotras a seleccionar los sabores y la decoración a tu gusto. Además podrá disfrutar de la oferta 2x1.</p>
                 <a class="consultar" href="personalizar.php">CONSULTAR</a>
             </div>
         </div>

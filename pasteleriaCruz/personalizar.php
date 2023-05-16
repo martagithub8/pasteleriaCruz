@@ -40,8 +40,8 @@ $conexion = new Conexion("root", "", "pasteleria");
         <section id="cabecera">
 
             <?php
-            echo '<div id="login">
-                <div id="login1"><a href=""><i class="bi bi-person-circle iconHeader"></i></a></div>';
+            echo '<div id="login">';
+                
 
             if ($_SESSION['usuario'] != "") {
                 echo '<div id="login2"><a href=""><i class="bi bi-cart2 iconHeader"></i></a></div>
@@ -49,7 +49,8 @@ $conexion = new Conexion("root", "", "pasteleria");
     
                 </div>';
             } else {
-                echo '<div id="login2"><a href=""></a></div>
+                echo '<div id="login1"><a href="login.php"><i class="bi bi-person-circle iconHeader"></i></a></div>
+                <div id="login2"><a href="login.php"></a></div>
                       <div id="login2"><a href="index.php"></i></a></div>
       
                   </div>';
