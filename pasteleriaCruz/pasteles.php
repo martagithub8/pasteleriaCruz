@@ -43,14 +43,15 @@ if (!isset($_POST['filtro'])) {
 
         //control del stock
         if ($fila['stock'] > 0) {
-            $listaPasteles .= '<div class="card col-4 m-4" style="width: 18rem;">
+            $listaPasteles .= '<div class="card col-4 m-4" style="width: 18rem;border:none; box-shadow:8px 1px 10px grey">
             <div class="row">
-            <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
             <form class="col-6 " method="post">
                 <input type="hidden" name="raza" value="' . $fila["nombre"] . '">
                 <input type="hidden" name="precio" value="' . $fila["precio"] . '">
                 <input type="submit" class="btn btn-secondary text-right" name="anadir" value="AÑADIR">
             </form>
+            <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
+            
             </div>
             <img src="img/' . $fila['img'] . '" width="100px" height="250px" class="card-img-top" alt="...">
             <div style="text-align:center" class="card-body">
@@ -85,14 +86,15 @@ if (isset($_POST['filtro'])) {
         if ($fila['stock'] > 0) {
 
 
-            $listaPasteles .= '<div class="card col-4 m-4" style="width: 18rem;">
+            $listaPasteles .= '<div class="card col-4 m-4" style="width: 18rem;border:none; box-shadow:8px 1px 10px grey">
             <div class="row">
-            <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
-            <form class="col-6 " method="post">
+                <form class="col-6 " method="post">
                 <input type="hidden" name="raza" value="' . $fila["nombre"] . '">
                 <input type="hidden" name="precio" value="' . $fila["precio"] . '">
                 <input type="submit" class="btn btn-secondary text-right" name="anadir" value="AÑADIR">
             </form>
+            <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
+           
             </div>
             <img src="img/' . $fila['img'] . '" width="100px" height="250px" class="card-img-top" alt="...">
             <div style="text-align:center" class="card-body">
@@ -227,7 +229,7 @@ if ($listaPasteles == '') {
             <option value="vainilla">VAINILLA</option>
             <option value="fresa">FRESA</option>
         </select>
-        <input type="submit" class="btn btn-secondary" style="width: 150px;" value="FILTRAR" name="filtrar">
+        <input type="submit" class="btn btn-dark" style="width: 150px;" value="FILTRAR" name="filtrar">
         </select>
     </form>
 

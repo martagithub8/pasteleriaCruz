@@ -43,14 +43,15 @@ if (!isset($_POST['filtro'])) {
 
     //control del stock
     if ($fila['stock'] > 0) {
-      $listaTartas .= '<div class="card col-4 m-4" style="width: 18rem;">
+      $listaTartas .= '<div class="card col-4 m-4" style="width: 18rem;border:none; box-shadow:8px 1px 10px grey">
       <div class="row">
-      <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
       <form class="col-6 " method="post">
-          <input type="hidden" name="raza" value="' . $fila["nombre"] . '">
-          <input type="hidden" name="precio" value="' . $fila["precio"] . '">
-          <input type="submit" class="btn btn-secondary text-right" name="anadir" value="AÑADIR">
-      </form>
+        <input type="hidden" name="raza" value="' . $fila["nombre"] . '">
+        <input type="hidden" name="precio" value="' . $fila["precio"] . '">
+        <input style="margin-left:2%" type="submit" class="btn btn-secondary text-right" name="anadir" value="AÑADIR">
+    </form>
+      <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
+     
       </div>
       <img src="img/' . $fila['img'] . '" width="100px" height="250px" class="card-img-top" alt="...">
       <div style="text-align:center" class="card-body">
@@ -85,14 +86,16 @@ if (isset($_POST['filtro'])) {
     if ($fila['stock'] > 0) {
 
 
-      $listaTartas .= '<div class="card col-4 m-4" style="width: 18rem;">
+      $listaTartas .= '
+      <div class="card col-4 m-4" style="width: 18rem;border:none; box-shadow:8px 1px 10px grey">
       <div class="row">
-      <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
       <form class="col-6 " method="post">
           <input type="hidden" name="raza" value="' . $fila["nombre"] . '">
           <input type="hidden" name="precio" value="' . $fila["precio"] . '">
           <input type="submit" class="btn btn-secondary text-right" name="anadir" value="AÑADIR">
       </form>
+      <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
+      
       </div>
       <img src="img/' . $fila['img'] . '" width="100px" height="250px" class="card-img-top" alt="...">
       <div style="text-align:center" class="card-body">
@@ -136,24 +139,24 @@ if ($listaTartas == '') {
   <header>
     <section id="cabecera">
 
-    <?php
-            echo '<div id="login">';
-                
+      <?php
+      echo '<div id="login">';
 
-            if ($_SESSION['usuario'] != "") {
-                echo '<div id="login2"><a href=""><i class="bi bi-cart2 iconHeader"></i></a></div>
+
+      if ($_SESSION['usuario'] != "") {
+        echo '<div id="login2"><a href=""><i class="bi bi-cart2 iconHeader"></i></a></div>
                 <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
     
                 </div>';
-            } else {
-                echo '<div id="login1"><a href="login.php"><i class="bi bi-person-circle iconHeader"></i></a></div>
+      } else {
+        echo '<div id="login1"><a href="login.php"><i class="bi bi-person-circle iconHeader"></i></a></div>
                 <div id="login2"><a href="login.php"></a></div>
                       <div id="login2"><a href="index.php"></i></a></div>
       
                   </div>';
-            }
+      }
 
-            ?>
+      ?>
 
 
       <h1>PASTELERÍA CRUZ</h1>
@@ -224,25 +227,25 @@ if ($listaTartas == '') {
 
 
   <form action="#" method="POST" class="row justify-content-center">
-        <select class="form-select" style="width: 150px; margin-right: 10px;" name="filtro" id="filtro">
-          <option value="todos" selected>TODOS</option>
-          <option value="chocolate">CHOCOLATE</option>
-          <option value="vainilla">VAINILLA</option>
-          <option value="fresa">FRESA</option>
-        </select>
-        <input type="submit" class="btn btn-secondary" style="width: 150px;" value="FILTRAR" name="filtrar">
-        </select>
-      </form>
+    <select class="form-select" style="width: 150px; margin-right: 10px;" name="filtro" id="filtro">
+      <option value="todos" selected>TODOS</option>
+      <option value="chocolate">CHOCOLATE</option>
+      <option value="nata">NATA</option>
+      <option value="fresa">FRESA</option>
+    </select>
+    <input type="submit" class="btn btn-dark" style="width: 150px;" value="FILTRAR" name="filtrar">
+    </select>
+  </form>
 
   <div id="contenedorTartas">
     <div class="container porSabor">
 
 
-      
 
-        <?php
-        echo $listaTartas;
-        ?>
+
+      <?php
+      echo $listaTartas;
+      ?>
 
 
     </div>

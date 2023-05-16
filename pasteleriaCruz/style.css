@@ -232,6 +232,7 @@ button {
     flex-direction: column;
     align-items: center;
   }
+
   .botonAnadir{
     background-color: #7D5A48;
     border-radius: 15%;
@@ -242,6 +243,8 @@ button {
     margin-top: 4%;
     
   }
+
+
 
   .botonAnadir:hover{
     /* background-color: #FFA07A; */
