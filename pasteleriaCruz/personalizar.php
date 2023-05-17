@@ -41,7 +41,7 @@ $conexion = new Conexion("root", "", "pasteleria");
 
             <?php
             echo '<div id="login">';
-                
+
 
             if ($_SESSION['usuario'] != "") {
                 echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
@@ -66,11 +66,11 @@ $conexion = new Conexion("root", "", "pasteleria");
                 <?php
                 if ($_SESSION['usuario'] != "") {
                     echo "<p><i class='bi bi-person-fill'></i>";
-                    
-                 echo $_SESSION['usuario']; echo "<p>";
-                }else{
-                    echo '<p><p>';
 
+                    echo $_SESSION['usuario'];
+                    echo "<p>";
+                } else {
+                    echo '<p><p>';
                 }
                 ?>
             </div>
@@ -163,8 +163,11 @@ $conexion = new Conexion("root", "", "pasteleria");
                         <div class="form-floating">
                             <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px;border: 1px #7D5A48 solid;"></textarea>
                             <label for="floatingTextarea2" style="font-weight: bold;color: #7D5A48;">Añadir detalle:</label>
+                           
                         </div>
-                        <input style="margin-bottom: 3%;" type="submit" value="REALIZAR PERSONALIZACIÓN" class="botonAnadir" >
+                        <input type="checkbox" id="oferta" name="oferta" value="oferta">
+                            <label for="oferta">Seleccionar ofeta 2x1</label><br>
+                        <input style="margin-bottom: 3%;" type="submit" value="REALIZAR PERSONALIZACIÓN" class="botonAnadir">
 
                     </form>
                 </div>
