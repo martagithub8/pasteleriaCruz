@@ -85,23 +85,24 @@ if (isset($_POST['btnIniciarSesion'])) {
     <header>
     <section  id="cabecera">
 
-<?php
-        echo '<div id="login">
-            <div id="login1"><a href=""><i class="bi bi-person-circle iconHeader"></i></a></div>';
+    <?php
+            echo '<div id="login">';
+                
 
-        if ($_SESSION['usuario'] != "") {
-            echo '<div id="login2"><a href="tienda.php"><i class="bi bi-house iconHeader"></i></a></div>
+            if ($_SESSION['usuario'] != "") {
+                echo '<div id="login2"><a href="tienda.php"><i class="bi bi-house iconHeader"></i></a></div>
                 <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
+    
+                </div>';
+            } else {
+                echo '<div id="login1"><a href="login.php"><i class="bi bi-person-circle iconHeader"></i></a></div>
+                <div id="login2"><a href="login.php"></a></div>
+                      <div id="login2"><a href="index.php"></i></a></div>
+      
+                  </div>';
+            }
 
-            </div>';
-        }else{
-          echo '<div id="login2"><a href=""></a></div>
-                <div id="login2"><a href="index.php"></i></a></div>
-
-            </div>';
-        }
-
-        ?>
+            ?>
 
   
   
@@ -117,9 +118,18 @@ if (isset($_POST['btnIniciarSesion'])) {
 </section>
         <section id="menumenu">
             <nav class="navbar navbar-expand-lg navbar-light  " style="background-color: #f5f5f5;">
-                <div class="container-fluid">
-                    <a class="navbar-brand margin1" href="index.php">INICIO</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="container-fluid">
+                    <?php
+
+                    echo '<a class="navbar-brand margin1"';
+                    if ($_SESSION['usuario'] != "") {
+                        echo 'href="tienda.php"';
+                    } else {
+                        echo 'href="index.php"';
+                    }
+
+                    echo '>INICIO</a>';
+                    ?> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">

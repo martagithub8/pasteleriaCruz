@@ -97,7 +97,7 @@ if (isset($_POST['btnIniciarSesion'])) {
 
 
 
-            <h1>PASTELERÍA CRUZ</h1>
+            <h1 id="lala">PASTELERÍA CRUZ</h1>
 
             <div id="usuario">
 

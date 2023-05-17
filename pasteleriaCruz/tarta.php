@@ -48,7 +48,7 @@ if (!isset($_POST['filtro'])) {
       <form class="col-6 " method="post">
         <input type="hidden" name="raza" value="' . $fila["nombre"] . '">
         <input type="hidden" name="precio" value="' . $fila["precio"] . '">
-        <input style="margin-left:2%" type="submit" class="btn btn-secondary text-right" name="anadir" value="AÑADIR">
+        <input style=" background-color: #FFA07A; border-radius:5px" class="btn" type="submit" type="submit"  name="anadir" value="AÑADIR">
     </form>
       <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
      
@@ -92,7 +92,7 @@ if (isset($_POST['filtro'])) {
       <form class="col-6 " method="post">
           <input type="hidden" name="raza" value="' . $fila["nombre"] . '">
           <input type="hidden" name="precio" value="' . $fila["precio"] . '">
-          <input type="submit" class="btn btn-secondary text-right" name="anadir" value="AÑADIR">
+          <input style=" background-color: #FFA07A; border-radius:5px" class="btn" type="submit"  name="anadir" value="AÑADIR">
       </form>
       <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
       
@@ -144,7 +144,7 @@ if ($listaTartas == '') {
 
 
       if ($_SESSION['usuario'] != "") {
-        echo '<div id="login2"><a href=""><i class="bi bi-cart2 iconHeader"></i></a></div>
+        echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
                 <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
     
                 </div>';
