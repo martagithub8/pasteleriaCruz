@@ -142,23 +142,29 @@ $conexion = new Conexion("root", "", "pasteleria");
 
                         <select style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;" class="form-select" aria-label="Default select example">
                             <option style="font-weight: bold;color: #7D5A48;" selected>BASE:</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="1">BIZCOCHO VAINILLA</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="2">BIZCOCHO CHOCOLATE</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="3">BIZCOCHO RED-VELVET</option>
+                            <option style="font-weight: bold;color: #7D5A48;" value="1">EN PROCESO</option>
+                            <option style="font-weight: bold;color: #7D5A48;" value="2">EN PROCESO</option>
+                            <option style="font-weight: bold;color: #7D5A48;" value="3">EN PROCESO</option>
                         </select><br><br>
                         <select class="form-select" aria-label="Default select example" style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;">
                             <option style="font-weight: bold;color: #7D5A48;" selected>RELLENO:</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="1">CHOCOLATE</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="2">VAINILLA</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="3">NUTELLA</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="3">FRESA</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="3">FERRERO</option>
+                            <option style="font-weight: bold;color: #7D5A48;" value="4">EN PROCESO</option>
+                            <option style="font-weight: bold;color: #7D5A48;" value="5">EN PROCESO</option>
+                            <option style="font-weight: bold;color: #7D5A48;" value="6">EN PROCESO</option>
+                            <option style="font-weight: bold;color: #7D5A48;" value="7">EN PROCESO</option>
+                            <option style="font-weight: bold;color: #7D5A48;" value="8">EN PROCESO</option>
+                        </select><br><br>
+                        <select style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;" class="form-select" aria-label="Default select example">
+                            <option style="font-weight: bold;color: #7D5A48;" selected>DECORACIÓN:</option>
+                            <option style="font-weight: bold;color: #7D5A48;" value="9">EN PROCESO</option>
+                            <option style="font-weight: bold;color: #7D5A48;" value="10">EN PROCESO</option>
+                            <option style="font-weight: bold;color: #7D5A48;" value="11">EN PROCESO</option>
                         </select><br><br>
                         <div class="form-floating">
                             <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px;border: 1px #7D5A48 solid;"></textarea>
-                            <label for="floatingTextarea2" style="font-weight: bold;color: #7D5A48;">Diseño personalizado:</label>
+                            <label for="floatingTextarea2" style="font-weight: bold;color: #7D5A48;">Añadir detalle:</label>
                         </div>
-                        <input style="margin-bottom: 3%;" type="submit" value="AÑADIR PERSONALIZACIÓN" class="botonAnadir" >
+                        <input style="margin-bottom: 3%;" type="submit" value="REALIZAR PERSONALIZACIÓN" class="botonAnadir" >
 
                     </form>
                 </div>
