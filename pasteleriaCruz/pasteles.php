@@ -393,17 +393,24 @@ if ($listaPasteles == '') {
     </div>
 
 
-
     <form action="#" method="POST" class="row justify-content-center">
-        <select class="form-select" style="width: 150px; margin-right: 10px;" name="filtro" id="filtro">
-            <option value="todos" selected>TODOS</option>
-            <option value="chocolate">CHOCOLATE</option>
-            <option value="vainilla">VAINILLA</option>
-            <option value="fresa">FRESA</option>
-        </select>
-        <input type="submit" class="btn btn-dark" style="width: 150px;" value="FILTRAR" name="filtrar">
-        </select>
-    </form>
+    <select class="form-select" style="width: 150px; margin-right: 10px;" name="filtro" id="filtro">
+    <option value="todos">todos</option>
+    <?php
+      $sql = "SELECT * FROM base ; ";
+  
+    $consulta = $conexion->conexion->prepare($sql);
+    $consulta->execute();
+    while ($fila = $consulta->fetch()) {
+      echo '<option value="'.$fila["nombre"].'" selected>'.$fila["nombre"].'</option>';
+
+    }
+    ?>
+
+    </select>
+    <input type="submit" class="btn btn-dark" style="width: 150px;" value="FILTRAR" name="filtrar">
+    </select>
+  </form>
 
 
     <div id="contenedorTartas">
