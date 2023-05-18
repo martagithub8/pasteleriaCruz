@@ -28,7 +28,7 @@ if (!isset($_SESSION['filtro'])) {
 //creamos conexion
 $conexion = new Conexion("root", "", "pasteleria");
 
-//MUESTRA ANIMALES SEGÚN EL FILTRO SELECCIONADO
+//MUESTRA PRODUCTOS SEGÚN EL FILTRO SELECCIONADO
 if (!isset($_POST['filtro'])) {
   $_POST['filtro'] = '';
   $_SESSION['filtro'] = '';
@@ -46,7 +46,7 @@ if (!isset($_POST['filtro'])) {
       $listaTartas .= '<div class="card col-4 m-4" style="width: 18rem;border:none; box-shadow:8px 1px 10px grey">
       <div class="row">
       <form class="col-6 " method="post">
-        <input type="hidden" name="raza" value="' . $fila["nombre"] . '">
+        <input type="hidden" name="nombre" value="' . $fila["nombre"] . '">
         <input type="hidden" name="precio" value="' . $fila["precio"] . '">
         <input style=" background-color: #FFA07A; border-radius:5px" class="btn" type="submit" type="submit"  name="anadir" value="AÑADIR">
     </form>
@@ -90,7 +90,7 @@ if (isset($_POST['filtro'])) {
       <div class="card col-4 m-4" style="width: 18rem;border:none; box-shadow:8px 1px 10px grey">
       <div class="row">
       <form class="col-6 " method="post">
-          <input type="hidden" name="raza" value="' . $fila["nombre"] . '">
+          <input type="hidden" name="nombre" value="' . $fila["nombre"] . '">
           <input type="hidden" name="precio" value="' . $fila["precio"] . '">
           <input style=" background-color: #FFA07A; border-radius:5px" class="btn" type="submit"  name="anadir" value="AÑADIR">
       </form>
