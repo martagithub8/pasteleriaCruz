@@ -149,7 +149,7 @@ if (isset($_POST['btnIniciarSesion'])) {
     </header>
     <div style="text-align:center; justify-content:center">
         <h2>¿Aún no conoces nuestra oferta?</h2>
-        <span>Por la compra de una de nuestras tartas personalizadas llévese una de nuestro catálogo gratis</span>
+        <span>Por la compra de una de nuestras tartas personalizadas llévese un pastel de nuestro catálogo gratis</span>
     </div>
     <section id="cajaGlobal">
         <section id="ejemplo1">

@@ -124,7 +124,7 @@ $conexion = new Conexion("root", "", "pasteleria");
                 <img src="img/oferta0.jpg" alt="esfera" width="380" height="370">
             </div>
             <div class="texto">
-                <p class="sinNegrita" style="text-align: justify;"> <strong>¿Aún no conoces nuestra oferta?</strong><br> Por la compra de una de nuestras tartas personalizadas llévese una de nuestro catálogo gratis.</p>
+                <p class="sinNegrita" style="text-align: justify;"> <strong>¿Aún no conoces nuestra oferta?</strong><br> Por la compra de una de nuestras tartas personalizadas llévese un pastel de nuestro catálogo gratis.</p>
                 <a class="consultar" href="oferta.php">CONSULTAR</a>
             </div>
 
