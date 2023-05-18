@@ -169,7 +169,8 @@ if (isset($_POST['btnIniciarSesion'])) {
             <div class="container" style="display:flex; justify-content: center; margin-top: 20%;">
 
 
-                <a style="border:1px solid black; padding:4%; text-decoration:none; background-color:#7D5A48; color: white" href="personalizar.php">COMENZAR</a>
+                <a style="border:1px solid black; padding:4%; text-decoration:none; background-color:#7D5A48; color:white; background-color:  rgb(40,12,3);
+background: linear-gradient(0deg, rgba(40,12,3,1) 1%, rgba(3,225,228,1) 73%, rgba(129,221,204,1) 100%);" href="personalizar.php">COMENZAR</a>
 
 
             </div>

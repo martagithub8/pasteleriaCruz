@@ -6,6 +6,8 @@ session_unset();
 //cierra la sesion
 session_destroy();
 
+unlink("compra.txt");
+
 
 
 header("Location:index.php");
