@@ -1,0 +1,10 @@
+Cliente: marta0
+Producto: Brownie,Chocolate y Nueces,Fresa y Nata,Barco relleno de chocolat,Donuts de azucar,Barco de chocolate
+Total: 96€
+18-05-2023 23:05:31
+
+Cliente: marta0
+Producto: Fresa y Nata,Chocolate y Nueces,Brownie,Barco relleno de chocolat,Donuts de azucar,Barco de chocolate
+Total: 96€
+18-05-2023 23:05:50
+

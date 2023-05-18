@@ -109,6 +109,149 @@ if (isset($_POST['filtro'])) {
     }
 }
 
+
+        //MIENTRAS SE PULSE EL BOTÓN AÑADIR
+        if (isset($_POST['anadir'])) {
+            //Guardamos datos fundamentales PRODUCTO. PRECIO. CANTIDAD. Para realizar el añadir a la cesta
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            
+
+
+            //Si no existe el fichero
+            if(!file_exists("compra.txt")){
+                //lo creamos y añadimos el primer elemento a la compra.txt
+                $fichero=fopen('compra.txt','a');
+                fwrite($fichero,$nombre.'-'.$precio.'-'.$cantidadPorDefecto."\n");
+                fclose($fichero);
+                $_SESSION['cantidad']=1;
+                // $_SESSION['precio']=$precio;
+                
+
+
+            }else{
+                //comprueba si ya hay alguna Nombre para que no se repitan y simplemente aumente la cantidad            
+                    $existeNombre=false;
+
+
+                    //VER SI EXISTE LA Nombre O NO. PONER BOOLEANO A TRUE O FALSE. Y GUARDAR LA CANTIDAD PARA LUEGO ACTUALIZARLA.
+                    //r de lectura para solo leer fichero. puntero al inicio del fichero
+                    $fichero=fopen('compra.txt','r');
+                    //bucle para recorrer ficheros de php
+                    //SIMPLEMENTE PARA VER SI Nombre EXISTE O NO
+                    while (!feof($fichero)) {
+                        //guardamos en variable cada linea
+                        $linea=fgets($fichero);
+                        if($linea!=''){
+                            //linea lo separaremos con ese split
+                            $separador=explode('-',$linea);
+                            //si ya hay una Nombre de ese tipo
+                            if($separador[0]==$nombre){
+                                //ponemos el booleano a true
+                                $existeNombre=true;
+
+                                //tomar la cantidad actual en una variable normal para luego aplicar el intval
+                                $cantidad=$separador[2];
+                                // $precio=$separador[1];
+                                
+                              
+                            }
+                        }
+                    }
+                    fclose($fichero);
+
+                    //para convertir una variable en un entero
+                    $_SESSION['cantidad']=intval($cantidad);
+                    // $_SESSION['precio']=intval($precio);
+
+
+
+                    //COMPROBAR BOOLEANO. 
+                    //SI TRUE: COGER CANTIDAD Y MODIFICAR.
+                    //SI FALSE: AÑADIR NUEVA LINEA CON ESA nombre + CANTIDAD 1
+
+                    //NO HAY NINGUNA nombre COMO LA ACTUALMENTE SELECCIONADA EN EL FICHERO COMPRA.TXT
+                    if ($existeNombre==false) {
+                        $fichero=fopen('compra.txt','a');
+                        fwrite($fichero,$nombre.'-'.$precio.'-'.$cantidadPorDefecto."\n");
+                        fclose($fichero);
+                       
+                    }
+                    
+                    //YA EXISTE UNA nombre DE ESE TIPO EN EL FICHERO
+                    if($existeNombre==true){
+                        //COMPROBAR STOCK. MUY IMPORTANTE.
+                        $sql = "SELECT nombre, stock FROM producto WHERE nombre='".$nombre."'; ";
+                        
+                        $consulta = $conexion->conexion->prepare($sql);            
+                        $consulta->execute();
+                        while ($fila = $consulta->fetch()) {
+                          
+                            $stockBD= $fila['stock'];
+                
+                        }    
+
+
+                        
+                        //AQUÍ PARTE DE ACTUALIZAR CANTIDAD
+                                $contenidoFichero = "";
+                                //linea que añadiremos al final del fichero
+                                $cantidadActualizada = "";
+
+                                    //AQUÍ VA LA CANTIDAD TOTAL
+                                    $_SESSION['cantidad']++;
+                                    //AQUÍ VA EL PRECIO TOTAL;
+                                    $_SESSION['precio']= $_SESSION['cantidad']*$precio;
+                                    
+
+                                    //COMPROBAR STOCK
+                                    if ($_SESSION['cantidad']>$stockBD) {
+                                        $mensaje="PRODUCTO AGOTADO.";
+
+                                    }else{
+                                        //SI AÚN HAY STOCK
+                                        $fichero=fopen('compra.txt','r');
+                                        while (!feof($fichero)) {
+                                            //guardamos en variable cada linea
+                                            $linea=fgets($fichero);
+                                            if($linea!=''){
+                                                //linea lo separaremos con ese split
+                                                $separador=explode('-',$linea);
+
+                                                //SI ESTAMOS EN LA LÍNEA DE LA nombre.
+                                                if($separador[0]==$nombre){
+                                                    //MODIFICAMOS CANTIDAD Y PRECIO.
+                                                    $cantidadActualizada = $nombre.'-'.$_SESSION['precio'].'-'.$_SESSION['cantidad']."\n";
+                                                }else{
+                                                    $contenidoFichero.=$linea;
+                                                }
+                                            }
+                                        }
+
+                                        $contenidoFichero .= $cantidadActualizada;
+                                        fclose($fichero);
+
+
+                                        //abrimos de nuevo fichero
+                                        $fichero=fopen('compra.txt','w');
+                                        //actualizamos contenido introduciendo el nuevo string completo
+                                        fwrite($fichero,$contenidoFichero);
+                                        //cerramos el fichero
+                                        fclose($fichero);
+
+
+                                        //establecemos a 0 cantidad y precio para próximo producto que se añada a la cesta
+                                        $_SESSION['cantidad']=0;
+                                        $_SESSION['precio']=0;
+
+                                    }
+                    }
+
+
+                    }
+            
+          }
+
 //SI NO HAY PRODUCTOS
 if ($listaPasteles == '') {
     $mensaje = "NO EXISTEN PRODUCTOS EN ESTA TIENDA";

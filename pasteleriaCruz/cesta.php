@@ -1,10 +1,29 @@
 <?php
 session_start();
 include "conexion_con_CLASE.php";
+
+//crear una conexión de la clase conexión importada
+$conexion = new Conexion("root", "", "pasteleria");
+
 $mensajeUsuario = "";
 $mensajePassword = "";
 $usuario = "";
 $mensaje = '';
+
+  //VARIABLES
+  $total=0;
+  $contenidoCesta=false;
+  $cantidadProducto=0;
+  $producto='';
+  $productosComprados='';
+  $fecha_actual = date('d-m-Y H:i:s');
+  $mensaje='';
+  $mensajeTotal='';
+  $contenidoFichero='';
+  $productoTabla='';
+  $precioTabla=0;
+  $cantidadTabla=0; 
+  $filasTabla='';
 
 
 
@@ -23,43 +42,172 @@ if (!isset($_SESSION['usuario'])) {
     $_SESSION['usuario'] = '';
 }
 
-
-
-
-
-//crear una conexión de la clase conexión importada
-$con = new Conexion("root", "", "pasteleria");
-
-//control de errores en login
-if (isset($_POST['btnIniciarSesion'])) {
-    if ($usuario == "") {
-        $mensajeUsuario = "Este campo no puede estar vacío";
-    } else {
-        $mensajeUsuario = "";
-    }
-
-    if ($password == "") {
-        $mensajePassword = "Este campo no puede estar vacío";
-    } else {
-        $mensajePassword = "";
-
-
-        //AHORA COMPROBAMOS QUE EXISTA EN LA BD
-        // Consulta para comprobar si las credenciales son válidas
-        $consulta = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND password = '$password'";
-        //lanza consulta
-        $res = $con->conexion->query($consulta);
-
-        if ($res->rowCount() == 1) {
-            // Las credenciales son válidas, iniciar sesión
-            $_SESSION['usuario'] = $usuario;
-            header('Location: tienda.php');
-        } else {
-            // Las credenciales no son válidas, mostrar un mensaje de error
-            $mensaje = 'Nombre de usuario o contraseña incorrectos.';
-        }
-    }
+  //SESIONES
+  if(!isset($_SESSION['total'])){
+    $_SESSION['total']=0;
 }
+
+if(!isset($_SESSION['producto'])){
+    $_SESSION['producto']='';
+}
+if(!isset($_SESSION['cantidadProducto'])){
+    $_SESSION['cantidadProducto']=0;
+}
+
+if(!isset($_SESSION['productosComprados'])){
+    $_SESSION['productosComprados']='';
+}
+
+
+
+
+
+
+    //COMPROBAR SI COMPRA.TXT EXISTE O NO
+    if(!file_exists("compra.txt")){
+        $mensaje="SU CESTA ESTÁ VACÍA";
+        $contenidoCesta=false;
+
+    }else{
+        $contenidoCesta=true;
+
+        //MOSTRAR CESTA
+      //guardar en variables las líneas del fichero y hacer el select a la bd
+    //   $contenidoFichero = "";
+    //   $fichero=fopen('compra.txt','r');
+
+    //   while (!feof($fichero)) {
+    //          $linea=fgets($fichero);
+    //         if($linea!=''){
+    //             //linea lo separaremos con ese split                
+    //                 $contenidoFichero.="<br>".$linea;
+                 
+    //         }
+    //     }
+    //     fclose($fichero);
+       
+
+
+        //OBTENER PRECIO TOTAL DE LA COMPRA
+        $fichero=fopen('compra.txt','r');
+             
+             while (!feof($fichero)) {
+                 $linea=fgets($fichero);
+                 if($linea!=''){
+                     //linea lo separaremos con ese split
+                    $separador=explode('-',$linea);
+                        $total+=$separador[1];  
+                        $productoTabla=$separador[0];
+                        $precioTabla=$separador[1];
+                        $cantidadTabla=$separador[2];   
+                        $filasTabla.="<tr>
+                                        <th scope='row'>$productoTabla</th>
+                                        <td>$precioTabla</td>
+                                        <td>$cantidadTabla</td>
+                                        </tr> ";
+                         
+                                                   
+                 }
+             }
+            fclose($fichero);
+
+            //para convertir una variable en un entero
+            $_SESSION['total']=intval($total);
+
+
+    }
+
+
+ 
+
+
+    //MIENTRAS SE PULSE EL BOTÓN ticket
+        if (isset($_POST['ticket'])) {
+
+            //COMPROBAR SI LA CESTA TIENE CONTENIDO O NO
+            if($contenidoCesta==true){
+               
+                //OBTENER PRODUCTOS DEL COMPRADOR Y ACTUALIZARLOS EN LA BD
+                    $fichero=fopen('compra.txt','r');
+                    
+                    while (!feof($fichero)) {
+                        $linea=fgets($fichero);
+                        if($linea!=''){
+                            //linea lo separaremos con ese split
+                        $separador=explode('-',$linea);
+
+                            $producto=$separador[0];  
+                            $cantidadProducto= $separador[2];   
+                            $_SESSION['producto']=$producto;
+                            $_SESSION['cantidadProducto']=intval($cantidadProducto);
+
+                            //ACTUALIZAR BD
+                            $sql = "UPDATE producto SET stock = stock - ".$_SESSION['cantidadProducto']." WHERE nombre = '".$_SESSION['producto']."'";
+
+                            $consulta = $conexion->conexion->prepare($sql);            
+                            $consulta->execute();
+                        }
+                    }
+
+                            //REALIZAMOS EL REGISTRO
+
+                            //PRIMERO SE LEE COMPRA.TXT PARA GUARDAR LOS PRODUCTOS EN UN STRING
+                            $fichero=fopen('compra.txt','r');
+                         
+                            while (!feof($fichero)) {
+                                $linea=fgets($fichero);
+                                if($linea!=''){
+                                    //linea lo separaremos con ese split
+                                   $separador=explode('-',$linea);
+       
+                                       $productosComprados.=$separador[0].',';     
+                                }
+                            }
+                           fclose($fichero);
+               
+                           //para eliminar el último caracter
+                           $productosComprados= substr($productosComprados, 0, -1);
+                           $_SESSION['productosComprados']=$productosComprados;
+
+
+                                //AHORA creamos registro. Si ya existe lo añade el nuevo al final de la linea.
+                                // Si el fichero existe se conserva el contenido, si no existe se crea uno nuevo. El puntero se sitúa al final del fichero
+                                $fichero=fopen('registro.txt','a');
+                                fwrite($fichero,'Cliente: '.$_SESSION['usuario']."\n".'Producto: '.$_SESSION['productosComprados']."\n".'Total: '.$_SESSION['total'].'€'."\n".$fecha_actual."\n\n");
+                                fclose($fichero);
+                               
+                 //UNA VEZ REALIZADA LA COMPRA ELIMINAMOS EL TXT.COMPRA/ LA CESTA         
+                unlink("compra.txt");
+                //ELIMINAMOS TAMBIÉN EL CÁLCULO DEL PRECIO TOTAL
+                $_SESSION['total']=0;
+
+
+                //REDIRIGIMOS A LA PÁGINA DEL PAGO
+                //aqui va ticket.php
+                   header("Location:ticket.php");
+ 
+            }else{
+                //EN CASO DE NO EXISTIR NADA EN LA CESTA
+                $mensaje="SU CESTA ESTÁ VACÍA";
+            }
+        }
+
+        
+
+        //MIENTRAS SE PULSE EL BOTÓN VACIAR CESTA
+          if (isset($_POST['vaciar'])) {
+           
+            //si no hay nada avisa que cesta está vacía. Si hay contenido la vacía
+            if(file_exists("compra.txt")){
+                unlink("compra.txt");
+                $_SESSION['total']=0;
+                header("Location:tienda.php");
+            }else{
+                $mensaje="SU CESTA ESTÁ VACÍA";
+                $_SESSION['total']=0;
+
+            }
+        }
 
 
 ?>
@@ -161,11 +309,7 @@ if (isset($_POST['btnIniciarSesion'])) {
    
     <div class="mt4 container-fluid" id="contenidoPagina">
           
-          <p>
-            <?php 
-            // echo $contenidoFichero;
-            ?>
-        </p>
+          <p><?php echo $contenidoFichero; ?></p>
 
             <p class="text-center"><?php echo $mensaje; ?></p>
 
@@ -180,7 +324,7 @@ if (isset($_POST['btnIniciarSesion'])) {
             </thead>
             <tbody>
                 <?php 
-                // echo $filasTabla;
+                echo $filasTabla;
                 ?>
                 
             </tbody>
@@ -188,18 +332,17 @@ if (isset($_POST['btnIniciarSesion'])) {
 
 
 
-            <p style="font-weight:bold"><?php 
-            // echo "EL TOTAL ES: ".$_SESSION['total']; 
-            ?>€</p>
+            <p style="font-weight:bold"><?php echo "EL TOTAL ES: ".$_SESSION['total']; ?>€</p>
 
 
             <form action="#" method="POST">
-        <input class="btn btn-success" type="submit" value="PAGAR" name="pagar">
+        <input class="btn btn-success" type="submit" value="ticket" name="ticket">
         <input class="btn btn-danger" type="submit" value="VACIAR CESTA" name="vaciar">
 
             </form>
 
           </div>
+
 
 
 </body>
