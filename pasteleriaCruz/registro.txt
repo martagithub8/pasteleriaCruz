@@ -8,3 +8,13 @@ Producto: Fresa y Nata,Chocolate y Nueces,Brownie,Barco relleno de chocolat,Donu
 Total: 96€
 18-05-2023 23:05:50
 
+Cliente: marta0
+Producto: Brownie,Chocolate y Nueces,Fresa y Queso,Barco de chocolate
+Total: 92€
+19-05-2023 11:16:38
+
+Cliente: marta0
+Producto: Chocolate y Nueces,Brownie
+Total: 60€
+19-05-2023 12:03:02
+

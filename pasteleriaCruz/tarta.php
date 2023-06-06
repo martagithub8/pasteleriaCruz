@@ -52,7 +52,7 @@ if (!isset($_POST['filtro'])) {
         <input type="hidden" name="precio" value="' . $fila["precio"] . '">
         <input style=" background-color: #FFA07A; border-radius:5px" class="btn" type="submit" type="submit"  name="anadir" value="AÑADIR">
     </form>
-      <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
+      <span class="card-text col-6">stock: ' . $fila['stock'] . '</span>
      
       </div>
       <img src="img/' . $fila['img'] . '" width="100px" height="250px" class="card-img-top" alt="...">
@@ -68,7 +68,7 @@ if (!isset($_POST['filtro'])) {
         $listaTartas .= '<div class="card col-4 m-4" style="width: 18rem;border:none; box-shadow:8px 1px 10px grey">
         <div class="row">
   
-        <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
+        <span class="card-text col-6">stock: ' . $fila['stock'] . '</span>
        
         </div>
         <img src="img/' . $fila['img'] . '" width="100px" height="250px" class="card-img-top" alt="...">
@@ -113,7 +113,7 @@ if (isset($_POST['filtro'])) {
         <input type="hidden" name="precio" value="' . $fila["precio"] . '">
         <input style=" background-color: #FFA07A; border-radius:5px" class="btn" type="submit" type="submit"  name="anadir" value="AÑADIR">
     </form>
-      <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
+      <span class="card-text col-6">stock: ' . $fila['stock'] . '</span>
      
       </div>
       <img src="img/' . $fila['img'] . '" width="100px" height="250px" class="card-img-top" alt="...">
@@ -129,7 +129,7 @@ if (isset($_POST['filtro'])) {
         $listaTartas .= '<div class="card col-4 m-4" style="width: 18rem;border:none; box-shadow:8px 1px 10px grey">
         <div class="row">
   
-        <span class="card-text col-6">Cantidad: ' . $fila['stock'] . '</span>
+        <span class="card-text col-6">stock: ' . $fila['stock'] . '</span>
        
         </div>
         <img src="img/' . $fila['img'] . '" width="100px" height="250px" class="card-img-top" alt="...">

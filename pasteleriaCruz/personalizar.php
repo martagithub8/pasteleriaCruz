@@ -7,10 +7,81 @@ if (!isset($_SESSION['usuario'])) {
     $_SESSION['usuario'] = '';
 }
 
+if (!isset($_SESSION['tartaPersonalizada'])) {
+    $_SESSION['tartaPersonalizada'] = [];
+}
+
+//variable array donde metemos valor del select
+$tartaPersonalizada = [];
+
+//si existe lo guarda en variavel para luego comprobar q sea distinto de seleccione color
+if (isset($_POST['base'])) {
+    $base = $_POST['base'];
+}
+
+if (isset($_POST['relleno'])) {
+    $relleno = $_POST['relleno'];
+}
+
+if (isset($_POST['decoracion'])) {
+    $decoracion = $_POST['decoracion'];
+}
+
+
+
+
 
 
 //creamos conexion
 $conexion = new Conexion("root", "", "pasteleria");
+
+//PROGRAMACIÓN
+if (isset($_POST['encargo'])) {
+//el problema está aquí
+$problem;
+    if ($base != '0' && $relleno != '0' && $decoracion != '0' ) {
+
+        array_push($tartaPersonalizada, $base);
+        array_push($tartaPersonalizada, $relleno);
+        array_push($tartaPersonalizada, $decoracion);
+        //si hay intentos . Controlamos si introduce repetidos
+        //creamos sesion
+
+        $_SESSION['tartaPersonalizada'] = $tartaPersonalizada;
+        
+        guardarString();
+    } else {
+        $error = "NO PUEDE INTRODUCIR COLORES REPETIDOS.";
+        $_SESSION['error'] = true;
+    }
+}
+
+
+
+
+
+//FUNCIONES
+function guardarString()
+{
+
+    // $contenidoFichero=implode('-',$_SESSION['coloresUsuario']);
+    // $fichero=fopen('partida.txt','a');
+    // //actualizamos contenido introduciendo el nuevo string completo
+    // fwrite($fichero,$contenidoFichero."\n");
+    // fclose($fichero);
+    // _________________________________________________________________
+    $contenidoFichero = '';
+    //podria guardarlo en el fichero igual q lo muestro abajo en div Intentos
+    $fichero = fopen('tartapersonalizada.txt', 'a');
+
+    for ($i = 0; $i < count($_SESSION['tartapersonalizada']); $i++) {
+        // echo '<div class="'.$_SESSION['coloresUsuario'][$i].'"></div>';
+        $contenidoFichero .= '<div class="' . $_SESSION['tartapersonalizada'][$i] . '"></div>';
+    }
+
+    fwrite($fichero, $_SESSION['tartapersonalizada'] . "\n");
+    fclose($fichero);
+}
 
 ?>
 
@@ -138,36 +209,58 @@ $conexion = new Conexion("root", "", "pasteleria");
                 <div class=" mt4" style="text-align: center;" id="editarCuenta">
                     <h3 style="color: #7D5A48;">COMENZAR PERSONALIZACIÓN </h3><br><br>
 
-                    <form>
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="row justify-content-center">
+                        <span>SELECCIONE BASE</span>
+                        <select onchange="cambiarColor()" name="base" class="form-select" aria-label="Default select example" style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;">
+                            <option class="contenido" value="0">BASE</option>
 
-                        <select style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;" class="form-select" aria-label="Default select example">
-                            <option style="font-weight: bold;color: #7D5A48;" selected>BASE:</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="1">EN PROCESO</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="2">EN PROCESO</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="3">EN PROCESO</option>
+                            <?php
+
+                            $sql = "SELECT * FROM base ; ";
+
+                            $consulta = $conexion->conexion->prepare($sql);
+                            $consulta->execute();
+                            while ($fila = $consulta->fetch()) {
+                                echo '<option class="'.$fila["nombre"].'" value="' . $fila["nombre"] . '" selected>' . $fila["nombre"] . '</option>';
+                            }
+                            ?>
                         </select><br><br>
-                        <select class="form-select" aria-label="Default select example" style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;">
-                            <option style="font-weight: bold;color: #7D5A48;" selected>RELLENO:</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="4">EN PROCESO</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="5">EN PROCESO</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="6">EN PROCESO</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="7">EN PROCESO</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="8">EN PROCESO</option>
+                        <span>SELECCIONE RELLENO</span>
+                        <select onchange="cambiarColor()" name="relleno" class="form-select" aria-label="Default select example" style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;">
+                            <option class="contenido" value="0">RELLENO</option>
+
+                            <?php
+                            $sql = "SELECT * FROM relleno ; ";
+
+                            $consulta = $conexion->conexion->prepare($sql);
+                            $consulta->execute();
+                            while ($fila = $consulta->fetch()) {
+                                echo '<option class="'.$fila["nombre"].'" value="' . $fila["nombre"] . '" selected>' . $fila["nombre"] . '</option>';
+                            }
+                            ?>
                         </select><br><br>
-                        <select style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;" class="form-select" aria-label="Default select example">
-                            <option style="font-weight: bold;color: #7D5A48;" selected>DECORACIÓN:</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="9">EN PROCESO</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="10">EN PROCESO</option>
-                            <option style="font-weight: bold;color: #7D5A48;" value="11">EN PROCESO</option>
-                        </select><br><br>
+                        <span>SELECCIONE DECORACIÓN</span>
+                        <select onchange="cambiarColor()" name="decoracion" style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;" class="form-select" aria-label="Default select example">
+                            <option class="contenido" value="0">DECORACIÓN</option>
+
+                            <?php
+                            $sql = "SELECT * FROM decoracion ; ";
+
+                            $consulta = $conexion->conexion->prepare($sql);
+                            $consulta->execute();
+                            while ($fila = $consulta->fetch()) {
+                                echo '<option class="'.$fila["nombre"].'" value="' . $fila["nombre"] . '" selected>' . $fila["nombre"] . '</option>';
+                            }
+                            ?>
+                        </select>
+                        <br><br>
                         <div class="form-floating">
                             <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px;border: 1px #7D5A48 solid;"></textarea>
                             <label for="floatingTextarea2" style="font-weight: bold;color: #7D5A48;">Añadir detalle:</label>
-                           
+
                         </div>
-                        <input type="checkbox" id="oferta" name="oferta" value="oferta">
-                            <label for="oferta">Seleccionar ofeta 2x1</label><br>
-                        <input style="margin-bottom: 3%;" type="submit" value="REALIZAR PERSONALIZACIÓN" class="botonAnadir">
+
+                        <input style="margin-bottom: 3%;" type="submit" value="REALIZAR PERSONALIZACIÓN" class="botonAnadir" name="encargo">
 
                     </form>
                 </div>
@@ -206,3 +299,24 @@ $conexion = new Conexion("root", "", "pasteleria");
 </footer>
 
 </html>
+<script>
+
+//no se puede detectar el select sobre el q estamos actuando por tanto guardamos todos los select en una variable
+//el q esté seleccionado modificará a su correspondiente select
+function cambiarColor() {
+    var selectColores = document.getElementsByTagName("select");
+    for (let i = 0; i < selectColores.length; i++) {
+      //obtenemos el option seleccionado
+      var option = selectColores[i].options[selectColores[i].selectedIndex];
+      //con esto obtenemos la clase del option marcado
+      var classColorOption = option.classList;
+      //añadimos la clase del option al select.
+      selectColores[i].classList=classColorOption;
+    }
+}
+
+  
+
+
+
+</script>
