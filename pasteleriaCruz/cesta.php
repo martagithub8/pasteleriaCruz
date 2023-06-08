@@ -256,9 +256,7 @@ if(!isset($_SESSION['productosComprados'])){
                       <div id="login2"><a href="index.php"></i></a></div>
       
                   </div>';
-            } else if ($_SESSION['usuario'] == "admin0"){
-
-            }
+            } 
 
             ?>
 

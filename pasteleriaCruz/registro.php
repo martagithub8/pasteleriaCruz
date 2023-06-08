@@ -120,7 +120,7 @@ if (isset($_POST['btnRegistro'])) {
             $password1 = md5($password1);
             $password2 = md5($password2);
 
-            $sql = "INSERT INTO usuarios (nombre, correo, usuario, password) VALUES ('$nombre', '$correo', '$usuario', '$password1')";
+            $sql = "INSERT INTO usuarios (nombre, correo, usuario, password, tipo) VALUES ('$nombre', '$correo', '$usuario', '$password1', 'cliente')";
             $res = $con->conexion->query($sql);
             echo "<h1>Registrado con éxito</h1>";
             $res->closeCursor();

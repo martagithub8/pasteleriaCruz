@@ -5,10 +5,14 @@ if ($_SESSION['usuario'] == "") {
   header('Location: index.php');
 }
 
+
 //variables
 
 
 //sesiones
+if (!isset($_SESSION['tipo'])) {
+  $_SESSION['tipo'] = '';
+}
 
 
 
@@ -52,18 +56,27 @@ $conexion = new Conexion("root", "", "pasteleria");
       echo '<div id="login">';
 
 
-      if ($_SESSION['usuario'] == "admin0") {
+      $sql = "SELECT * FROM usuarios WHERE usuario = '" . $_SESSION['usuario'] . "'; ";
+
+      $consulta = $conexion->conexion->prepare($sql);
+      $consulta->execute();
+      while ($fila = $consulta->fetch()) {
+        $_SESSION['tipo'] = $fila['tipo'];
+      }
+
+
+      if ($_SESSION['tipo'] == "administrador") {
         echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
                 <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
                 <div  id="login2"><a href="" data-bs-toggle="modal" data-bs-target="#modalLogin"><i class="bi bi-gear iconHeader"></i></a></div>
 
                 </div>';
-      } else if ($_SESSION['usuario'] != "") {
+      } else if ($_SESSION['tipo'] == "cliente") {
         echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
         <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
 
         </div>';
-      } else if ($_SESSION['usuario'] == "") {
+      } else if ($_SESSION['tipo'] == "") {
         echo '<div id="login1"><a href="login.php"><i class="bi bi-person-circle iconHeader"></i></a></div>
                 <div id="login2"><a href="login.php"></a></div>
                       <div id="login2"><a href="index.php"></i></a></div>
