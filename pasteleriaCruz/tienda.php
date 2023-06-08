@@ -65,7 +65,7 @@ $conexion = new Conexion("root", "", "pasteleria");
       }
 
       ?>
-      <div id="login2"><a href="admin.php"><i class="bi bi-gear iconHeader"></i></a></div>
+      <div id="login2"><a href="adminUsu.php"><i class="bi bi-gear iconHeader"></i></a></div>
 
       </div>
 

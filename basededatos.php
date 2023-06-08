@@ -129,6 +129,7 @@ $sql =
     
     INSERT INTO usuarios(nombre, correo, usuario, password) VALUES ('Marta', 'marta@gmail.com', 'marta0','c23499dba1407c74aaa8c17386a6d6f9');
     INSERT INTO usuarios(nombre, correo, usuario, password) VALUES ('Usuario', 'usuario@gmail.com', 'usuario','f8032d5cae3de20fcec887f395ec9a6a');
+    INSERT INTO usuarios(nombre, correo, usuario, password) VALUES ('admin', 'admin@gmail.com', 'admin0','62f04a011fbb80030bb0a13701c20b41');
 
 INSERT INTO base(nombre) VALUES ('chocolate');
 INSERT INTO base(nombre) VALUES ('chocolateBlanco');
