@@ -168,12 +168,12 @@ $conexion = new Conexion("root", "", "pasteleria");
           <div class="modal-content">
           <div class="modal-header">
                   <a href="adminProduct.php" class=" btn btn-primary btn-block col-12" role="button">
-                  <i class="bi bi-cup-hot"> </i>ADMINISTRAR PRODUCTOS <i class="bi bi-cup-hot"> </i>
+                  <i class="bi bi-cup-hot"> ADMINISTRAR PRODUCTOS </i>
                   </a>
               </div>
               <div class="modal-header">
                   <a href="adminUsu.php" class=" btn btn-primary btn-block col-12" role="button">
-                  <i class="bi bi-person-fill-gear"> ADMINISTRAR USUARIO</i>
+                  <i class="bi bi-person-fill-gear"> ADMINISTRAR USUARIO </i>
                   </a>
               </div>
 

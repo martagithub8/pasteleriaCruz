@@ -159,21 +159,29 @@ if(!isset($_SESSION['productosComprados'])){
                                 if($linea!=''){
                                     //linea lo separaremos con ese split
                                    $separador=explode('-',$linea);
-       
-                                       $productosComprados.=$separador[0].',';     
+                                       $total+=$separador[1];  
+                                       $productoTabla=$separador[0];
+                                       $precioTabla=$separador[1];
+                                       $cantidadTabla=$separador[2];   
+                                       $contenidoTicket.= "Producto: $productoTabla - $precioTabla €. Cant: $cantidadTabla\n ";
+                                                      
+                                        
+                                                                  
                                 }
                             }
                            fclose($fichero);
                
-                           //para eliminar el último caracter
-                           $productosComprados= substr($productosComprados, 0, -1);
-                           $_SESSION['productosComprados']=$productosComprados;
-
+                           //para convertir una variable en un entero
+                        //    $_SESSION['total']=intval($total);
 
                                 //AHORA creamos registro. Si ya existe lo añade el nuevo al final de la linea.
                                 // Si el fichero existe se conserva el contenido, si no existe se crea uno nuevo. El puntero se sitúa al final del fichero
                                 $fichero=fopen('registro.txt','a');
-                                fwrite($fichero,'Cliente: '.$_SESSION['usuario']."\n".'Producto: '.$_SESSION['productosComprados']."\n".'Total: '.$_SESSION['total'].'€'."\n".$fecha_actual."\n\n");
+                                fwrite($fichero,'Cliente: '.$_SESSION['usuario']."\n \n".$contenidoTicket."\n" .'Total: '.$_SESSION['total'].'€'."\n".$fecha_actual."\n\n ------------------------ \n");
+                                fclose($fichero);
+
+                                $fichero=fopen('ticket.txt','w');
+                                fwrite($fichero,'Cliente: '.$_SESSION['usuario']."\n \n".$contenidoTicket."\n" .'Total: '.$_SESSION['total'].'€'."\n".$fecha_actual."\n\n ------------------------ \n");
                                 fclose($fichero);
                                
                  //UNA VEZ REALIZADA LA COMPRA ELIMINAMOS EL TXT.COMPRA/ LA CESTA         
