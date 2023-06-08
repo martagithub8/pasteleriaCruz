@@ -176,7 +176,7 @@ if(!isset($_SESSION['productosComprados'])){
                                        $productoTabla=$separador[0];
                                        $precioTabla=$separador[1];
                                        $cantidadTabla=$separador[2];   
-                                       $contenidoTicket.= "Producto: $productoTabla - $precioTabla €. Cant: $cantidadTabla\n ";
+                                       $contenidoTicket.= "Producto: $productoTabla  $precioTabla €. Cant: $cantidadTabla\n ";
                                                       
                                         
                                                                   
@@ -190,11 +190,11 @@ if(!isset($_SESSION['productosComprados'])){
                                 //AHORA creamos registro. Si ya existe lo añade el nuevo al final de la linea.
                                 // Si el fichero existe se conserva el contenido, si no existe se crea uno nuevo. El puntero se sitúa al final del fichero
                                 $fichero=fopen('registro.txt','a');
-                                fwrite($fichero,'Cliente: '.$_SESSION['usuario']."\n \n".$contenidoTicket."\n" .'Total: '.$_SESSION['total'].'€'."\n".$fecha_actual."\n\n ------------------------ \n");
+                                fwrite($fichero,'Cliente: '.$_SESSION['usuario']."\n \n".$contenidoTicket."\n" .'Total: '.$_SESSION['total'].'€'."\n".$fecha_actual."\n\n ");
                                 fclose($fichero);
 
                                 $fichero=fopen('ticket.txt','w');
-                                fwrite($fichero,'Cliente: '.$_SESSION['usuario']."\n \n".$contenidoTicket."\n" .'Total: '.$_SESSION['total'].'€'."\n".$fecha_actual."\n\n ------------------------ \n");
+                                fwrite($fichero,'Cliente: '.$_SESSION['usuario']."\n \n".$contenidoTicket."\n" .'Total: '.$_SESSION['total'].'€'."\n".$fecha_actual."\n\n ");
                                 fclose($fichero);
                                
                  //UNA VEZ REALIZADA LA COMPRA ELIMINAMOS EL TXT.COMPRA/ LA CESTA         
@@ -357,7 +357,7 @@ if(!isset($_SESSION['productosComprados'])){
 
 
             <form action="#" method="POST">
-        <input class="btn btn-success" type="submit" value="ticket" name="ticket">
+        <input class="btn btn-success" type="submit" value="COMPRAR" name="ticket">
         <input class="btn btn-danger" type="submit" value="VACIAR CESTA" name="vaciar">
 
             </form>

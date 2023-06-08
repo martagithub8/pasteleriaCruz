@@ -1,17 +1,34 @@
 <?php
-    session_start();
-    if ($_SESSION['usuario'] == "") {
-        header('Location: index.php');
-      }
-      
-    $mensaje='';
+session_start();
+if ($_SESSION['usuario'] == "") {
+    header('Location: index.php');
+}
 
-    if(file_exists("compra.txt")){
-      unlink("compra.txt");
-    }
+$mensaje = '';
+$separador = '';
 
-$mensaje= "¡GRACIAS POR REALIZAR SU COMPRA!";
-   
+
+if (file_exists("compra.txt")) {
+    unlink("compra.txt");
+}
+
+$mensaje = "¡GRACIAS POR REALIZAR SU COMPRA!";
+//OBTENER TICKET TOTAL DE LA COMPRA
+
+$nombreArchivo = 'ticket.txt'; // Reemplaza 'ticket.txt' con el nombre de tu archivo
+
+// Leer el contenido del archivo
+$contenido = file_get_contents($nombreArchivo);
+
+// Convertir los saltos de línea en etiquetas <br>
+$contenidoFormateado = nl2br($contenido);
+
+
+
+
+
+//para convertir una variable en un entero
+
 
 
 
@@ -38,11 +55,11 @@ $mensaje= "¡GRACIAS POR REALIZAR SU COMPRA!";
 
 <body>
     <header>
-    <section  id="cabecera">
+        <section id="cabecera">
 
-    <?php
+            <?php
             echo '<div id="login">';
-                
+
 
             if ($_SESSION['usuario'] != "") {
                 echo '<div id="login2"><a href="tienda.php"><i class="bi bi-house iconHeader"></i></a></div>
@@ -59,21 +76,22 @@ $mensaje= "¡GRACIAS POR REALIZAR SU COMPRA!";
 
             ?>
 
-  
-  
-  <h1>PASTELERÍA CRUZ</h1>
-
-  <div id="usuario">
-    <p><i class="bi bi-person-fill"></i><?php echo $_SESSION['usuario'];?><p>
-  </div>
 
 
- 
+            <h1>PASTELERÍA CRUZ</h1>
 
-</section>
+            <div id="usuario">
+                <p><i class="bi bi-person-fill"></i><?php echo $_SESSION['usuario']; ?>
+                <p>
+            </div>
+
+
+
+
+        </section>
         <section id="menumenu">
             <nav class="navbar navbar-expand-lg navbar-light  " style="background-color: #f5f5f5;">
-            <div class="container-fluid">
+                <div class="container-fluid">
                     <?php
 
                     echo '<a class="navbar-brand margin1"';
@@ -109,9 +127,15 @@ $mensaje= "¡GRACIAS POR REALIZAR SU COMPRA!";
 
     </header>
 
+
     <section>
         <span style="text-align:center; color:green; font-size: large; font-weight: bold;">COMPRA REALIZADA CON ÉXITO</span>
     </section>
 
 
+    <div class="ticket">
+        <?php
+        echo $contenidoFormateado;
+        ?>
+    </div>
     </div>

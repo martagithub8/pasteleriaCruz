@@ -1,9 +1,0 @@
-Cliente: marta0
- 
-Producto: Barco de crema - 6 €. Cant: 3
-
- 
-Total: 6€
-08-06-2023 17:52:23
-
- ------------------------ 
