@@ -18,3 +18,13 @@ Producto: Chocolate y Nueces,Brownie
 Total: 60€
 19-05-2023 12:03:02
 
+Cliente: marta0
+Producto: Chocolate y Nueces,Fresa y Queso
+Total: 60€
+08-06-2023 17:11:53
+
+Cliente: marta0
+Producto: Barco de crema
+Total: 4€
+08-06-2023 17:12:22
+

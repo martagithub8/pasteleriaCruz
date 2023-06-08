@@ -24,7 +24,7 @@ $precioTabla = 0;
 $cantidadTabla = 0;
 $filasTabla = '';
 $mensaje = '';
-$editarProducto = '';
+$editarUsuario = '';
 
 
 
@@ -59,10 +59,10 @@ if (!isset($_SESSION['productosComprados'])) {
     $_SESSION['productosComprados'] = '';
 }
 
-//nombreBd
+//usuariobd
 
-if (!isset($_SESSION['nombrebd'])) {
-    $_SESSION['nombrebd'] = '';
+if (!isset($_SESSION['usuariobd'])) {
+    $_SESSION['usuariobd'] = '';
 }
 if (!isset($_SESSION['saborbd'])) {
     $_SESSION['saborbd'] = '';
@@ -76,11 +76,11 @@ if (!isset($_SESSION['imagenbd'])) {
 if (!isset($_SESSION['nombre0'])) {
     $_SESSION['nombre0'] = '';
 }
-if (!isset($_SESSION['sabor0'])) {
-    $_SESSION['sabor0'] = '';
+if (!isset($_SESSION['correo0'])) {
+    $_SESSION['correo0'] = '';
 }
-if (!isset($_SESSION['imagen0'])) {
-    $_SESSION['imagen0'] = '';
+if (!isset($_SESSION['usuario0'])) {
+    $_SESSION['usuario0'] = '';
 }
 
 
@@ -134,23 +134,22 @@ if (isset($_POST['filtroEd'])) {
     if ($_SESSION['filtroEd'] == 'todos') {
         // $mensaje='debe seleccionar un producto';
     } else {
-        $sql = "SELECT * FROM producto WHERE nombre = '" . $_SESSION['filtroEd'] . "'; ";
+        $sql = "SELECT * FROM usuarios WHERE usuario = '" . $_SESSION['filtroEd'] . "'; ";
     }
 
     $consulta = $conexion->conexion->prepare($sql);
     $consulta->execute();
     while ($fila = $consulta->fetch()) {
-        $_SESSION['nombrebd'] = $fila['nombre'];
-        $_SESSION['saborbd'] = $fila['detalle'];
-        $_SESSION['imagenbd'] = $fila['img'];
+        $_SESSION['usuariobd'] = $fila['usuario'];
 
 
-        $editarProducto = '
+
+        $editarUsuario = '
        
         <span>Nombre: "' . $fila['nombre'] . '" </span>
-        <span>Sabor: "' . $fila['detalle'] . '"</span>
-        <span>Imagen: "' . $fila['img'] . '"</span>
-        <span>Stock: "' . $fila['stock'] . '"</span>
+        <span>correo: "' . $fila['correo'] . '"</span>
+        <span>usuario: "' . $fila['usuario'] . '"</span>
+        <span>contraseña: "' . $fila['password'] . '"</span>
 
 
         
@@ -158,15 +157,18 @@ if (isset($_POST['filtroEd'])) {
         <label for="nombre0">Nombre:</label>
         <input type="text" id="nombre0" name="nombre0" value="'.$fila['nombre'] .'">
 
-        <label for="sabor0">sabor:</label>
-        <input type="text" id="sabor0" name="sabor0" value="'.$fila['detalle'] .'">
-        <label for="imagen0">imagen:</label>
-        <input type="text" id="imagen0" name="imagen0" value="'.$fila['img'] .'">
+        <label for="correo0">correo:</label>
+        <input type="text" id="correo0" name="correo0" value="'.$fila['correo'] .'">
 
-        <label for="stock0">STOCK (between 1 and 10):</label>
-        <input type="number" id="stock0" name="stock0" min="1" max="10" value="'.$fila['stock'] .'">
+        <label for="usuario0">usuario:</label>
+        <input type="text" id="usuario0" name="usuario0" value="'.$fila['usuario'] .'">
 
-        <input type="submit" class="btn btn-dark" style="width: 150px;" value="editarrr" name="editarr">
+        <label for="password0">contraseña:</label>
+        <input type="text" id="password0" name="password0" value="'.$fila['password'] .'">
+
+       
+
+        <input type="submit" class="btn btn-dark" style="width: 150px;" value="editarr" name="editarr">
 
         </form>
 
@@ -178,57 +180,58 @@ if (isset($_POST['filtroEd'])) {
 //CAMPOS PARA HACER EDIT
 if (isset($_POST['editarr'])) {
     $_SESSION['nombre0'] = $_POST['nombre0'];
-    $_SESSION['sabor0'] = $_POST['sabor0'];
-    $_SESSION['imagen0'] = $_POST['imagen0'];
-    $_SESSION['stock0'] = $_POST['stock0'];
+    $_SESSION['correo0'] = $_POST['correo0'];
+    $_SESSION['usuario0'] = $_POST['usuario0'];
+    $_SESSION['password0'] = md5($_POST['password0']);
 
 
-    $sql2 = "UPDATE producto SET detalle = '" . $_SESSION['sabor0'] . "' WHERE nombre = '" . $_SESSION['nombrebd'] . "'; ";
+    $sql2 = "UPDATE usuarios SET correo = '" . $_SESSION['correo0'] . "' WHERE usuario = '" . $_SESSION['usuariobd'] . "'; ";
     $consulta2 = $conexion->conexion->prepare($sql2);
     $consulta2->execute();
 
-    $sql3 = "UPDATE producto SET img = '" . $_SESSION['imagen0'] . "' WHERE nombre = '" . $_SESSION['nombrebd'] . "'; ";
-    $consulta3 = $conexion->conexion->prepare($sql3);
-    $consulta3->execute();
 
-    $sql4 = "UPDATE producto SET stock = '" . $_SESSION['stock0'] . "' WHERE nombre = '" . $_SESSION['nombrebd'] . "';";
+    $sql4 = "UPDATE usuarios SET password = '" . $_SESSION['password0'] . "' WHERE usuario = '" . $_SESSION['usuariobd'] . "';";
     $consulta = $conexion->conexion->prepare($sql4);
     $consulta->execute();
 
-    $sql = "UPDATE producto SET nombre = '" . $_SESSION['nombre0'] . "' WHERE nombre = '" . $_SESSION['nombrebd'] . "';";
+    $sql = "UPDATE usuarios SET nombre = '" . $_SESSION['nombre0'] . "' WHERE usuario = '" . $_SESSION['usuariobd'] . "';";
     $consulta = $conexion->conexion->prepare($sql);
     $consulta->execute();
+
+    $sql3 = "UPDATE usuarios SET usuario = '" . $_SESSION['usuario0'] . "' WHERE usuario = '" . $_SESSION['usuariobd'] . "'; ";
+    $consulta3 = $conexion->conexion->prepare($sql3);
+    $consulta3->execute();
 
    
 }
 
 //AÑADIR PRODUCTO NUEVO
 
-if (isset($_POST['nuevoProducto'])) {
-    $_SESSION['nombreN'] = $_POST['nombreN'];
-    $_SESSION['saborN'] = $_POST['saborN'];
-    $_SESSION['imagenN'] = $_POST['imagenN'];
+// if (isset($_POST['nuevoProducto'])) {
+//     $_SESSION['nombreN'] = $_POST['nombreN'];
+//     $_SESSION['saborN'] = $_POST['saborN'];
+//     $_SESSION['imagenN'] = $_POST['imagenN'];
 
-    $_SESSION['precioN'] = $_POST['precioN'];
-    $_SESSION['stockN'] = $_POST['stockN'];
-    $_SESSION['categoria'] = $_POST['categoria'];
+//     $_SESSION['precioN'] = $_POST['precioN'];
+//     $_SESSION['stockN'] = $_POST['stockN'];
+//     $_SESSION['categoria'] = $_POST['categoria'];
 
 
-    $sql = "INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('" . $_SESSION['imagenN'] . "', '" . $_SESSION['nombreN'] . "', '" . $_SESSION['categoria'] . "','" . $_SESSION['saborN'] . "', " . $_SESSION['precioN'] . ", " . $_SESSION['stockN'] . ");";
-    $consulta = $conexion->conexion->prepare($sql);
-    $consulta->execute();
-}
+//     $sql = "INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('" . $_SESSION['imagenN'] . "', '" . $_SESSION['nombreN'] . "', '" . $_SESSION['categoria'] . "','" . $_SESSION['saborN'] . "', " . $_SESSION['precioN'] . ", " . $_SESSION['stockN'] . ");";
+//     $consulta = $conexion->conexion->prepare($sql);
+//     $consulta->execute();
+// }
 
 
 //ELIMINAR PRODUCTO
 if (isset($_POST['eliminarP'])) {
     $_SESSION['eliminarP'] = $_POST['eliminarP'];
 
-    if ($_SESSION['filtro'] == 'todos') {
+    if ($_SESSION['eliminarP'] == 'todos') {
         // $mensaje='debe seleccionar un producto';
     } else {
 
-        $sql = "DELETE FROM producto WHERE nombre = '" . $_SESSION['eliminarP'] . "';";
+        $sql = "DELETE FROM usuarios WHERE usuario = '" . $_SESSION['eliminarP'] . "';";
     }
 
     $consulta = $conexion->conexion->prepare($sql);
@@ -238,7 +241,7 @@ if (isset($_POST['eliminarP'])) {
 
 
 //************************* */
-if ($editarProducto == '') {
+if ($editarUsuario == '') {
     $mensaje = "NO EXISTEN PRODUCTOS EN ESTA TIENDA";
 }
 
@@ -352,18 +355,18 @@ if ($editarProducto == '') {
         </div>
 
 
-        <br><br><span>EDITAR PRODUCTO</span>
+        <br><br><span>EDITAR USUARIO</span>
         <form action="#" method="POST">
             <select class="form-select" style="width: 150px; margin-right: 10px;" name="filtroEd" id="filtroEd">
                 <!-- <option value="todos">todos</option> -->
 
                 <?php
-                $sql = "SELECT nombre FROM producto ; ";
+                $sql = "SELECT usuario FROM usuarios ; ";
 
                 $consulta = $conexion->conexion->prepare($sql);
                 $consulta->execute();
                 while ($fila = $consulta->fetch()) {
-                    echo '<option value="' . $fila["nombre"] . '" selected>' . $fila["nombre"] . '</option>';
+                    echo '<option value="' . $fila["usuario"] . '" selected>' . $fila["usuario"] . '</option>';
                 }
                 ?>
 
@@ -376,7 +379,7 @@ if ($editarProducto == '') {
         </form>
         <div class="editarProd">
             <?php
-            echo $editarProducto;
+            echo $editarUsuario;
 
 
             ?>
@@ -384,17 +387,17 @@ if ($editarProducto == '') {
 
 
 
-        <br><br><span>ELMINAR PRODUCTO</span>
+        <br><br><span>ELMINAR USUARIO</span>
         <form action="#" method="POST">
             <select class="form-select" style="width: 150px; margin-right: 10px;" name="eliminarP" id="eliminarP">
                 <!-- <option value="todos">todos</option> -->
                 <?php
-                $sql = "SELECT nombre FROM producto ; ";
+                $sql = "SELECT usuario FROM usuarios ; ";
 
                 $consulta = $conexion->conexion->prepare($sql);
                 $consulta->execute();
                 while ($fila = $consulta->fetch()) {
-                    echo '<option value="' . $fila["nombre"] . '" selected>' . $fila["nombre"] . '</option>';
+                    echo '<option value="' . $fila["usuario"] . '" selected>' . $fila["usuario"] . '</option>';
                 }
                 ?>
 
