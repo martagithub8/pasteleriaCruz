@@ -172,7 +172,7 @@ if(!isset($_SESSION['productosComprados'])){
                            fclose($fichero);
                
                            //para convertir una variable en un entero
-                        //    $_SESSION['total']=intval($total);
+                        //   $_SESSION['total']=intval($total);
 
                                 //AHORA creamos registro. Si ya existe lo añade el nuevo al final de la linea.
                                 // Si el fichero existe se conserva el contenido, si no existe se crea uno nuevo. El puntero se sitúa al final del fichero
@@ -250,12 +250,14 @@ if(!isset($_SESSION['productosComprados'])){
                 <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
     
                 </div>';
-            } else {
+            } else if ($_SESSION['usuario'] == ""){
                 echo '<div id="login1"><a href="login.php"><i class="bi bi-person-circle iconHeader"></i></a></div>
                 <div id="login2"><a href="login.php"></a></div>
                       <div id="login2"><a href="index.php"></i></a></div>
       
                   </div>';
+            } else if ($_SESSION['usuario'] == "admin0"){
+
             }
 
             ?>

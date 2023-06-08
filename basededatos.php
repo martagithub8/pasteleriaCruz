@@ -59,6 +59,7 @@ $sql =
         correo varchar(40) NOT NULL,
         usuario varchar(25) NOT NULL,
         password varchar(40) NOT NULL,
+        tipo varchar(40) NOT NULL,
         PRIMARY KEY(id)
     );
 
@@ -127,9 +128,9 @@ $sql =
     ALTER TABLE tarta_personalizada
     ADD FOREIGN KEY (decoracion_fk) REFERENCES decoracion(nombre);
     
-    INSERT INTO usuarios(nombre, correo, usuario, password) VALUES ('Marta', 'marta@gmail.com', 'marta0','c23499dba1407c74aaa8c17386a6d6f9');
-    INSERT INTO usuarios(nombre, correo, usuario, password) VALUES ('Usuario', 'usuario@gmail.com', 'usuario','f8032d5cae3de20fcec887f395ec9a6a');
-    INSERT INTO usuarios(nombre, correo, usuario, password) VALUES ('admin', 'admin@gmail.com', 'admin0','62f04a011fbb80030bb0a13701c20b41');
+    INSERT INTO usuarios(nombre, correo, usuario, password, tipo) VALUES ('Marta', 'marta@gmail.com', 'marta0','c23499dba1407c74aaa8c17386a6d6f9', 'cliente');
+    INSERT INTO usuarios(nombre, correo, usuario, password, tipo) VALUES ('Usuario', 'usuario@gmail.com', 'usuario','f8032d5cae3de20fcec887f395ec9a6a', 'cliente');
+    INSERT INTO usuarios(nombre, correo, usuario, password, tipo) VALUES ('admin', 'admin@gmail.com', 'admin0','62f04a011fbb80030bb0a13701c20b41', 'administrador');
 
 INSERT INTO base(nombre) VALUES ('chocolate');
 INSERT INTO base(nombre) VALUES ('chocolateBlanco');

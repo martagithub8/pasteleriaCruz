@@ -26,7 +26,6 @@ if (!isset($_SESSION['usuario'])) {
 
 
 
-
 //crear una conexión de la clase conexión importada
 $con = new Conexion("root", "", "pasteleria");
 
