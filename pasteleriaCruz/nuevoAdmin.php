@@ -81,7 +81,7 @@ if (isset($_POST['btnNuevo'])) {
         $mensajeCorreo = "";
         $consulta = "SELECT correo FROM usuarios WHERE correo = '$correo' ";
         //lanza consulta
-        $res = $con->conexion->query($consulta);
+        $res = $conexion->conexion->query($consulta);
 
         if ($res->rowCount() == 1) {
             // Las credenciales no son válidas, mostrar un mensaje de error             
@@ -99,7 +99,7 @@ if (isset($_POST['btnNuevo'])) {
         $mensajeUsuario = "";
         $consulta = "SELECT usuario FROM usuarios WHERE usuario = '$usuario' ";
         //lanza consulta
-        $res = $con->conexion->query($consulta);
+        $res = $conexion->conexion->query($consulta);
 
         if ($res->rowCount() == 1) {
             // Las credenciales no son válidas, mostrar un mensaje de error             
@@ -141,7 +141,7 @@ if (isset($_POST['btnNuevo'])) {
             $password2 = md5($password2);
 
             $sql = "INSERT INTO usuarios (nombre, correo, usuario, password, tipo) VALUES ('$nombre', '$correo', '$usuario', '$password1', 'administrador')";
-            $res = $con->conexion->query($sql);
+            $res = $conexion->conexion->query($sql);
             echo "<h1>Registrado con éxito</h1>";
             $res->closeCursor();
             // Las credenciales son válidas, iniciar sesión
