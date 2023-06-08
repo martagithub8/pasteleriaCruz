@@ -116,7 +116,7 @@ if (isset($_POST['btnIniciarSesion'])) {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item margin">
-                                <a class="nav-link active" aria-current="page" href="personalizar.php">DISEÑA</a>
+                                <a class="nav-link active" aria-current="page" href="informacion.php">INFORMACIÓN</a>
                             </li>
                             <li class="nav-item margin">
                                 <a class="nav-link active " aria-current="page" href="tarta.php">TARTAS</a>
@@ -151,13 +151,13 @@ if (isset($_POST['btnIniciarSesion'])) {
 
     <div id="contenedorNoticias">
         <div id="noticia1">
-            <p class="negrita">OFERTA</p>
+            <p class="negrita">INFORMACION</p>
             <div id="imagenn">
                 <img src="img/oferta0.jpg" alt="esfera" width="380" height="370">
             </div>
             <div class="texto">
-                <p class="sinNegrita" style="text-align: justify;"> <strong>¿Aún no conoces nuestra oferta?</strong><br> Por la compra de una de nuestras tartas personalizadas llévese un pastel de nuestro catálogo gratis.</p>
-                <a class="consultar" href="oferta.php">CONSULTAR</a>
+                <p class="sinNegrita" style="text-align: justify;"> <strong>¿Aún no conoces nuestra tienda?</strong><br>En nuestra pastelería, ofrecemos una amplia variedad de deliciosas tartas y pasteles.</p>
+                <a class="consultar" href="informacion.php">CONSULTAR</a>
             </div>
 
         </div>
@@ -181,7 +181,7 @@ if (isset($_POST['btnIniciarSesion'])) {
             </div>
             <div class="texto">
                 <p class="sinNegrita" style="text-align: justify;"><strong>¿Quieres una tarta personalizada?</strong><br> Prueba con nosotras a seleccionar los sabores y la decoración a tu gusto. Además podrá disfrutar de la oferta 2x1.</p>
-                <a class="consultar" href="personalizar.php">CONSULTAR</a>
+                <a class="consultar" href="informacion.php">CONSULTAR</a>
             </div>
         </div>
 
