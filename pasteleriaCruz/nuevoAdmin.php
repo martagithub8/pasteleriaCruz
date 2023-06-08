@@ -4,6 +4,27 @@
 session_start();
 include "conexion_con_CLASE.php";
 
+
+//crear una conexion de la clase conexion importada
+$conexion = new Conexion("root", "", "pasteleria");
+
+
+//COMPROBACIÓN USUARIO
+$sql = "SELECT * FROM usuarios WHERE usuario = '" . $_SESSION['usuario'] . "'; ";
+
+$consulta = $conexion->conexion->prepare($sql);
+$consulta->execute();
+while ($fila = $consulta->fetch()) {
+    $_SESSION['tipo'] = $fila['tipo'];
+}
+
+if ($_SESSION['tipo'] == "") {
+    header('Location: index.php');
+} else if ($_SESSION['tipo'] == "cliente") {
+    header('Location: tienda.php');
+
+} 
+
 //variables
 $mensajeNombre = "";
 $mensajeCorreo = "";
@@ -39,8 +60,7 @@ if (isset($_POST['password2']) && $_POST['password2'] != "") {
 
 
 
-//crear una conexion de la clase conexion importada
-$con = new Conexion("root", "", "pasteleria");
+
 
 // Comprobar datos
 if ($nombre == "") {
@@ -54,7 +74,7 @@ if (isset($_POST['btnNuevo'])) {
     if ($correo == "") {
         $mensajeCorreo = "Este campo no puede estar vacío";
         $valido = false;
-    } else if(!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+    } else if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
         $mensajeCorreo = "El correo es inválido";
         $valido = false;
     } else {
@@ -62,7 +82,7 @@ if (isset($_POST['btnNuevo'])) {
         $consulta = "SELECT correo FROM usuarios WHERE correo = '$correo' ";
         //lanza consulta
         $res = $con->conexion->query($consulta);
-    
+
         if ($res->rowCount() == 1) {
             // Las credenciales no son válidas, mostrar un mensaje de error             
             $mensajeCorreo = 'Ese correo ya está registrado';
@@ -154,7 +174,7 @@ if (isset($_POST['btnNuevo'])) {
 </head>
 
 <body>
-<header>
+    <header>
         <section id="cabecera">
 
             <?php

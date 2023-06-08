@@ -6,6 +6,22 @@ if ($_SESSION['usuario'] == "") {
 }
 
 
+//creamos conexion
+$conexion = new Conexion("root", "", "pasteleria");
+//COMPROBACIÓN USUARIO
+$sql = "SELECT * FROM usuarios WHERE usuario = '" . $_SESSION['usuario'] . "'; ";
+
+      $consulta = $conexion->conexion->prepare($sql);
+      $consulta->execute();
+      while ($fila = $consulta->fetch()) {
+        $_SESSION['tipo'] = $fila['tipo'];
+      }
+
+if ($_SESSION['tipo'] == "") {
+  header('Location: index.php');
+}
+
+
 //variables
 
 
@@ -17,8 +33,6 @@ if (!isset($_SESSION['tipo'])) {
 
 
 
-//creamos conexion
-$conexion = new Conexion("root", "", "pasteleria");
 
 
 
@@ -56,13 +70,7 @@ $conexion = new Conexion("root", "", "pasteleria");
       echo '<div id="login">';
 
 
-      $sql = "SELECT * FROM usuarios WHERE usuario = '" . $_SESSION['usuario'] . "'; ";
-
-      $consulta = $conexion->conexion->prepare($sql);
-      $consulta->execute();
-      while ($fila = $consulta->fetch()) {
-        $_SESSION['tipo'] = $fila['tipo'];
-      }
+      
 
 
       if ($_SESSION['tipo'] == "administrador") {

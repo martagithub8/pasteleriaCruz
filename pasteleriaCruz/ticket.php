@@ -1,5 +1,9 @@
 <?php
     session_start();
+    if ($_SESSION['usuario'] == "") {
+        header('Location: index.php');
+      }
+      
     $mensaje='';
 
     if(file_exists("compra.txt")){

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "conexion_con_CLASE.php";
+
 $mensajeUsuario = "";
 $mensajePassword = "";
 $usuario = "";
@@ -26,8 +27,7 @@ if (!isset($_SESSION['usuario'])) {
 
 
 
-//crear una conexión de la clase conexión importada
-$con = new Conexion("root", "", "pasteleria");
+
 
 //control de errores en login
 if (isset($_POST['btnIniciarSesion'])) {

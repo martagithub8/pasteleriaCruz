@@ -5,6 +5,19 @@ include "conexion_con_CLASE.php";
 //crear una conexión de la clase conexión importada
 $conexion = new Conexion("root", "", "pasteleria");
 
+//COMPROBACIÓN USUARIO
+$sql = "SELECT * FROM usuarios WHERE usuario = '" . $_SESSION['usuario'] . "'; ";
+
+      $consulta = $conexion->conexion->prepare($sql);
+      $consulta->execute();
+      while ($fila = $consulta->fetch()) {
+        $_SESSION['tipo'] = $fila['tipo'];
+      }
+
+if ($_SESSION['tipo'] == "") {
+  header('Location: index.php');
+}
+
 $mensajeUsuario = "";
 $mensajePassword = "";
 $usuario = "";
