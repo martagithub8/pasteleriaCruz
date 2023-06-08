@@ -133,7 +133,7 @@ function guardarString()
 
             <h1>PASTELERÍA CRUZ</h1>
 
-            <div id="usuario">
+            <div id="usuario0">
                 <?php
                 if ($_SESSION['usuario'] != "") {
                     echo "<p><i class='bi bi-person-fill'></i>";
@@ -214,7 +214,7 @@ function guardarString()
 
             <div class="description">
                 <p>En nuestra pastelería, podrás encontrar una amplia variedad de sabores y diseños en nuestras tartas y pasteles.
-                    Desde clásicos como la tarta de chocolate o el pastel de fresa, hasta creaciones más originales y personalizadas.</p>
+                    Desde clásicos como la tarta de chocolate o el pastel de fresa, hasta creaciones más originales.</p>
                 <p>Estamos comprometidos con la satisfacción de nuestros clientes y nos esforzamos por brindar un servicio excepcional.
                     Puedes confiar en nosotros para que tu experiencia en nuestra pastelería sea simplemente deliciosa.</p>
             </div>
@@ -222,7 +222,7 @@ function guardarString()
         <h2>Contacto</h2>
         <p>¡Estamos encantados de atenderte! Puedes contactarnos a través de los siguientes medios:</p>
         <ul>
-            <li><i class="bi bi-telephone"></i> Teléfono: <a href="tel:+123456789">+123456789</a></li>
+            <li><i class="bi bi-telephone"></i> Teléfono: <a href="tel: 698772334"> 698772334</a></li>
             <li><i class="bi bi-envelope"></i> Email: <a href="mailto:info@pasteleriacruz.com">info@pasteleriacruz.com</a></li>
             <li><i class="bi bi-geo-alt"></i> Dirección: Calle Arboleda, 123, 41000 Sevilla</li>
         </ul>

@@ -330,7 +330,7 @@ if ($listaPasteles == '') {
 
             <h1>PASTELERÍA CRUZ</h1>
 
-            <div id="usuario">
+            <div id="usuario0">
                 <?php
                 if ($_SESSION['usuario'] != "") {
                     echo "<p><i class='bi bi-person-fill'></i>";

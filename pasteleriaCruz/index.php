@@ -98,7 +98,7 @@ if (isset($_POST['btnIniciarSesion'])) {
 
             <h1 id="lala">PASTELERÍA CRUZ</h1>
 
-            <div id="usuario">
+            <div id="usuario0">
 
             </div>
 
@@ -151,7 +151,7 @@ if (isset($_POST['btnIniciarSesion'])) {
 
     <div id="contenedorNoticias">
         <div id="noticia1">
-            <p class="negrita">INFORMACION</p>
+            <p class="negrita">INFORMACIÓN</p>
             <div id="imagenn">
                 <img src="img/oferta0.jpg" alt="esfera" width="380" height="370">
             </div>
@@ -165,7 +165,7 @@ if (isset($_POST['btnIniciarSesion'])) {
         <div id="noticia1">
             <p class="negrita">CATÁLOGO TARTAS </p>
             <div id="imagenn">
-                <img src="img/chocoo.png" alt="esfera" width="380" height="370">
+                <img src="img/tarta.jpg" alt="esfera" width="380" height="370">
             </div>
             <div class="texto">
                 <p class="sinNegrita" style="text-align: justify;"><strong> Ya ha llegado la hora de disfrutar con los tuyos de nuestras tartas artesanas.</strong><br> Esperamos que os guste probarlas tanto como a nosotras elaborarlas.</p>
@@ -175,13 +175,13 @@ if (isset($_POST['btnIniciarSesion'])) {
         </div>
 
         <div id="noticia2">
-            <p class="negrita">PERSONALIZA TU TARTA </p>
+            <p class="negrita">CATÁLOGO PASTELES </p>
             <div id="imagenn">
-                <img src="img/tarta.jpg" alt="esfera" width="380" height="370">
+                <img src="img/pastel10.png" alt="esfera" width="380" height="370">
             </div>
             <div class="texto">
-                <p class="sinNegrita" style="text-align: justify;"><strong>¿Quieres una tarta personalizada?</strong><br> Prueba con nosotras a seleccionar los sabores y la decoración a tu gusto. Además podrá disfrutar de la oferta 2x1.</p>
-                <a class="consultar" href="informacion.php">CONSULTAR</a>
+            <p class="sinNegrita" style="text-align: justify;"><strong> Ya ha llegado la hora de disfrutar con los tuyos de nuestras tartas artesanas.</strong><br> Esperamos que os guste probarlas tanto como a nosotras elaborarlas.</p>
+                <a class="consultar" href="pasteles.php">CONSULTAR</a>
             </div>
         </div>
 

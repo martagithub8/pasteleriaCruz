@@ -166,7 +166,7 @@ if (isset($_POST['filtroEd'])) {
 
         
         <div style="text-align: center;">
-    <form action="#" method="POST">
+    <br><br><form action="#" method="POST">
         <label for="nombre0">Nombre:</label>
         <input type="text" id="nombre0" name="nombre0" value="' . $fila['nombre'] . '">
 
@@ -304,7 +304,7 @@ if ($editarUsuario == '') {
 
             <h1>PASTELERÍA CRUZ</h1>
 
-            <div id="usuario">
+            <div id="usuario0">
                 <p><i class="bi bi-person-fill"></i><?php echo $_SESSION['usuario']; ?>
                 <p>
             </div>

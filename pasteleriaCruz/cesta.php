@@ -277,7 +277,7 @@ if(!isset($_SESSION['productosComprados'])){
   
   <h1>PASTELERÍA CRUZ</h1>
 
-  <div id="usuario">
+  <div id="usuario0">
     <p><i class="bi bi-person-fill"></i><?php echo $_SESSION['usuario'];?><p>
   </div>
 

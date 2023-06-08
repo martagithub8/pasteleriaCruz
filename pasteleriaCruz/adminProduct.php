@@ -271,6 +271,7 @@ if ($editarProducto == '') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Pastelería Cruz</title>
+    <script src="javascript.js"></script>
 </head>
 
 <body style="background-color:aliceblue">
@@ -300,7 +301,7 @@ if ($editarProducto == '') {
 
             <h1>PASTELERÍA CRUZ</h1>
 
-            <div id="usuario">
+            <div id="usuario0">
                 <p><i class="bi bi-person-fill"></i><?php echo $_SESSION['usuario']; ?>
                 <p>
             </div>
@@ -352,19 +353,23 @@ if ($editarProducto == '') {
 
 
 
-    <div class="editar productos">
+    <div class="editar productos container">
 
 
         <br>
         <p style="text-align:center; ">AÑADIR PRODUCTO </p>
-        <form action="#" method="POST" class="row g-3">
+        <form action="#" method="POST" class="row g-3" id="formNuevoProducto">
             <div class="col-md-6">
                 <label for="imagenN" class="form-label">Imagen:</label>
-                <input type="text" id="imagenN" name="imagenN" class="form-control">
+                <input type="text" id="imagen" name="imagenN" class="form-control">
+                <span id="errorImagen"  style="display:none; color:red;"></span>            
+
             </div>
             <div class="col-md-6">
                 <label for="nombreN" class="form-label">Nombre:</label>
-                <input type="text" id="nombreN" name="nombreN" class="form-control">
+                <input type="text" id="nombre" name="nombreN" class="form-control">
+                <span id="errorNombre"  style="display:none; color:red;"></span>            
+
             </div>
             <div class="col-md-6">
                 <label for="categoria" class="form-label">Categoría:</label>
@@ -372,21 +377,29 @@ if ($editarProducto == '') {
                     <option value="tarta">Tarta</option>
                     <option value="pastel">Pastel</option>
                 </select>
+                <span id="errorCategoria"  style="display:none; color:red;"></span>            
+
             </div>
             <div class="col-md-6">
                 <label for="saborN" class="form-label">Sabor:</label>
-                <input type="text" id="saborN" name="saborN" class="form-control">
+                <input type="text" id="sabor" name="saborN" class="form-control">
+                <span id="errorSabor"  style="display:none; color:red;"></span>            
+
             </div>
             <div class="col-md-6">
                 <label for="precioN" class="form-label">Precio:</label>
-                <input type="text" id="precioN" name="precioN" class="form-control">
+                <input type="text" id="precio" name="precioN" class="form-control">
+                <span id="errorPrecio"  style="display:none; color:red;"></span>            
+
             </div>
             <div class="col-md-6">
                 <label for="stockN" class="form-label">Stock :</label>
-                <input type="number" id="stockN" name="stockN" min="1" max="50" class="form-control">
+                <input type="number" id="stock" name="stockN" max="50" class="form-control">
+                <span id="errorStock"  style="display:none; color:red;"></span>            
+
             </div>
             <div class="col-12">
-                <input type="submit" class="btn btn-dark" style="width: 150px;" value="Nuevo Producto" name="nuevoProducto">
+                <input  class="btn btn-dark" style="width: 150px;" value="Nuevo Producto" id="btnNuevoProducto" name="nuevoProducto">
             </div>
         </form>
 

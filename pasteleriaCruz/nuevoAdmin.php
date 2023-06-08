@@ -70,7 +70,7 @@ if ($nombre == "") {
     $mensajeNombre = "";
 }
 
-if (isset($_POST['btnNuevo'])) {
+if (isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['usuario']) && isset($_POST['password1'])&& isset($_POST['password2'])) {
     if ($correo == "") {
         $mensajeCorreo = "Este campo no puede estar vacío";
         $valido = false;
@@ -170,7 +170,9 @@ if (isset($_POST['btnNuevo'])) {
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="javascript.js"></script>
     <title>Registro</title>
+
 </head>
 
 <body>
@@ -200,7 +202,7 @@ if (isset($_POST['btnNuevo'])) {
 
             <h1>PASTELERÍA CRUZ</h1>
 
-            <div id="usuario">
+            <div id="usuario0">
                 <p><i class="bi bi-person-fill"></i><?php echo $_SESSION['usuario']; ?>
                 <p>
             </div>
@@ -247,41 +249,41 @@ if (isset($_POST['btnNuevo'])) {
 
     </header>
     <div class="container mt-4">
-        <h1>REGISTRATE</h1>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+        <h1 style="color:black">AÑADIR USUARIO</h1>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" id="formNuevoAdmin">
 
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduzca su nombre">
-                <div style="color: red;" class="nombre"><?php echo $mensajeNombre ?></div>
+                <span id="errorNombre"  style="display:none; color:red;"></span>            
             </div>
             <div class="mb-3">
                 <label for="correo" class="form-label">Correo:</label>
                 <input type="text" class="form-control" id="correo" name="correo" placeholder="Introduzca su correo">
-                <div style="color: red;" class="correo"><?php echo $mensajeCorreo ?></div>
+                <span id="errorCorreo"  style="display:none; color:red; "></span>            
             </div>
 
             <div class="mb-3">
                 <label for="usuario" class="form-label">Usuario:</label>
                 <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Introduzca nombre de usuario">
-                <div style="color: red;" class="usuario"><?php echo $mensajeUsuario ?></div>
+                <span id="errorUsuario"  style="display:none; color:red;"></span>            
             </div>
             <div class="mb-3">
                 <label for="password1" class="form-label">Contraseña:</label>
                 <input type="password" class="form-control" id="password1" name="password1" aria-describedby="emailHelp" placeholder="Debe contener entre 5-8 caracteres">
-                <div style="color: red;" class="password1"><?php echo $mensajePassword1 ?></div>
+                <span id="errorPassword1"  style="display:none; color:red;"></span>            
 
             </div>
             <div class="mb-3">
                 <label for="password2" class="form-label">Repetir contraseña:</label>
                 <input type="password" class="form-control" id="password2" name="password2" placeholder="Debe contener entre 5-8 caracteres">
-                <div style="color: red;" class="password2"><?php echo $mensajePassword2 ?></div>
+                <span id="errorPassword2"  style="display:none; color:red;"></span>            
             </div>
 
-            <button type="submit" class="btn btn-primary" name="btnNuevo">AÑADIR NUEVO USUARIO</button>
+            <button  class="btn btn-primary" id="btnNuevoAdmin" name="btnNuevo">AÑADIR NUEVO USUARIO</button>
             <a href="adminUsu.php">volver</a>
         </form>
-        <div class="mensaje"><?php echo $mensaje ?></div>
+        <div class="mensaje"><?php echo $mensajePassword2 ?></div>
     </div>
 
 

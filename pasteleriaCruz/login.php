@@ -29,7 +29,7 @@ if (!isset($_SESSION['usuario'])) {
 $con = new Conexion("root", "", "pasteleria");
 
 //control de errores en login
-if (isset($_POST['btnIniciarSesion'])) {
+if (isset($_POST['usuario']) && isset($_POST['password'])) {
   if ($usuario == "") {
     $mensajeUsuario = "Este campo no puede estar vacío";
   } else {
@@ -74,6 +74,8 @@ if (isset($_POST['btnIniciarSesion'])) {
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="javascript.js"></script>
+
 
 
   <title>Pastelería Cruz</title>
@@ -93,9 +95,6 @@ if (isset($_POST['btnIniciarSesion'])) {
 
       <h1>PASTELERÍA CRUZ</h1>
 
-      <div id="usuario">
-
-      </div>
 
 
 
@@ -133,30 +132,31 @@ if (isset($_POST['btnIniciarSesion'])) {
   
 
   <div class="container mt-4">
-    <h1>Iniciar sesión</h1>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+    <h1 style="color:black">Iniciar sesión</h1>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" id="formLogin">
 
       <div class="mb-3">
         <label for="usuario" class="form-label">Usuario:</label>
         <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Introduzca su usuario">
-        <div class="usuario"><?php echo $mensajeUsuario ?></div>
+        <span id="errorUsuario"  style="display:none; color:red;"></span>            
 
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Contraseña:</label>
-        <input type="password" class="form-control" name="password" id="password" aria-describedby="emailHelp" placeholder="Introduzca su contraseña">
-        <div class="password"><?php echo $mensajePassword ?></div>
+        <input type="password" class="form-control" name="password" id="password1" aria-describedby="emailHelp" placeholder="Introduzca su contraseña">
+        <span id="errorPassword1"  style="display:none; color:red;"></span>            
       </div>
 
-      <button type="submit" class="btn btn-primary" name="btnIniciarSesion">INICIAR SESIÓN</button>
+      <button id="btnLogin" class="btn btn-primary" name="btnIniciarSesion">INICIAR SESIÓN</button>
       <a href="registro.php">REGISTRATE</a>
 
     </form>
-    <div class="mensaje"><?php echo $mensaje ?></div>
 
 
 
-
+<?php
+echo $mensaje;
+?>
   
 
 
