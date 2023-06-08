@@ -7,17 +7,17 @@ $conexion = new Conexion("root", "", "pasteleria");
 //COMPROBACIÓN USUARIO
 $sql = "SELECT * FROM usuarios WHERE usuario = '" . $_SESSION['usuario'] . "'; ";
 
-      $consulta = $conexion->conexion->prepare($sql);
-      $consulta->execute();
-      while ($fila = $consulta->fetch()) {
-        $_SESSION['tipo'] = $fila['tipo'];
-      }
+$consulta = $conexion->conexion->prepare($sql);
+$consulta->execute();
+while ($fila = $consulta->fetch()) {
+    $_SESSION['tipo'] = $fila['tipo'];
+}
 
 if ($_SESSION['tipo'] == "") {
-  header('Location: index.php');
-}else if($_SESSION['tipo'] == "cliente"){
+    header('Location: index.php');
+} else if ($_SESSION['tipo'] == "cliente") {
     header('Location: tienda.php');
-} 
+}
 
 
 
@@ -157,29 +157,29 @@ if (isset($_POST['filtroEd'])) {
 
 
         $editarProducto = '
-       
-        <span>Nombre: "' . $fila['nombre'] . '" </span>
-        <span>Sabor: "' . $fila['detalle'] . '"</span>
-        <span>Imagen: "' . $fila['img'] . '"</span>
-        <span>Stock: "' . $fila['stock'] . '"</span>
 
 
         
         <form action="#" method="POST">
-        <label for="nombre0">Nombre:</label>
-        <input type="text" id="nombre0" name="nombre0" value="'.$fila['nombre'] .'">
-
-        <label for="sabor0">sabor:</label>
-        <input type="text" id="sabor0" name="sabor0" value="'.$fila['detalle'] .'">
-        <label for="imagen0">imagen:</label>
-        <input type="text" id="imagen0" name="imagen0" value="'.$fila['img'] .'">
-
-        <label for="stock0">STOCK (between 1 and 10):</label>
-        <input type="number" id="stock0" name="stock0" min="1" max="10" value="'.$fila['stock'] .'">
-
-        <input type="submit" class="btn btn-dark" style="width: 150px;" value="editarrr" name="editarr">
-
-        </form>
+        <div class="mb-3">
+          <label for="nombre0" class="form-label">Nombre:</label>
+          <input type="text" id="nombre0" name="nombre0" class="form-control" value="' . $fila['nombre'] . '">
+        </div>
+        <div class="mb-3">
+          <label for="sabor0" class="form-label">Sabor:</label>
+          <input type="text" id="sabor0" name="sabor0" class="form-control" value="' . $fila['detalle'] . '">
+        </div>
+        <div class="mb-3">
+          <label for="imagen0" class="form-label">Imagen:</label>
+          <input type="text" id="imagen0" name="imagen0" class="form-control" value="' . $fila['img'] . '">
+        </div>
+        <div class="mb-3">
+          <label for="stock0" class="form-label">Stock :</label>
+          <input type="number" id="stock0" name="stock0" class="form-control" min="1" max="50" value="' . $fila['stock'] . '">
+        </div>
+        <input type="submit" class="btn btn-dark" style="width: 150px;" value="Editar" name="editarr">
+      </form>
+      
 
      ';
     }
@@ -209,8 +209,6 @@ if (isset($_POST['editarr'])) {
     $sql = "UPDATE producto SET nombre = '" . $_SESSION['nombre0'] . "' WHERE nombre = '" . $_SESSION['nombrebd'] . "';";
     $consulta = $conexion->conexion->prepare($sql);
     $consulta->execute();
-
-   
 }
 
 //AÑADIR PRODUCTO NUEVO
@@ -275,7 +273,7 @@ if ($editarProducto == '') {
     <title>Pastelería Cruz</title>
 </head>
 
-<body>
+<body style="background-color:aliceblue">
     <header>
         <section id="cabecera">
 
@@ -356,91 +354,93 @@ if ($editarProducto == '') {
 
     <div class="editar productos">
 
-        
-       <br><span>AÑADIR PRODUCTO </span>
-        <form action="#" method="POST">
-            <label for='imagenN'>imagen:</label>
-            <input type='text' id='imagenN' name='imagenN'>
-            <label for='nombreN'>Nombre:</label>
-            <input type='text' id='nombreN' name='nombreN'>
 
-            <label for="categoria">categoria:</label>
-
-            <select name="categoria" id="categoria">
-                <option value="tarta">tarta</option>
-                <option value="pastel">pastel</option>
-
-            </select>
-
-
-            <label for='saborN'>Sabor:</label>
-            <input type='text' id='saborN' name='saborN'>
-
-            <label for='precioN'>precio:</label>
-            <input type='text' id='precioN' name='precioN'>
-
-            <label for="stockN">Stock (between 1 and 10):</label>
-            <input type="number" id="stockN" name="stockN" min="1" max="10">
-
-
-            <input type="submit" class="btn btn-dark" style="width: 150px;" value="nuevoProducto" name="nuevoProducto">
-
+        <br>
+        <p style="text-align:center; ">AÑADIR PRODUCTO </p>
+        <form action="#" method="POST" class="row g-3">
+            <div class="col-md-6">
+                <label for="imagenN" class="form-label">Imagen:</label>
+                <input type="text" id="imagenN" name="imagenN" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="nombreN" class="form-label">Nombre:</label>
+                <input type="text" id="nombreN" name="nombreN" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="categoria" class="form-label">Categoría:</label>
+                <select name="categoria" id="categoria" class="form-select">
+                    <option value="tarta">Tarta</option>
+                    <option value="pastel">Pastel</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="saborN" class="form-label">Sabor:</label>
+                <input type="text" id="saborN" name="saborN" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="precioN" class="form-label">Precio:</label>
+                <input type="text" id="precioN" name="precioN" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="stockN" class="form-label">Stock :</label>
+                <input type="number" id="stockN" name="stockN" min="1" max="50" class="form-control">
+            </div>
+            <div class="col-12">
+                <input type="submit" class="btn btn-dark" style="width: 150px;" value="Nuevo Producto" name="nuevoProducto">
+            </div>
         </form>
 
 
-        <br><br><span>EDITAR PRODUCTO</span>
-        <form action="#" method="POST">
-            <select class="form-select" style="width: 150px; margin-right: 10px;" name="filtroEd" id="filtroEd">
-                <!-- <option value="todos">todos</option> -->
 
-                <?php
-                $sql = "SELECT nombre FROM producto ; ";
+        <br><br>
+        <p style="text-align:center;">EDITAR PRODUCTO</p>
+        <div style="text-align: center;">
+            <div style="display: inline-block; text-align: left;">
+                <form action="#" method="POST" class="d-flex align-items-center">
+                    <select class="form-select me-2" style="width: 150px;" name="filtroEd" id="filtroEd">
+                        <?php
+                        $sql = "SELECT nombre FROM producto ; ";
+                        $consulta = $conexion->conexion->prepare($sql);
+                        $consulta->execute();
+                        while ($fila = $consulta->fetch()) {
+                            echo '<option value="' . $fila["nombre"] . '" selected>' . $fila["nombre"] . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <input type="submit" class="btn btn-dark" style="width: 150px;" value="EDITAR" name="editar">
+                </form>
 
-                $consulta = $conexion->conexion->prepare($sql);
-                $consulta->execute();
-                while ($fila = $consulta->fetch()) {
-                    echo '<option value="' . $fila["nombre"] . '" selected>' . $fila["nombre"] . '</option>';
-                }
-                ?>
-
-            </select>
-
-            <input type="submit" class="btn btn-dark" style="width: 150px;" value="EDITAR" name="editar">
-
-
-
-        </form>
-        <div class="editarProd">
-            <?php
-            echo $editarProducto;
-
-
-            ?>
+                <div class="editarProd">
+                    <?php
+                    echo $editarProducto;
+                    ?>
+                </div>
+            </div>
         </div>
 
 
 
-        <br><br><span>ELMINAR PRODUCTO</span>
-        <form action="#" method="POST">
-            <select class="form-select" style="width: 150px; margin-right: 10px;" name="eliminarP" id="eliminarP">
-                <!-- <option value="todos">todos</option> -->
-                <?php
-                $sql = "SELECT nombre FROM producto ; ";
-
-                $consulta = $conexion->conexion->prepare($sql);
-                $consulta->execute();
-                while ($fila = $consulta->fetch()) {
-                    echo '<option value="' . $fila["nombre"] . '" selected>' . $fila["nombre"] . '</option>';
-                }
-                ?>
-
-            </select>
-
-            <input type="submit" class="btn btn-dark" style="width: 150px;" value="ELIMINAR" name="eliminar">
-
-
-
+        <br><br>
+        <p style="text-align:center;">ELMINAR PRODUCTO</p>
+        <div style="text-align: center;">
+            <div style="display: inline-block; text-align: left;">
+        <form action="#" method="POST" class="d-flex align-items-center">
+            <div class="input-group">
+                <select class="form-select" style="width: 150px; margin-right: 10px;" name="eliminarP" id="eliminarP">
+                    <?php
+                    $sql = "SELECT nombre FROM producto ; ";
+                    $consulta = $conexion->conexion->prepare($sql);
+                    $consulta->execute();
+                    while ($fila = $consulta->fetch()) {
+                        echo '<option value="' . $fila["nombre"] . '" selected>' . $fila["nombre"] . '</option>';
+                    }
+                    ?>
+                </select>
+                <input type="submit" class="btn btn-dark" style="width: 150px;" value="ELIMINAR" name="eliminar">
+            </div>
         </form>
+            </div>
+        </div>
 
     </div>
 

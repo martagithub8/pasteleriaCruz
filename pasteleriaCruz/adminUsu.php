@@ -8,17 +8,17 @@ $conexion = new Conexion("root", "", "pasteleria");
 //COMPROBACIÓN USUARIO
 $sql = "SELECT * FROM usuarios WHERE usuario = '" . $_SESSION['usuario'] . "'; ";
 
-      $consulta = $conexion->conexion->prepare($sql);
-      $consulta->execute();
-      while ($fila = $consulta->fetch()) {
-        $_SESSION['tipo'] = $fila['tipo'];
-      }
+$consulta = $conexion->conexion->prepare($sql);
+$consulta->execute();
+while ($fila = $consulta->fetch()) {
+    $_SESSION['tipo'] = $fila['tipo'];
+}
 
 if ($_SESSION['tipo'] == "") {
-  header('Location: index.php');
-}else if($_SESSION['tipo'] == "cliente"){
+    header('Location: index.php');
+} else if ($_SESSION['tipo'] == "cliente") {
     header('Location: tienda.php');
-} 
+}
 
 $mensajeUsuario = "";
 $mensajePassword = "";
@@ -161,31 +161,28 @@ if (isset($_POST['filtroEd'])) {
 
         $editarUsuario = '
        
-        <span>Nombre: "' . $fila['nombre'] . '" </span>
-        <span>correo: "' . $fila['correo'] . '"</span>
-        <span>usuario: "' . $fila['usuario'] . '"</span>
-        <span>contraseña: "' . $fila['password'] . '"</span>
+    
 
 
         
-        <form action="#" method="POST">
+        <div style="text-align: center;">
+    <form action="#" method="POST">
         <label for="nombre0">Nombre:</label>
-        <input type="text" id="nombre0" name="nombre0" value="'.$fila['nombre'] .'">
+        <input type="text" id="nombre0" name="nombre0" value="' . $fila['nombre'] . '">
 
-        <label for="correo0">correo:</label>
-        <input type="text" id="correo0" name="correo0" value="'.$fila['correo'] .'">
+        <label for="correo0">Correo:</label>
+        <input type="text" id="correo0" name="correo0" value="' . $fila['correo'] . '">
 
-        <label for="usuario0">usuario:</label>
-        <input type="text" id="usuario0" name="usuario0" value="'.$fila['usuario'] .'">
+        <label for="usuario0">Usuario:</label>
+        <input type="text" id="usuario0" name="usuario0" value="' . $fila['usuario'] . '">
 
-        <label for="password0">contraseña:</label>
-        <input type="text" id="password0" name="password0" value="'.$fila['password'] .'">
+        <label for="password0">Contraseña:</label>
+        <input type="text" id="password0" name="password0" value="' . $fila['password'] . '">
 
-       
+        <input type="submit" class="btn btn-dark" style="width: 150px;" value="Editar" name="editarr">
+    </form>
+</div>
 
-        <input type="submit" class="btn btn-dark" style="width: 150px;" value="editarr" name="editarr">
-
-        </form>
 
      ';
     }
@@ -216,8 +213,6 @@ if (isset($_POST['editarr'])) {
     $sql3 = "UPDATE usuarios SET usuario = '" . $_SESSION['usuario0'] . "' WHERE usuario = '" . $_SESSION['usuariobd'] . "'; ";
     $consulta3 = $conexion->conexion->prepare($sql3);
     $consulta3->execute();
-
-   
 }
 
 //AÑADIR PRODUCTO NUEVO
@@ -363,35 +358,34 @@ if ($editarUsuario == '') {
 
     <div class="editar productos">
 
-        
-       <br><span>AÑADIR USUARIO ADMINISTRADOR</span>
-        <div>
-            <a href="nuevoUsu.php"> add admin</a>
+
+        <br>
+        <p style="text-align:center; ">AÑADIR USUARIO ADMINISTRADOR</p>
+        <div class="d-flex justify-content-center">
+            <a href="nuevoAdmin.php" class="btn btn-dark">Añadir usuario</a>
         </div>
 
 
-        <br><br><span>EDITAR USUARIO</span>
-        <form action="#" method="POST">
-            <select class="form-select" style="width: 150px; margin-right: 10px;" name="filtroEd" id="filtroEd">
-                <!-- <option value="todos">todos</option> -->
 
-                <?php
-                $sql = "SELECT usuario FROM usuarios ; ";
-
-                $consulta = $conexion->conexion->prepare($sql);
-                $consulta->execute();
-                while ($fila = $consulta->fetch()) {
-                    echo '<option value="' . $fila["usuario"] . '" selected>' . $fila["usuario"] . '</option>';
-                }
-                ?>
-
-            </select>
-
-            <input type="submit" class="btn btn-dark" style="width: 150px;" value="EDITAR" name="editar">
-
-
-
-        </form>
+        <br><br>
+        <p style="text-align:center; ">EDITAR USUARIO</p>
+        <div style="text-align: center;">
+            <div style="display: inline-block; text-align: left;">
+                <form action="#" method="POST" class="d-flex align-items-center">
+                    <select class="form-select me-2" style="width: 150px;" name="filtroEd" id="filtroEd">
+                        <?php
+                        $sql = "SELECT usuario FROM usuarios ; ";
+                        $consulta = $conexion->conexion->prepare($sql);
+                        $consulta->execute();
+                        while ($fila = $consulta->fetch()) {
+                            echo '<option value="' . $fila["usuario"] . '" selected>' . $fila["usuario"] . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <input type="submit" class="btn btn-dark" style="width: 150px;" value="EDITAR" name="editar">
+                </form>
+            </div>
+        </div>
         <div class="editarProd">
             <?php
             echo $editarUsuario;
@@ -402,27 +396,26 @@ if ($editarUsuario == '') {
 
 
 
-        <br><br><span>ELMINAR USUARIO</span>
-        <form action="#" method="POST">
-            <select class="form-select" style="width: 150px; margin-right: 10px;" name="eliminarP" id="eliminarP">
-                <!-- <option value="todos">todos</option> -->
-                <?php
-                $sql = "SELECT usuario FROM usuarios ; ";
+        <br><br>
+        <p style="text-align:center; ">ELMINAR USUARIO</p>
+        <div style="text-align: center;">
+            <div style="display: inline-block; text-align: left;">
+                <form action="#" method="POST" class="d-flex align-items-center">
+                    <select class="form-select me-2" style="width: 150px;" name="eliminarP" id="eliminarP">
+                        <?php
+                        $sql = "SELECT usuario FROM usuarios ; ";
+                        $consulta = $conexion->conexion->prepare($sql);
+                        $consulta->execute();
+                        while ($fila = $consulta->fetch()) {
+                            echo '<option value="' . $fila["usuario"] . '" selected>' . $fila["usuario"] . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <input type="submit" class="btn btn-dark" style="width: 150px;" value="ELIMINAR" name="eliminar">
+                </form>
+            </div>
+        </div>
 
-                $consulta = $conexion->conexion->prepare($sql);
-                $consulta->execute();
-                while ($fila = $consulta->fetch()) {
-                    echo '<option value="' . $fila["usuario"] . '" selected>' . $fila["usuario"] . '</option>';
-                }
-                ?>
-
-            </select>
-
-            <input type="submit" class="btn btn-dark" style="width: 150px;" value="ELIMINAR" name="eliminar">
-
-
-
-        </form>
 
     </div>
 
