@@ -1,9 +1,11 @@
-Cliente: marta0
+Cliente: admin0
  
-Producto: Fresa y Nata  60 €. Cant: 2
+Producto: Barco relleno de chocolat  2 €. Cant: 1
+
+ Producto: Donuts de azucar  4 €. Cant: 2
 
  
-Total: 60€
-08-06-2023 21:44:25
+Total: 6€
+09-06-2023 01:57:55
 
  

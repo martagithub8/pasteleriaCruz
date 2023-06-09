@@ -37,6 +37,7 @@ $mensaje = '';
   $precioTabla=0;
   $cantidadTabla=0; 
   $filasTabla='';
+  $contenidoTicket='';
 
 
 
