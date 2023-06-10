@@ -1,11 +1,15 @@
-Cliente: admin0
+Cliente: marta0
  
-Producto: Barco relleno de chocolat  2 €. Cant: 1
+Producto: Fresa y Nata  30 €. Cant: 1
 
- Producto: Donuts de azucar  4 €. Cant: 2
+ Producto: Chocolate y Nueces  30 €. Cant: 1
+
+ Producto: Barco relleno de chocolat  2 €. Cant: 1
+
+ Producto: Barco de chocolate  6 €. Cant: 3
 
  
-Total: 6€
-09-06-2023 01:57:55
+Total: 68€
+09-06-2023 09:37:19
 
  

@@ -178,7 +178,7 @@ if (!isset($_SESSION['tipo'])) {
         <img src="img/pastel10.png" alt="esfera" width="380" height="370">
       </div>
       <div class="texto">
-      <p class="sinNegrita" style="text-align: justify;"><strong> Ya ha llegado la hora de disfrutar con los tuyos de nuestras tartas artesanas.</strong><br> Esperamos que os guste probarlas tanto como a nosotras elaborarlas.</p>
+      <p class="sinNegrita" style="text-align: justify;"><strong> ¡Disfrutar con tus seres queridos de nuestros exquisitos pasteles artesanales! </strong><br> Los pasteles son una deliciosa opción para cualquier ocasión especial.</p>
         <a class="consultar" href="pasteles.php">CONSULTAR</a>
       </div>
     </div>

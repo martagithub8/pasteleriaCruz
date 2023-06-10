@@ -135,7 +135,6 @@ $sql =
 INSERT INTO base(nombre) VALUES ('chocolate');
 INSERT INTO base(nombre) VALUES ('chocolateBlanco');
 INSERT INTO base(nombre) VALUES ('fresa');
-INSERT INTO base(nombre) VALUES ('vainilla');
 INSERT INTO base(nombre) VALUES ('nata');
 INSERT INTO base(nombre) VALUES ('queso');
 
@@ -144,6 +143,7 @@ INSERT INTO relleno(nombre) VALUES ('chocolate');
 INSERT INTO relleno(nombre) VALUES ('chocolateBlanco');
 INSERT INTO relleno(nombre) VALUES ('fresa');
 INSERT INTO relleno(nombre) VALUES ('vainilla');
+INSERT INTO relleno(nombre) VALUES ('limon');
 INSERT INTO relleno(nombre) VALUES ('nata');
 INSERT INTO relleno(nombre) VALUES ('kinderBueno');
 INSERT INTO relleno(nombre) VALUES ('oreo');
@@ -153,7 +153,6 @@ INSERT INTO decoracion(nombre) VALUES ('mermelada');
 INSERT INTO decoracion(nombre) VALUES ('chocolate');
 INSERT INTO decoracion(nombre) VALUES ('chocolateBlanco');
 INSERT INTO decoracion(nombre) VALUES ('fresa');
-INSERT INTO decoracion(nombre) VALUES ('vainilla');
 INSERT INTO decoracion(nombre) VALUES ('nata');
 INSERT INTO decoracion(nombre) VALUES ('kinderBueno');
 INSERT INTO decoracion(nombre) VALUES ('oreo');
