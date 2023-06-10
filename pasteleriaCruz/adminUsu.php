@@ -85,6 +85,15 @@ if (!isset($_SESSION['saborbd'])) {
 if (!isset($_SESSION['imagenbd'])) {
     $_SESSION['imagenbd'] = '';
 }
+if (!isset($_SESSION['nombrebd'])) {
+    $_SESSION['nombrebd'] = '';
+}
+if (!isset($_SESSION['correobd'])) {
+    $_SESSION['correobd'] = '';
+}
+if (!isset($_SESSION['passwordbd'])) {
+    $_SESSION['passwordbd'] = '';
+}
 
 
 //nombre0
@@ -156,35 +165,9 @@ if (isset($_POST['filtroEd'])) {
     $consulta->execute();
     while ($fila = $consulta->fetch()) {
         $_SESSION['usuariobd'] = $fila['usuario'];
-
-
-
-        $editarUsuario = '
-       
-    
-
-
-        
-        <div style="text-align: center;">
-    <br><br><form action="#" method="POST">
-        <label for="nombre0">Nombre:</label>
-        <input type="text" id="nombre0" name="nombre0" value="' . $fila['nombre'] . '">
-
-        <label for="correo0">Correo:</label>
-        <input type="text" id="correo0" name="correo0" value="' . $fila['correo'] . '">
-
-        <label for="usuario0">Usuario:</label>
-        <input type="text" id="usuario0" name="usuario0" value="' . $fila['usuario'] . '">
-
-        <label for="password0">Contraseña:</label>
-        <input type="text" id="password0" name="password0" value="' . $fila['password'] . '">
-
-        <input type="submit" class="btn btn-dark" style="width: 150px;" value="Editar" name="editarr">
-    </form>
-</div>
-
-
-     ';
+        $_SESSION['nombrebd'] = $fila['nombre'];
+        $_SESSION['correobd'] = $fila['correo'];
+        $_SESSION['passwordbd'] = $fila['password'];;
     }
 }
 
@@ -274,6 +257,7 @@ if ($editarUsuario == '') {
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="javascript.js"></script>
     <title>Pastelería Cruz</title>
 </head>
 
@@ -356,11 +340,11 @@ if ($editarUsuario == '') {
 
 
 
-    <div class="editar productos">
+    <div class="editar productos container" style="padding-bottom:5%">
 
 
         <br>
-        <p style="text-align:center; ">AÑADIR USUARIO ADMINISTRADOR</p>
+        <p style="text-align:center;color: #FFA07A ">AÑADIR USUARIO ADMINISTRADOR</p>
         <div class="d-flex justify-content-center">
             <a href="nuevoAdmin.php" class="btn btn-dark">Añadir usuario</a>
         </div>
@@ -368,7 +352,7 @@ if ($editarUsuario == '') {
 
 
         <br><br>
-        <p style="text-align:center; ">EDITAR USUARIO</p>
+        <p style="text-align:center; color: #FFA07A">EDITAR USUARIO</p>
         <div style="text-align: center;">
             <div style="display: inline-block; text-align: left;">
                 <form action="#" method="POST" class="d-flex align-items-center">
@@ -382,22 +366,51 @@ if ($editarUsuario == '') {
                         }
                         ?>
                     </select>
-                    <input type="submit" class="btn btn-dark" style="width: 150px;" value="EDITAR" name="editar">
+                    <input type="submit" class="btn btn-dark" style="width: 150px;" value="SELECCIONAR" name="editar">
                 </form>
             </div>
         </div>
-        <div class="editarProd">
-            <?php
-            echo $editarUsuario;
+        <div >
+            <br><br>
+            <form action="#" method="POST" id="formEditarUsuario">
+            <div class="mb-3">
+                    <label class="form-label" for="nombre0">Nombre:</label>
+                    <?php
+                    echo "<input class='form-control' type='text' id='nombre0' name='nombre0' value='" . $_SESSION['nombrebd'] . "'>"
+                    ?>
+                    <span id="errorNombre0" style="display:none; color:red;"></span>
+                </div>
 
+                <div class="mb-3">
+                    <label class="form-label" for="correo0">Correo:</label>
+                    <?php
+                    echo "<input class='form-control' type='text' id='correo0' name='correo0' value='" . $_SESSION['correobd'] . "'>"
+                    ?>
+                    <span id="errorCorreo0" style="display:none; color:red;"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="usuario0">Usuario:</label>
+                    <?php
+                    echo "<input class='form-control' type='text' id='sabor0' name='usuario0' value='" . $_SESSION['usuariobd'] . "'>"
+                    ?>
+                    <span id="errorSabor0" style="display:none; color:red;"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="password0">Contraseña:</label>
+                    <?php
+                    echo "<input class='form-control' type='text' id='password0' name='password0' value='" . $_SESSION['passwordbd'] . "'>"
+                    ?>
+                    <span id="errorPassword0" style="display:none; color:red;"></span>
+                </div>
 
-            ?>
+                <input id="btnEditarUsuario" class="btn btn-dark" style="width: 150px;" value="Editar" name="editarr">
+            </form>
         </div>
 
 
 
         <br><br>
-        <p style="text-align:center; ">ELMINAR USUARIO</p>
+        <p style="text-align:center;color: #FFA07A ">ELMINAR USUARIO</p>
         <div style="text-align: center;">
             <div style="display: inline-block; text-align: left;">
                 <form action="#" method="POST" class="d-flex align-items-center">

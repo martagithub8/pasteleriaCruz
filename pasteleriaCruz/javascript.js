@@ -34,6 +34,24 @@ document.addEventListener("DOMContentLoaded", () => {
       validarNuevoProducto();
     });
   }
+
+  var btnEditarProducto = document.getElementById("btnEditarProducto");
+  if (btnEditarProducto) {
+    btnEditarProducto.addEventListener("click", function () {
+      event.preventDefault();
+
+      validarEditarProducto();
+    });
+  }
+
+  var btnEditarUsuario = document.getElementById("btnEditarUsuario");
+  if (btnEditarUsuario) {
+    btnEditarUsuario.addEventListener("click", function () {
+      event.preventDefault();
+
+      validarEditarUsuario();
+    });
+  }
 });
 
 function validarRegistro(tipo) {
@@ -55,6 +73,42 @@ function validarRegistro(tipo) {
     } else {
       document.getElementById("formRegistro").submit();
     }
+  }
+}
+
+function validarEditarProducto() {
+  var nombreValido0 = validarName0();
+  var saborValido0 = validarSabor0();
+  var imagenValida0 = validarImagen0();
+  var stockValido0 = validarStock0();
+
+  if (
+    nombreValido0 &&
+    saborValido0 &&
+    imagenValida0 &&
+    stockValido0 
+  ) {
+    
+      document.getElementById("formEditarProducto").submit();
+    
+  }
+}
+
+function validarEditarUsuario() {
+  var nombreValido0 = validarName0();
+  var saborValido0 = validarSabor0();
+  var correoValido0 = validarCorreo0();
+  var passwordValido0 = validarPassword0();
+
+  if (
+    nombreValido0 &&
+    saborValido0 &&
+    correoValido0 &&
+    passwordValido0 
+  ) {
+    
+      document.getElementById("formEditarUsuario").submit();
+    
   }
 }
 
@@ -80,6 +134,19 @@ function validarName() {
     return true;
   }
 }
+function validarName0() {
+  var errorNombre0 = document.getElementById("errorNombre0");
+  var nombre0 = document.getElementById("nombre0").value;
+  if (nombre0 == "") {
+    errorNombre0.innerHTML = "Este campo no puede estar vacío";
+    errorNombre0.style.display = "block";
+    // no valido
+    return false;
+  } else {
+    errorNombre0.style.display = "none";
+    return true;
+  }
+}
 
 function validarSabor() {
   var errorSabor = document.getElementById("errorSabor");
@@ -94,6 +161,20 @@ function validarSabor() {
     return true;
   }
 }
+function validarSabor0() {
+  var errorSabor0 = document.getElementById("errorSabor0");
+  var sabor0 = document.getElementById("sabor0").value;
+  if (sabor0 == "") {
+    errorSabor0.innerHTML = "Este campo no puede estar vacío";
+    errorSabor0.style.display = "block";
+    // no valido
+    return false;
+  } else {
+    errorSabor0.style.display = "none";
+    return true;
+  }
+}
+
 function validarNuevoProducto() {
   var nombreValido = validarName();
   var imagenValida = validarImagen();
@@ -135,6 +216,30 @@ function validarImagen() {
   }
 }
 
+function validarImagen0() {
+  var errorImagen0 = document.getElementById("errorImagen0");
+  var imagen0 = document.getElementById("imagen0").value;
+
+  if (imagen0 == "") {
+    //Se muestra el mensaje de error
+    errorImagen0.innerHTML = "Este campo no puede estar vacío";
+    errorImagen0.style.display = "block";
+
+    //no valido
+    return false;
+  } else if (
+    !imagen0.match(/\b\w+\.([pP][nN][gG]|[jJ][pP][eE]?[gG]|gif|bmp)\b/g)
+  ) {
+    //Se muestra el mensaje de error
+    errorImagen0.innerHTML = "Ha introducido una imagen incorrecta";
+    errorImagen0.style.display = "block";
+    //no valido
+    return false;
+  } else {
+    errorImagen0.style.display = "none";
+    return true;
+  }
+}
 function validarCorreo() {
   var errorCorreo = document.getElementById("errorCorreo");
   var correo = document.getElementById("correo").value;
@@ -161,6 +266,34 @@ function validarCorreo() {
     return true;
   }
 }
+function validarCorreo0() {
+  var errorCorreo0 = document.getElementById("errorCorreo0");
+  var correo0 = document.getElementById("correo0").value;
+
+  if (correo0 == "") {
+    //Se muestra el mensaje de error
+    errorCorreo0.innerHTML = "Este campo no puede estar vacío";
+    errorCorreo0.style.display = "block";
+
+    //no valido
+    return false;
+  } else if (
+    !correo0.match(
+      /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/
+    )
+  ) {
+    //Se muestra el mensaje de error
+    errorCorreo0.innerHTML = "Ha introducido un email incorrecto";
+    errorCorreo0.style.display = "block";
+    //no valido
+    return false;
+  } else {
+    errorCorreo0.style.display = "none";
+    return true;
+  }
+}
+
+
 function validarUsuario() {
   var errorUsuario = document.getElementById("errorUsuario");
   var usuario = document.getElementById("usuario").value;
@@ -212,6 +345,45 @@ function validarStock() {
     return false;
   } else{
     errorStock.style.display = "none";
+    return true;
+  }
+}
+
+function validarStock0() {
+  var errorStock0 = document.getElementById("errorStock0");
+  var stock0 = document.getElementById("stock0").value;
+
+  if (stock0 == "") {
+    errorStock0.innerHTML = "Este campo no puede estar vacío";
+    errorStock0.style.display = "block";
+    // no valido
+    return false;
+  } else if(stock0 <0 ) {
+    errorStock0.innerHTML = "Introduzca un stock válido";
+    errorStock0.style.display = "block";
+    // no valido
+    return false;
+  } else{
+    errorStock0.style.display = "none";
+    return true;
+  }
+}
+function validarPassword0() {
+  var errorPassword0 = document.getElementById("errorPassword0");
+  var password0 = document.getElementById("password0").value;
+
+  if (password0 == "") {
+    errorPassword0.innerHTML = "Este campo no puede estar vacío";
+    errorPassword0.style.display = "block";
+    // no valido
+    return false;
+  } else if (password0.length <= 5) {
+    errorPassword0.innerHTML = "La contraseña debe tener al menos 6 caracteres";
+    errorPassword0.style.display = "block";
+    // no valido
+    return false;
+  } else {
+    errorPassword0.style.display = "none";
     return true;
   }
 }

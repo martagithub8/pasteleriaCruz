@@ -43,6 +43,11 @@ $filasTabla = '';
 $mensaje = '';
 $editarProducto = '';
 
+if (!isset($_SESSION['editarProducto'])) {
+    $_SESSION['editarProducto'] = 0;
+}
+
+
 
 
 //sesiones
@@ -84,6 +89,9 @@ if (!isset($_SESSION['saborbd'])) {
 }
 if (!isset($_SESSION['imagenbd'])) {
     $_SESSION['imagenbd'] = '';
+}
+if (!isset($_SESSION['stockbd'])) {
+    $_SESSION['stockbd'] = '';
 }
 
 if (!isset($_SESSION['nombre0'])) {
@@ -139,6 +147,8 @@ if (isset($_POST['filtro']) && isset($_POST['quantity'])) {
 
 //PARTE DE EDITAR
 
+
+
 if (isset($_POST['filtroEd'])) {
     $_SESSION['filtroEd'] = $_POST['filtroEd'];
 
@@ -154,34 +164,17 @@ if (isset($_POST['filtroEd'])) {
         $_SESSION['nombrebd'] = $fila['nombre'];
         $_SESSION['saborbd'] = $fila['detalle'];
         $_SESSION['imagenbd'] = $fila['img'];
+        $_SESSION['stockbd'] = $fila['stock'];
 
 
-        $editarProducto = '
+
 
 
         
-        <form action="#" method="POST">
-        <div class="mb-3">
-          <label for="nombre0" class="form-label">Nombre:</label>
-          <input type="text" id="nombre0" name="nombre0" class="form-control" value="' . $fila['nombre'] . '">
-        </div>
-        <div class="mb-3">
-          <label for="sabor0" class="form-label">Sabor:</label>
-          <input type="text" id="sabor0" name="sabor0" class="form-control" value="' . $fila['detalle'] . '">
-        </div>
-        <div class="mb-3">
-          <label for="imagen0" class="form-label">Imagen:</label>
-          <input type="text" id="imagen0" name="imagen0" class="form-control" value="' . $fila['img'] . '">
-        </div>
-        <div class="mb-3">
-          <label for="stock0" class="form-label">Stock :</label>
-          <input type="number" id="stock0" name="stock0" class="form-control" min="1" max="50" value="' . $fila['stock'] . '">
-        </div>
-        <input type="submit" class="btn btn-dark" style="width: 150px;" value="Editar" name="editarr">
-      </form>
-      
+   
 
-     ';
+
+
     }
 }
 
@@ -353,11 +346,11 @@ if ($editarProducto == '') {
 
 
 
-    <div class="editar productos container">
+    <div class="editar productos container" style="padding-bottom:5%">
 
 
         <br>
-        <p style="text-align:center; ">AÑADIR PRODUCTO </p>
+        <p style="text-align:center;color: #FFA07A ">AÑADIR PRODUCTO </p>
         <form action="#" method="POST" class="row g-3" id="formNuevoProducto">
             <div class="col-md-6">
                 <label for="imagenN" class="form-label">Imagen:</label>
@@ -406,7 +399,7 @@ if ($editarProducto == '') {
 
 
         <br><br>
-        <p style="text-align:center;">EDITAR PRODUCTO</p>
+        <p style="text-align:center;color: #FFA07A">EDITAR PRODUCTO</p>
         <div style="text-align: center;">
             <div style="display: inline-block; text-align: left;">
                 <form action="#" method="POST" class="d-flex align-items-center">
@@ -420,21 +413,50 @@ if ($editarProducto == '') {
                         }
                         ?>
                     </select>
-                    <input type="submit" class="btn btn-dark" style="width: 150px;" value="EDITAR" name="editar">
+                    <input type="submit" class="btn btn-dark" style="width: 150px;" value="SELECCIONAR" name="editar">
                 </form>
 
-                <div class="editarProd">
-                    <?php
-                    echo $editarProducto;
-                    ?>
-                </div>
+                
             </div>
         </div>
 
 
+        <form action="#" method="POST" id="formEditarProducto">
+        <div class="mb-3">
+          <label for="nombre0" class="form-label">Nombre:</label>
+          <?php
+            echo "<input type='text' id='nombre0' name='nombre0' class='form-control' value='".$_SESSION['nombrebd']."'>";
+          ?>
+          <span id="errorNombre0"  style="display:none; color:red;"></span>            
+        </div>
+        <div class="mb-3">
+          <label for="sabor0" class="form-label">Sabor:</label>
+          <?php
+            echo "<input type='text' id='sabor0' name='sabor0' class='form-control' value='".$_SESSION['saborbd']."'>";
+          ?>
+          <span id="errorSabor0"  style="display:none; color:red;"></span>            
+        </div>
+        <div class="mb-3">
+          <label for="imagen0" class="form-label">Imagen:</label>
+          <?php
+            echo "<input type='text' id='imagen0' name='imagen0' class='form-control' value='".$_SESSION['imagenbd']."'>";
+          ?>
+          <span id="errorImagen0"  style="display:none; color:red;"></span>            
+        </div>
+        <div class="mb-3">
+          <label for="stock0" class="form-label">Stock :</label>
+          <?php
+            echo "<input type='text' id='stock0' name='stock0' class='form-control' value='".$_SESSION['stockbd']."'>";
+          ?>
+          <span id="errorStock0"  style="display:none; color:red;"></span>            
+        </div>
+        <input id="btnEditarProducto" class="btn btn-dark" style="width: 150px;" value="Editar" name="editarr">
+      </form>
+
+
 
         <br><br>
-        <p style="text-align:center;">ELMINAR PRODUCTO</p>
+        <p style="text-align:center;color: #FFA07A">ELMINAR PRODUCTO</p>
         <div style="text-align: center;">
             <div style="display: inline-block; text-align: left;">
         <form action="#" method="POST" class="d-flex align-items-center">
@@ -453,9 +475,9 @@ if ($editarProducto == '') {
             </div>
         </form>
             </div>
-        </div>
+        </div >
 
-    </div>
+    </div >
 
 
 
