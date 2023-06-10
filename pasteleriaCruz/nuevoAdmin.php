@@ -22,8 +22,7 @@ if ($_SESSION['tipo'] == "") {
     header('Location: index.php');
 } else if ($_SESSION['tipo'] == "cliente") {
     header('Location: tienda.php');
-
-} 
+}
 
 //variables
 $mensajeNombre = "";
@@ -70,7 +69,7 @@ if ($nombre == "") {
     $mensajeNombre = "";
 }
 
-if (isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['usuario']) && isset($_POST['password1'])&& isset($_POST['password2'])) {
+if (isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['usuario']) && isset($_POST['password1']) && isset($_POST['password2'])) {
     if ($correo == "") {
         $mensajeCorreo = "Este campo no puede estar vacío";
         $valido = false;
@@ -142,11 +141,10 @@ if (isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['usuario'
 
             $sql = "INSERT INTO usuarios (nombre, correo, usuario, password, tipo) VALUES ('$nombre', '$correo', '$usuario', '$password1', 'administrador')";
             $res = $conexion->conexion->query($sql);
-            echo "<h1>Registrado con éxito</h1>";
             $res->closeCursor();
             // Las credenciales son válidas, iniciar sesión
             // $_SESSION['usuario'] = $usuario;
-            header('Location: adminUsu.php');
+            echo '<script>location.href="adminUsu.php"</script>';
         } catch (Exception $e) {
             echo "<h1>Error al registrar</h1>";
         }
@@ -255,32 +253,32 @@ if (isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['usuario'
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduzca su nombre">
-                <span id="errorNombre"  style="display:none; color:red;"></span>            
+                <span id="errorNombre" style="display:none; color:red;"></span>
             </div>
             <div class="mb-3">
                 <label for="correo" class="form-label">Correo:</label>
                 <input type="text" class="form-control" id="correo" name="correo" placeholder="Introduzca su correo">
-                <span id="errorCorreo"  style="display:none; color:red; "></span>            
+                <span id="errorCorreo" style="display:none; color:red; "></span>
             </div>
 
             <div class="mb-3">
                 <label for="usuario" class="form-label">Usuario:</label>
                 <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Introduzca nombre de usuario">
-                <span id="errorUsuario"  style="display:none; color:red;"></span>            
+                <span id="errorUsuario" style="display:none; color:red;"></span>
             </div>
             <div class="mb-3">
                 <label for="password1" class="form-label">Contraseña:</label>
                 <input type="password" class="form-control" id="password1" name="password1" aria-describedby="emailHelp" placeholder="Debe contener entre 5-8 caracteres">
-                <span id="errorPassword1"  style="display:none; color:red;"></span>            
+                <span id="errorPassword1" style="display:none; color:red;"></span>
 
             </div>
             <div class="mb-3">
                 <label for="password2" class="form-label">Repetir contraseña:</label>
                 <input type="password" class="form-control" id="password2" name="password2" placeholder="Debe contener entre 5-8 caracteres">
-                <span id="errorPassword2"  style="display:none; color:red;"></span>            
+                <span id="errorPassword2" style="display:none; color:red;"></span>
             </div>
 
-            <button  class="btn btn-primary" id="btnNuevoAdmin" name="btnNuevo">AÑADIR NUEVO USUARIO</button>
+            <button class="btn btn-primary" id="btnNuevoAdmin" name="btnNuevo">AÑADIR NUEVO USUARIO</button>
             <a href="adminUsu.php">volver</a>
         </form>
         <div class="mensaje"><?php echo $mensajePassword2 ?></div>

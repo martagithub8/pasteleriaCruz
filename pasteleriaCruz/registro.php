@@ -122,7 +122,6 @@ if (isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['usuario'
 
             $sql = "INSERT INTO usuarios (nombre, correo, usuario, password, tipo) VALUES ('$nombre', '$correo', '$usuario', '$password1', 'cliente')";
             $res = $con->conexion->query($sql);
-            echo "<h1>Registrado con éxito</h1>";
             $res->closeCursor();
             // Las credenciales son válidas, iniciar sesión
             $_SESSION['usuario'] = $usuario;
