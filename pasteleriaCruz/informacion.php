@@ -64,11 +64,7 @@ if (isset($_POST['encargo'])) {
 function guardarString()
 {
 
-    // $contenidoFichero=implode('-',$_SESSION['coloresUsuario']);
-    // $fichero=fopen('partida.txt','a');
-    // //actualizamos contenido introduciendo el nuevo string completo
-    // fwrite($fichero,$contenidoFichero."\n");
-    // fclose($fichero);
+    
     // _________________________________________________________________
     $contenidoFichero = '';
     //podria guardarlo en el fichero igual q lo muestro abajo en div Intentos
