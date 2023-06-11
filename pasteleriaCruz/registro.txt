@@ -162,4 +162,44 @@ Producto: Brownie  60 €. Cant: 2
 Total: 130€
 11-06-2023 22:07:56
 
+ Cliente: marta0
+ 
+Producto: Barco de chocolate  2 €. Cant: 1
+
+ Producto: Barco relleno de chocolat  2 €. Cant: 1
+
+ Producto: Crepes  5 €. Cant: 1
+
+ 
+Total: 114€
+11-06-2023 23:13:25
+
+ Cliente: marta0
+ 
+Producto: Barco de chocolate  2 €. Cant: 1
+
+ Producto: Barco relleno de chocolat  4 €. Cant: 2
+
+ 
+Total: 6€
+11-06-2023 23:15:51
+
+ Cliente: marta0
+ 
+Producto: Barco relleno de chocolat  4 €. Cant: 2
+
+ 
+Total: 4€
+11-06-2023 23:16:18
+
+ Cliente: marta0
+ 
+Producto: Barco de chocolate  2 €. Cant: 1
+
+ Producto: Chocolate y Nueces  30 €. Cant: 1
+
+ 
+Total: 67€
+11-06-2023 23:17:12
+
  

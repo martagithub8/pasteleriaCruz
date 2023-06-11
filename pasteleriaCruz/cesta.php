@@ -216,11 +216,16 @@ if (isset($_POST['ticket'])) {
                 $productoTabla = $separador[0];
                 $precioTabla = $separador[1];
                 $cantidadTabla = $separador[2];
-                //añadir contenido de tarta personalizada
+               
+
                 $contenidoTicket .= "Producto: $productoTabla  $precioTabla €. Cant: $cantidadTabla\n ";
             }
         }
         fclose($fichero);
+
+         //añadir contenido de tarta personalizada
+                //consultar el contenido 
+                $contenidoTartaPersonalizada.= "Tarta Personalizada:";
 
         //para convertir una variable en un entero
         //   $_SESSION['total']=intval($total);
@@ -258,6 +263,10 @@ if (isset($_POST['ticket'])) {
           $consulta6 = $conexion->conexion->prepare($sql6);
           $consulta6->execute();
 
+          unlink("compra.txt");
+        $_SESSION['total'] = 0;
+        $_SESSION['idProductos'] = [];
+        $_SESSION['totalPersonalizada'] = 0;
           header("Location:ticket.php");
     }
 }

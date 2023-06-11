@@ -127,15 +127,16 @@ $contenidoFormateado = nl2br($contenido);
 
     </header>
 
+    <div class="container">
+        <section>
+            <span style="text-align:center; color:green; font-size: large; font-weight: bold;">COMPRA REALIZADA CON ÉXITO</span>
+        </section>
 
-    <section>
-        <span style="text-align:center; color:green; font-size: large; font-weight: bold;">COMPRA REALIZADA CON ÉXITO</span>
-    </section>
 
-
-    <div class="ticket">
-        <?php
-        echo $contenidoFormateado;
-        ?>
+        <div class="ticket">
+            <?php
+            echo $contenidoFormateado;
+            ?>
+        </div>
     </div>
     </div>

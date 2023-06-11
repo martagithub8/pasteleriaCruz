@@ -1,9 +1,11 @@
 Cliente: marta0
  
-Producto: Brownie  60 €. Cant: 2
+Producto: Barco de chocolate  2 €. Cant: 1
+
+ Producto: Chocolate y Nueces  30 €. Cant: 1
 
  
-Total: 130€
-11-06-2023 22:07:56
+Total: 67€
+11-06-2023 23:17:12
 
  
