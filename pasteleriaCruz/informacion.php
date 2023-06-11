@@ -7,28 +7,37 @@ if (!isset($_SESSION['usuario'])) {
     $_SESSION['usuario'] = '';
 }
 
-if (!isset($_SESSION['tartaPersonalizada'])) {
-    $_SESSION['tartaPersonalizada'] = [];
+if (!isset($_SESSION['idProductos'])) {
+    $_SESSION['idProductos'] = [];
 }
+
+$idProductos=[];
+
 
 //variable array donde metemos valor del select
 $tartaPersonalizada = [];
 
 //si existe lo guarda en variavel para luego comprobar q sea distinto de seleccione color
-if (isset($_POST['base'])) {
-    $base = $_POST['base'];
+if (isset($_SESSION['base'])) {
+    $base = $_SESSION['base'];
 }
 
-if (isset($_POST['relleno'])) {
-    $relleno = $_POST['relleno'];
+if (isset($_SESSION['relleno'])) {
+    $relleno = $_SESSION['relleno'];
 }
 
-if (isset($_POST['decoracion'])) {
-    $decoracion = $_POST['decoracion'];
+if (isset($_SESSION['decoracion'])) {
+    $decoracion = $_SESSION['decoracion'];
 }
 
+if (isset($_SESSION['floatingTextarea2'])) {
+    $floatingTextarea2 = $_SESSION['floatingTextarea2'];
+}
 
-
+$floatingTextarea2='';
+$relleno='';
+$base='';
+$decoracion='';
 
 
 
@@ -36,27 +45,33 @@ if (isset($_POST['decoracion'])) {
 $conexion = new Conexion("root", "", "pasteleria");
 
 //PROGRAMACIÓN
+
+
 if (isset($_POST['encargo'])) {
-    //el problema está aquí
-    $problem;
-    if ($base != '0' && $relleno != '0' && $decoracion != '0') {
+    $_SESSION['base'] = $_POST['base'];
+    $_SESSION['relleno'] = $_POST['relleno'];
+    $_SESSION['decoracion'] = $_POST['decoracion'];
+    // $_SESSION['floatingTextarea2'] = $_POST['floatingTextarea2'];
 
-        array_push($tartaPersonalizada, $base);
-        array_push($tartaPersonalizada, $relleno);
-        array_push($tartaPersonalizada, $decoracion);
-        //si hay intentos . Controlamos si introduce repetidos
-        //creamos sesion
 
-        $_SESSION['tartaPersonalizada'] = $tartaPersonalizada;
 
-        guardarString();
-    } else {
-        $error = "NO PUEDE INTRODUCIR COLORES REPETIDOS.";
-        $_SESSION['error'] = true;
+    $sql = "INSERT INTO tarta_personalizada(base_fk, relleno_fk, decoracion_fk, precio) VALUES ('".$_SESSION['base']."','".$_SESSION['relleno']."','".$_SESSION['decoracion']."',35);";
+    $consulta = $conexion->conexion->prepare($sql);
+    $consulta->execute();
+
+
+    $sql2 = "SELECT id FROM tarta_personalizada ORDER BY id DESC LIMIT 1;";
+    $consulta2 = $conexion->conexion->prepare($sql2);
+    $consulta2->execute();
+
+    while ($fila = $consulta2->fetch()) {
+        array_push($_SESSION['idProductos'], $fila['id']);
     }
+
+  
+
+    //tomar id en sesion. mostrar en cesta tarta personalizada de id. hacer insert en compra
 }
-
-
 
 
 
@@ -64,7 +79,11 @@ if (isset($_POST['encargo'])) {
 function guardarString()
 {
 
-    
+    // $contenidoFichero=implode('-',$_SESSION['coloresUsuario']);
+    // $fichero=fopen('partida.txt','a');
+    // //actualizamos contenido introduciendo el nuevo string completo
+    // fwrite($fichero,$contenidoFichero."\n");
+    // fclose($fichero);
     // _________________________________________________________________
     $contenidoFichero = '';
     //podria guardarlo en el fichero igual q lo muestro abajo en div Intentos
@@ -129,7 +148,7 @@ function guardarString()
 
             <h1>PASTELERÍA CRUZ</h1>
 
-            <div id="usuario0">
+            <div id="usuario">
                 <?php
                 if ($_SESSION['usuario'] != "") {
                     echo "<p><i class='bi bi-person-fill'></i>";
@@ -165,7 +184,7 @@ function guardarString()
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item margin">
-                                <a class="nav-link active" aria-current="page" href="informacion.php">INFORMACIÓN</a>
+                                <a class="nav-link active" aria-current="page" href="personalizar.php">DISEÑA</a>
                             </li>
                             <li class="nav-item margin">
                                 <a class="nav-link active " aria-current="page" href="tarta.php">TARTAS</a>
@@ -183,52 +202,101 @@ function guardarString()
         </section>
     </header>
 
+
     <section id="cajaGlobal">
-        <div class="container">
-            <h1 style="color:black">Bienvenidos a Pastelería Cruz</h1>
-
-            <div class="image">
-                <img src="img/bg4.jpg" alt="Pastel" width="400">
+        <section id="ejemplo1">
+            <div id="tarta1">
+                <img src="img/per5.png" alt="esfera" width="280" height="270">
 
             </div>
 
-            <div class="description">
-                <p>En nuestra pastelería, ofrecemos una amplia variedad de deliciosas tartas y pasteles, elaborados con
-                    pasión y cuidado por nuestra talentosa pastelera, Nuria.</p>
-                <p>Nuria es una apasionada de la repostería y dedica su tiempo y creatividad para crear auténticas obras de
-                    arte. Cada tarta y pastel que sale de nuestra pastelería es único y está hecho con ingredientes
-                    frescos y de la más alta calidad.</p>
-                <p>Nuestra misión es endulzar los momentos especiales de nuestros clientes. Ya sea para celebrar un cumpleaños,
-                    una boda o simplemente para darse un capricho, nuestras creaciones están diseñadas para deleitar el paladar
-                    y hacer que cada ocasión sea inolvidable.</p>
-            </div>
-
-            <div class="image">
-                <img src="img/bg.jpg" alt="Tarta" width="400">
+            <div id="tarta1">
+                <img src="img/per2.png" alt="esfera" width="280" height="270">
 
             </div>
+        </section>
 
-            <div class="description">
-                <p>En nuestra pastelería, podrás encontrar una amplia variedad de sabores y diseños en nuestras tartas y pasteles.
-                    Desde clásicos como la tarta de chocolate o el pastel de fresa, hasta creaciones más originales.</p>
-                <p>Estamos comprometidos con la satisfacción de nuestros clientes y nos esforzamos por brindar un servicio excepcional.
-                    Puedes confiar en nosotros para que tu experiencia en nuestra pastelería sea simplemente deliciosa.</p>
+
+        <section class="col-sm-7 container mb-4 " id="seccionPersonalizar">
+            <div class="container">
+
+
+
+                <div class=" mt4" style="text-align: center;" id="editarCuenta">
+                    <h3 style="color: #7D5A48;">COMENZAR PERSONALIZACIÓN </h3><br><br>
+
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="row justify-content-center" id="formPersonalizar">
+                        <span>SELECCIONE BASE</span>
+                        <select onchange="cambiarColor()" name="base" class="form-select" aria-label="Default select example" style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;">
+                            <option class="contenido" value="0">BASE</option>
+
+                            <?php
+
+                            $sql = "SELECT * FROM base ; ";
+
+                            $consulta = $conexion->conexion->prepare($sql);
+                            $consulta->execute();
+                            while ($fila = $consulta->fetch()) {
+                                echo '<option class="'.$fila["nombre"].'" value="' . $fila["nombre"] . '" selected>' . $fila["nombre"] . '</option>';
+                            }
+                            ?>
+                        </select><br><br>
+                        <span>SELECCIONE RELLENO</span>
+                        <select onchange="cambiarColor()" name="relleno" class="form-select" aria-label="Default select example" style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;">
+                            <option class="contenido" value="0">RELLENO</option>
+
+                            <?php
+                            $sql = "SELECT * FROM relleno ; ";
+
+                            $consulta = $conexion->conexion->prepare($sql);
+                            $consulta->execute();
+                            while ($fila = $consulta->fetch()) {
+                                echo '<option class="'.$fila["nombre"].'" value="' . $fila["nombre"] . '" selected>' . $fila["nombre"] . '</option>';
+                            }
+                            ?>
+                        </select><br><br>
+                        <span>SELECCIONE DECORACIÓN</span>
+                        <select onchange="cambiarColor()" name="decoracion" style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;" class="form-select" aria-label="Default select example">
+                            <option class="contenido" value="0">DECORACIÓN</option>
+
+                            <?php
+                            $sql = "SELECT * FROM decoracion ; ";
+
+                            $consulta = $conexion->conexion->prepare($sql);
+                            $consulta->execute();
+                            while ($fila = $consulta->fetch()) {
+                                echo '<option class="'.$fila["nombre"].'" value="' . $fila["nombre"] . '" selected>' . $fila["nombre"] . '</option>';
+                            }
+                            ?>
+                        </select> <br><br>
+
+
+
+              
+                        
+
+                        <input style="margin-bottom: 3%;" type="submit" value="REALIZAR PERSONALIZACIÓN" class="botonAnadir" name="encargo">
+
+                    </form>
+                </div>
+
             </div>
-            <div class="contact">
-        <h2>Contacto</h2>
-        <p>¡Estamos encantados de atenderte! Puedes contactarnos a través de los siguientes medios:</p>
-        <ul>
-            <li><i class="bi bi-telephone"></i> Teléfono: <a href="tel: 698772334"> 698772334</a></li>
-            <li><i class="bi bi-envelope"></i> Email: <a href="mailto:info@pasteleriacruz.com">info@pasteleriacruz.com</a></li>
-            <li><i class="bi bi-geo-alt"></i> Dirección: Calle Arboleda, 123, 41000 Sevilla</li>
-        </ul>
-    </div>
-        </div>
+        </section>
 
 
+        <section id="ejemplo1">
+            <div id="tarta1">
+                <img src="img/per2.png" alt="esfera" width="280" height="270">
+
+            </div>
+
+            <div id="tarta1">
+                <img src="img/per5.png" alt="esfera" width="280" height="270">
+
+
+            </div>
+        </section>
     </section>
-
-
 
 
 
@@ -247,17 +315,17 @@ function guardarString()
 
 </html>
 <script>
-    //no se puede detectar el select sobre el q estamos actuando por tanto guardamos todos los select en una variable
-    //el q esté seleccionado modificará a su correspondiente select
-    function cambiarColor() {
-        var selectColores = document.getElementsByTagName("select");
-        for (let i = 0; i < selectColores.length; i++) {
-            //obtenemos el option seleccionado
-            var option = selectColores[i].options[selectColores[i].selectedIndex];
-            //con esto obtenemos la clase del option marcado
-            var classColorOption = option.classList;
-            //añadimos la clase del option al select.
-            selectColores[i].classList = classColorOption;
-        }
+
+//no se puede detectar el select sobre el q estamos actuando por tanto guardamos todos los select en una variable
+//el q esté seleccionado modificará a su correspondiente select
+function cambiarColor() {
+    var selectColores = document.getElementsByTagName("select");
+    for (let i = 0; i < selectColores.length; i++) {
+      //obtenemos el option seleccionado
+      var option = selectColores[i].options[selectColores[i].selectedIndex];
+      //con esto obtenemos la clase del option marcado
+      var classColorOption = option.classList;
+      //añadimos la clase del option al select.
+      selectColores[i].classList=classColorOption;
     }
-</script>
+}

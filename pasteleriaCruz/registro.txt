@@ -116,4 +116,50 @@ Producto: Fresa y Nata  30 €. Cant: 1
 Total: 68€
 09-06-2023 09:37:19
 
+ Cliente: marta0
+ 
+Producto: Brownie  60 €. Cant: 2
+
+ Producto: Fresa y Nata  30 €. Cant: 1
+
+ 
+Total: 90€
+11-06-2023 18:49:05
+
+ Cliente: usuario
+ 
+Producto: Tarta de Fresa   60 €. Cant: 2
+
+ Producto: Fresa y Queso  30 €. Cant: 1
+
+ 
+Total: 91€
+11-06-2023 20:43:57
+
+ Cliente: marta0
+ 
+Producto: Fresa y Queso  30 €. Cant: 1
+
+ Producto: Tarta de Fresa   30 €. Cant: 1
+
+ 
+Total: 60€
+11-06-2023 21:58:01
+
+ Cliente: marta0
+ 
+Producto: Chocolate y Nueces  30 €. Cant: 1
+
+ 
+Total: 65€
+11-06-2023 22:06:40
+
+ Cliente: marta0
+ 
+Producto: Brownie  60 €. Cant: 2
+
+ 
+Total: 130€
+11-06-2023 22:07:56
+
  

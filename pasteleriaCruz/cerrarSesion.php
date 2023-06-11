@@ -9,6 +9,9 @@ session_destroy();
 //Borrar fichero
 unlink("compra.txt");
 
+$_SESSION['idProductos'] = [];
+$_SESSION['totalPersonalizada'] = 0;
+
 
 
 header("Location:index.php");

@@ -153,6 +153,10 @@ if (isset($_POST['anadir'])) {
   $nombre = $_POST['nombre'];
   $precio = $_POST['precio'];
 
+  //cada añadir un push. 
+  //en cesta mostrar este array
+  //si vaciar cesta:elimina. si sale de sesion elimina. si compra
+
 
 
   //Si no existe el fichero

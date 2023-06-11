@@ -110,11 +110,7 @@ $sql =
     
     
     
-    ALTER TABLE compra
-    ADD FOREIGN KEY (producto_fk) REFERENCES producto(id);
-
-    ALTER TABLE compra
-    ADD FOREIGN KEY (tarta_personalizada_fk) REFERENCES tarta_personalizada(id);
+   
 
     ALTER TABLE compra
     ADD FOREIGN KEY (usuario_fk) REFERENCES usuarios(id);
@@ -160,7 +156,6 @@ INSERT INTO decoracion(nombre) VALUES ('queso');
 INSERT INTO decoracion(nombre) VALUES ('felicitacion');
 INSERT INTO decoracion(nombre) VALUES ('olaf');
 INSERT INTO decoracion(nombre) VALUES ('superMario');
-INSERT INTO decoracion(nombre) VALUES ('pokemon');
 INSERT INTO decoracion(nombre) VALUES ('mickey');
 INSERT INTO decoracion(nombre) VALUES ('mini');
 
