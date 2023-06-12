@@ -322,7 +322,7 @@ if ($editarProducto == '') {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item margin">
-                                <a class="nav-link active" aria-current="page" href="informacion.php">INFORMACIÓN</a>
+                                <a class="nav-link active" aria-current="page" href="informacion.php">DISEÑA</a>
                             </li>
                             <li class="nav-item margin">
                                 <a class="nav-link active " aria-current="page" href="tarta.php">TARTAS</a>

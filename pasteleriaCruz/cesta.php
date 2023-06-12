@@ -38,8 +38,8 @@ $precioTabla = 0;
 $cantidadTabla = 0;
 $filasTabla = '';
 $contenidoTicket = '';
-$filasPersonalizar='';
-
+$filasPersonalizar = '';
+$contenidoTartaPersonalizada = '';
 
 
 //sesiones
@@ -77,14 +77,14 @@ if (!isset($_SESSION['totalPersonalizada'])) {
     $_SESSION['totalPersonalizada'] = 0;
 }
 
-$totalPersonalizada=0;
+$totalPersonalizada = 0;
 
 
 if (!isset($_SESSION['idProductos'])) {
     $_SESSION['idProductos'] = [];
 }
 
-$idProductos=[];
+$idProductos = [];
 
 
 
@@ -142,21 +142,21 @@ if (!file_exists("compra.txt")) {
 //AQUI METEMOS DATOS DE PERSONALIZADA [CONTENIDO, PRECIO , CANTIDAD]
 foreach ($_SESSION['idProductos'] as $contenido) {
 
-    $sql0 = "SELECT precio FROM tarta_personalizada WHERE id = '".$contenido."';";
+    $sql0 = "SELECT precio FROM tarta_personalizada WHERE id = '" . $contenido . "';";
     $consulta0 = $conexion->conexion->prepare($sql0);
     $consulta0->execute();
 
     while ($fila = $consulta0->fetch()) {
-        $precio= $fila;
+        $precio = $fila;
     }
 }
-$_SESSION['totalPersonalizada']=35*(sizeof($_SESSION['idProductos']));
+$_SESSION['totalPersonalizada'] = 35 * (sizeof($_SESSION['idProductos']));
 
 
 $filasPersonalizar .= "<tr>
 <th scope='row'>Tarta Personalizada</th>
-<td>".$_SESSION['totalPersonalizada']."</td>
-<td>".sizeof($_SESSION['idProductos'])."</td>
+<td>" . $_SESSION['totalPersonalizada'] . "</td>
+<td>" . sizeof($_SESSION['idProductos']) . "</td>
 </tr> ";
 
 
@@ -166,6 +166,7 @@ if (isset($_POST['ticket'])) {
 
     //COMPROBAR SI LA CESTA TIENE CONTENIDO O NO
     if ($contenidoCesta == true) {
+
 
         //OBTENER PRODUCTOS DEL COMPRADOR Y ACTUALIZARLOS EN LA BD
         $fichero = fopen('compra.txt', 'r');
@@ -192,17 +193,15 @@ if (isset($_POST['ticket'])) {
                 //tomar primero el id del producto para hacer el insert de compra. IGUAL CON TARTA PERSONALIZADA. Mismo con usuario
 
 
-                $sql5 = "INSERT INTO compra(producto_fk,tarta_personalizada_fk,precio,fecha,usuario_fk) VALUES (1,0,'".$precio."','2023-06-11',1);";
+
+                $sql5 = "INSERT INTO compra(producto_fk,tarta_personalizada_fk,precio,fecha,usuario_fk) VALUES ('".$_SESSION['producto'] ."',0,'" . $precio . "','".$fecha_actual."','".$_SESSION['usuario']."');";
 
                 $consulta5 = $conexion->conexion->prepare($sql5);
                 $consulta5->execute();
-
-              
-
             }
         }
 
-        //REALIZAMOS EL REGISTRO
+
 
         //PRIMERO SE LEE COMPRA.TXT PARA GUARDAR LOS PRODUCTOS EN UN STRING
         $fichero = fopen('compra.txt', 'r');
@@ -216,16 +215,22 @@ if (isset($_POST['ticket'])) {
                 $productoTabla = $separador[0];
                 $precioTabla = $separador[1];
                 $cantidadTabla = $separador[2];
-               
+
 
                 $contenidoTicket .= "Producto: $productoTabla  $precioTabla €. Cant: $cantidadTabla\n ";
             }
         }
         fclose($fichero);
 
-         //añadir contenido de tarta personalizada
-                //consultar el contenido 
-                $contenidoTartaPersonalizada.= "Tarta Personalizada:";
+        //añadir contenido de tarta personalizada
+        //consultar el contenido 
+        //1. consulta bd segun el length del session.
+        //2. poner bonito en el fichero
+        //3. añadir al ticket
+        //4. creo q ya
+
+
+
 
         //para convertir una variable en un entero
         //   $_SESSION['total']=intval($total);
@@ -237,13 +242,15 @@ if (isset($_POST['ticket'])) {
         fclose($fichero);
 
         $fichero = fopen('ticket.txt', 'w');
-        fwrite($fichero, 'Cliente: ' . $_SESSION['usuario'] . "\n \n" . $contenidoTicket . "\n" . 'Total: ' . $_SESSION['total'] . '€' . "\n" . $fecha_actual . "\n\n ");
+        fwrite($fichero, 'Cliente: ' . $_SESSION['usuario'] . "\n \n" . $contenidoTicket . "\n " . $contenidoTartaPersonalizada . "\n" . 'Total: ' . $_SESSION['total'] . '€' . "\n" . $fecha_actual . "\n\n ");
         fclose($fichero);
 
         //UNA VEZ REALIZADA LA COMPRA ELIMINAMOS EL TXT.COMPRA/ LA CESTA         
         unlink("compra.txt");
         //ELIMINAMOS TAMBIÉN EL CÁLCULO DEL PRECIO TOTAL
         $_SESSION['total'] = 0;
+
+
 
 
         //REDIRIGIMOS A LA PÁGINA DEL PAGO
@@ -254,28 +261,55 @@ if (isset($_POST['ticket'])) {
         $mensaje = "SU CESTA ESTÁ VACÍA";
     }
 
+    //AL IGUALL QUE HACEMOS UN CONTROL PARA COMPRA DE PRODUCTOS. SE HACE AQUI UN CONTROL DE TARTA PERSONALIZADA*************
+    if ($_SESSION['idProductos'] != null) {
+        
+        //REALIZAMOS EL REGISTRO de personalizada y compra normal
+        foreach ($_SESSION['idProductos'] as $contenido) {
 
-    if ($_SESSION['idProductos']!=0) {
-          //hacer lo mismo con tarta_personalizada. Con el id hacer el insert
+            $sqlPersonalizada = "SELECT * FROM tarta_personalizada WHERE id = '" . $contenido . "';";
+            $consultaPersonalizada = $conexion->conexion->prepare($sqlPersonalizada);
+            $consultaPersonalizada->execute();
 
-          $sql6 = "INSERT INTO compra(producto_fk,tarta_personalizada_fk,precio,fecha,usuario_fk) VALUES (0,60,35,'2023-06-11',1);";
+            while ($fila = $consultaPersonalizada->fetch()) {
+                $contenidoTartaPersonalizada .= "Tarta personalizada nº: ".$fila['id'].". Base: " . $fila['base_fk'] . ". Relleno: " . $fila['relleno_fk'] . ". Decoración: " . $fila['decoracion_fk'] . " ." . $fila['precio'] . "€ \n";
+            }
+        }
 
-          $consulta6 = $conexion->conexion->prepare($sql6);
-          $consulta6->execute();
+        $_SESSION['total'] = intval($total)/2 + $_SESSION['totalPersonalizada'];
 
-          unlink("compra.txt");
+        $fichero = fopen('ticket.txt', 'w');
+        fwrite($fichero, 'Cliente: ' . $_SESSION['usuario'] . "\n \n" . $contenidoTicket . " \n" . $contenidoTartaPersonalizada . "\n" . 'Total: ' . $_SESSION['total'] . '€' . "\n" . $fecha_actual . "\n\n ");
+        fclose($fichero);
+
+
+        //hacer lo mismo con tarta_personalizada. Con el id hacer el insert
+
+        // $sql6 = "INSERT INTO compra(producto_fk,tarta_personalizada_fk,precio,fecha,usuario_fk) VALUES (0,60,35,'2023-06-11',1);";
+        $sql6 = "INSERT INTO compra(producto_fk,tarta_personalizada_fk,precio,fecha,usuario_fk) VALUES ('".$contenidoTicket  ."','".$contenidoTartaPersonalizada ."','" . $_SESSION['total']  . "','".$fecha_actual."','".$_SESSION['usuario']."');";
+
+
+        $consulta6 = $conexion->conexion->prepare($sql6);
+        $consulta6->execute();
+
+        unlink("compra.txt");
         $_SESSION['total'] = 0;
         $_SESSION['idProductos'] = [];
         $_SESSION['totalPersonalizada'] = 0;
-          header("Location:ticket.php");
+        header("Location:ticket.php");
+    } else {
+        $mensaje = "SU CESTA ESTÁ VACÍA";
     }
 }
 
-$_SESSION['total'] = intval($total ) + $_SESSION['totalPersonalizada'];
+$_SESSION['total'] = intval($total) + $_SESSION['totalPersonalizada'];
 
 
 //MIENTRAS SE PULSE EL BOTÓN VACIAR CESTA
 if (isset($_POST['vaciar'])) {
+    $_SESSION['total'] = 0;
+    $_SESSION['idProductos'] = [];
+    $_SESSION['totalPersonalizada'] = 0;
 
     //si no hay nada avisa que cesta está vacía. Si hay contenido la vacía
     if (file_exists("compra.txt")) {
@@ -366,7 +400,7 @@ if (isset($_POST['vaciar'])) {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item margin">
-                                <a class="nav-link active" aria-current="page" href="informacion.php">INFORMACIÓN</a>
+                                <a class="nav-link active" aria-current="page" href="informacion.php">DISEÑA</a>
                             </li>
                             <li class="nav-item margin">
                                 <a class="nav-link active " aria-current="page" href="tarta.php">TARTAS</a>
@@ -384,6 +418,10 @@ if (isset($_POST['vaciar'])) {
         </section>
 
     </header>
+    <?php
+    // var_dump($_SESSION['idProductos']);
+    // echo "IIIIIIIIIIII" . $contenidoCesta;
+    ?>
 
 
     </div>
@@ -413,9 +451,9 @@ if (isset($_POST['vaciar'])) {
 
             </tbody>
         </table>
-
-
-
+        <?php
+        // echo "HOLAAAAAAAAAAAA" . $contenidoTartaPersonalizada;
+        ?>
         <p style="font-weight:bold"><?php echo "EL TOTAL ES: " . $_SESSION['total']; ?>€</p>
 
 

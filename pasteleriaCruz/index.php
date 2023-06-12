@@ -116,7 +116,7 @@ if (isset($_POST['btnIniciarSesion'])) {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item margin">
-                                <a class="nav-link active" aria-current="page" href="informacion.php">INFORMACIÓN</a>
+                                <a class="nav-link active" aria-current="page" href="informacion.php">DISEÑA</a>
                             </li>
                             <li class="nav-item margin">
                                 <a class="nav-link active " aria-current="page" href="tarta.php">TARTAS</a>
@@ -150,26 +150,26 @@ if (isset($_POST['btnIniciarSesion'])) {
 
 
     <div id="contenedorNoticias">
-        <div id="noticia1">
-            <p class="negrita">INFORMACIÓN</p>
-            <div id="imagenn">
-                <img src="img/oferta0.jpg" alt="esfera" width="380" height="370">
-            </div>
-            <div class="texto">
-                <p class="sinNegrita" style="text-align: justify;"> <strong>¿Aún no conoces nuestra tienda?</strong><br>En nuestra pastelería, ofrecemos una amplia variedad de deliciosas tartas y pasteles.</p>
-                <a class="consultar" href="informacion.php">CONSULTAR</a>
-            </div>
-
-        </div>
+       
 
         <div id="noticia1">
             <p class="negrita">CATÁLOGO TARTAS </p>
             <div id="imagenn">
-                <img src="img/tarta.jpg" alt="esfera" width="380" height="370">
+                <img src="img/oferta0.jpg" alt="esfera" width="380" height="370">
             </div>
             <div class="texto">
                 <p class="sinNegrita" style="text-align: justify;"><strong> Ya ha llegado la hora de disfrutar con los tuyos de nuestras tartas artesanas.</strong><br> Esperamos que os guste probarlas tanto como a nosotras elaborarlas.</p>
                 <a class="consultar" href="tarta.php">CONSULTAR</a>
+            </div>
+
+        </div>
+        <div id="noticia1">
+            <p class="negrita">PERSONALIZA TU TARTA</p>
+            <div id="imagenn">
+                <img src="img/tarta.jpg" alt="esfera" width="380" height="370">
+            </div>
+            <div class="texto">
+            <p class="sinNegrita" style="text-align: justify;"><strong>¿Quieres una tarta personalizada?</strong><br> Prueba con nosotras a seleccionar los sabores y la decoración a tu gusto. </p>                <a class="consultar" href="informacion.php">CONSULTAR</a>
             </div>
 
         </div>

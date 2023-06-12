@@ -2,10 +2,11 @@ Cliente: marta0
  
 Producto: Barco de chocolate  2 €. Cant: 1
 
- Producto: Chocolate y Nueces  30 €. Cant: 1
+  
+Tarta personalizada nº: 6. Base: queso. Relleno: vainilla. Decoración: superMario .35€ 
+Tarta personalizada nº: 7. Base: queso. Relleno: vainilla. Decoración: superMario .35€ 
 
- 
-Total: 67€
-11-06-2023 23:17:12
+Total: 72€
+13-06-2023 01:42:16
 
  

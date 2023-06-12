@@ -12,6 +12,8 @@ if (file_exists("compra.txt")) {
     unlink("compra.txt");
 }
 
+
+
 $mensaje = "¡GRACIAS POR REALIZAR SU COMPRA!";
 //OBTENER TICKET TOTAL DE LA COMPRA
 
@@ -26,8 +28,19 @@ $contenidoFormateado = nl2br($contenido);
 
 
 
+if (isset($_POST['salir'])) {
+    unlink("ticket.txt");
 
-//para convertir una variable en un entero
+    header('Location: cerrarSesion.php');
+
+}
+
+if (isset($_POST['tienda'])) {
+    unlink("ticket.txt");
+
+    header('Location: tienda.php');
+
+}
 
 
 
@@ -62,10 +75,14 @@ $contenidoFormateado = nl2br($contenido);
 
 
             if ($_SESSION['usuario'] != "") {
-                echo '<div id="login2"><a href="tienda.php"><i class="bi bi-house iconHeader"></i></a></div>
-                <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
-    
-                </div>';
+                echo "<form action='#' method='POST'>
+                <input class='btn btn-dark' type='submit' value='TIENDA' name='tienda'></form>
+                ";
+                echo "<form style='padding-right:10%' action='#' method='POST'>
+                <input class='btn btn-dark' type='submit' value='SALIR' name='salir'></form>
+                ";
+                echo  '</div>';
+              
             } else {
                 echo '<div id="login1"><a href="login.php"><i class="bi bi-person-circle iconHeader"></i></a></div>
                 <div id="login2"><a href="login.php"></a></div>
@@ -91,37 +108,7 @@ $contenidoFormateado = nl2br($contenido);
         </section>
         <section id="menumenu">
             <nav class="navbar navbar-expand-lg navbar-light  " style="background-color: #f5f5f5;">
-                <div class="container-fluid">
-                    <?php
-
-                    echo '<a class="navbar-brand margin1"';
-                    if ($_SESSION['usuario'] != "") {
-                        echo 'href="tienda.php"';
-                    } else {
-                        echo 'href="index.php"';
-                    }
-
-                    echo '>INICIO</a>';
-                    ?> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item margin">
-                                <a class="nav-link active" aria-current="page" href="informacion.php">INFORMACIÓN</a>
-                            </li>
-                            <li class="nav-item margin">
-                                <a class="nav-link active " aria-current="page" href="tarta.php">TARTAS</a>
-                            </li>
-                            <li class="nav-item margin">
-                                <a class="nav-link active" aria-current="page" href="pasteles.php">PASTELES</a>
-                            </li>
-
-
-                        </ul>
-
-                    </div>
-                </div>
+                
             </nav>
         </section>
 

@@ -65,11 +65,11 @@ $sql =
 
     create table compra(
         id int(50) NOT NULL AUTO_INCREMENT,
-        producto_fk int(25) NOT NULL,
-        tarta_personalizada_fk int(25) NOT NULL,
+        producto_fk varchar(40) NOT NULL,
+        tarta_personalizada_fk varchar(40) NOT NULL,
         precio double NOT NULL,
         fecha date NOT NULL,
-        usuario_fk int(50) NOT NULL,
+        usuario_fk varchar(40) NOT NULL,
         PRIMARY KEY(id)  
     );
     
@@ -112,8 +112,7 @@ $sql =
     
    
 
-    ALTER TABLE compra
-    ADD FOREIGN KEY (usuario_fk) REFERENCES usuarios(id);
+   
 
     ALTER TABLE tarta_personalizada
     ADD FOREIGN KEY (base_fk) REFERENCES base(nombre);
@@ -164,9 +163,9 @@ INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pa
 INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel6.png', 'Barco relleno de chocolate', 'pastel','chocolate', 2 ,5);
 INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel8.png', 'Barco de crema', 'pastel','crema', 2,20);
 INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel9.png', 'Cono de vainilla', 'pastel','vainilla', 2,20);
-INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel10.png', 'Pastel de fresa', 'pastel','fresa', 2.5,20);
-INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel11.png', 'Palmera de huevo', 'pastel','huevo', 2.5,20);
-INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel12.png', 'Barco de dulce de leche', 'pastel','dulce de leche', 2.5,20);
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel10.png', 'Pastel de fresa', 'pastel','fresa', 2,20);
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel11.png', 'Palmera de huevo', 'pastel','huevo', 2,20);
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel12.png', 'Barco de dulce de leche', 'pastel','dulce de leche', 2,20);
 INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel13.png', 'Donuts de fresa', 'pastel','fresa', 2,20);
 INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel2.png', 'Donuts de chocolate', 'pastel','chocolate', 2,20);
 INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel14.png', 'Macarons de nata', 'pastel','nata', 2,20);
@@ -174,8 +173,8 @@ INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pa
 INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel16.png', 'Croissant', 'pastel','mantequilla', 2,20);
 INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel17.png', 'Crepes', 'pastel','otro', 5 ,20);
 INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel18.png', 'Macarons (5uds.)', 'pastel','variado', 3,20);
-INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel5.png', 'Palmera de chocolate', 'pastel','chocolate', 2.5,20);
-INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel20.png', 'Cake pops (9uds.)', 'pastel','variado', 5.5,20);
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel5.png', 'Palmera de chocolate', 'pastel','chocolate', 2,20);
+INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel20.png', 'Cake pops (9uds.)', 'pastel','variado', 5,20);
 INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('pastel1.png', 'Caña de chocolate', 'pastel','chocolate', 2,20);
 
 INSERT INTO producto(img, nombre, categoria, detalle, precio, stock) VALUES ('tarta6.png', 'Brownie', 'tarta','chocolate', 30,5);
