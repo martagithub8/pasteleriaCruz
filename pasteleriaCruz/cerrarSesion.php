@@ -13,6 +13,7 @@ $_SESSION['idProductos'] = [];
 $_SESSION['totalPersonalizada'] = 0;
 
 
+
 echo '<script>location.href="index.php"</script>';
 
 // header("Location:index.php");

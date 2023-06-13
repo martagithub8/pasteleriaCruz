@@ -117,7 +117,7 @@ if (isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['usuario'
         if (strlen($password1) >= 5 && strlen($password1) <= 8) {
             $mensajePassword1 = "";
         } else {
-            $mensajePassword1 = "La contraseña debe contener entre 5-8 caracteres";
+            $mensajePassword1 = "La contraseña debe contener entre 6-8 caracteres";
             $valido = false;
         }
     }
@@ -268,7 +268,7 @@ if (isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['usuario'
             </div>
             <div class="mb-3">
                 <label for="password1" class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" id="password1" name="password1" aria-describedby="emailHelp" placeholder="Debe contener entre 5-8 caracteres">
+                <input type="password" class="form-control" id="password1" name="password1" aria-describedby="emailHelp" placeholder="Debe contener entre 6-8 caracteres">
                 <span id="errorPassword1" style="display:none; color:red;"></span>
 
             </div>

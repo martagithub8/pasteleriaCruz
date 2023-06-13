@@ -93,7 +93,7 @@ if (isset($_POST['usuario']) && isset($_POST['password'])) {
 
 
 
-      <h1 style="padding-right: 43%;">PASTELERÍA CRUZ</h1>
+     <h1 style="padding-right: 39%;">PASTELERÍA CRUZ</h1>
 
 
 

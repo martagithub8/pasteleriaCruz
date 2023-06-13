@@ -31,13 +31,12 @@ if ($_SESSION['usuario'] == "") {
 
 
 
-
 //sesiones
-if (!isset($_SESSION['usuario'])) {
-    $_SESSION['usuario'] = '';
-}
 if (!isset($_SESSION['tipo'])) {
     $_SESSION['tipo'] = '';
+}
+if (!isset($_SESSION['usuario'])) {
+    $_SESSION['usuario'] = '';
 }
 
 if (!isset($_SESSION['idProductos'])) {
@@ -100,6 +99,7 @@ if (isset($_POST['encargo'])) {
     }
 
   
+                echo '<script>location.href="cesta.php"</script>';
 
     //tomar id en sesion. mostrar en cesta tarta personalizada de id. hacer insert en compra
 }
@@ -156,17 +156,16 @@ function guardarString()
     <header>
         <section id="cabecera">
 
-        <?php
+           <?php
       echo '<div id="login">';
 
 
 
-      if ($_SESSION['tipo'] == "administrador") {
+       if ($_SESSION['tipo'] == "administrador") {
         echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
                 
                 <div  id="login2"><a href="" data-bs-toggle="modal" data-bs-target="#modalLogin"><i class="bi bi-gear iconHeader"></i></a></div>
-                <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
-
+<div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
                 </div>';
       } else if ($_SESSION['tipo'] == "cliente") {
         echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
@@ -185,7 +184,7 @@ function guardarString()
 
 
 
-            <h1>PASTELERÍA CRUZ</h1>
+              <h1>PASTELERÍA CRUZ</h1>
 
             <div id="usuario">
                 <?php
@@ -267,7 +266,7 @@ function guardarString()
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="row justify-content-center" id="formPersonalizar">
                         <span>SELECCIONE BASE</span>
                         <select onchange="cambiarColor()" name="base" class="form-select" aria-label="Default select example" style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;">
-                            <option class="contenido" value="0">BASE</option>
+                            <!--<option class="contenido" value="0">BASE</option>-->
 
                             <?php
 
@@ -282,7 +281,7 @@ function guardarString()
                         </select><br><br>
                         <span>SELECCIONE RELLENO</span>
                         <select onchange="cambiarColor()" name="relleno" class="form-select" aria-label="Default select example" style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;">
-                            <option class="contenido" value="0">RELLENO</option>
+                            <!--<option class="contenido" value="0">RELLENO</option>-->
 
                             <?php
                             $sql = "SELECT * FROM relleno ; ";
@@ -296,7 +295,7 @@ function guardarString()
                         </select><br><br>
                         <span>SELECCIONE DECORACIÓN</span>
                         <select onchange="cambiarColor()" name="decoracion" style="font-weight: bold;color: #7D5A48;border: 1px #7D5A48 solid;" class="form-select" aria-label="Default select example">
-                            <option class="contenido" value="0">DECORACIÓN</option>
+                            <!--<option class="contenido" value="0">DECORACIÓN</option>-->
 
                             <?php
                             $sql = "SELECT * FROM decoracion ; ";
@@ -339,14 +338,12 @@ function guardarString()
 
 
 
-
-
-    <div class="modal fade" id="modalLogin" role="dialog">
+<div class="modal fade" id="modalLogin" role="dialog">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
           <a href="adminProduct.php" class=" btn btn-primary btn-block col-12" role="button">
-            <i class="bi bi-cup-hot"> ADMINISTRAR PRODUCTOS </i>
+                         <i class="bi bi-gear "> ADMINISTRAR PRODUCTOS </i>
           </a>
         </div>
         <div class="modal-header">
@@ -359,6 +356,8 @@ function guardarString()
       </div>
     </div>
   </div>
+
+
 </body>
 
 <footer>

@@ -75,9 +75,9 @@ if (!isset($_SESSION['tipo'])) {
 
       if ($_SESSION['tipo'] == "administrador") {
         echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
-                <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
+                
                 <div  id="login2"><a href="" data-bs-toggle="modal" data-bs-target="#modalLogin"><i class="bi bi-gear iconHeader"></i></a></div>
-
+<div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
                 </div>';
       } else if ($_SESSION['tipo'] == "cliente") {
         echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
@@ -165,7 +165,7 @@ if (!isset($_SESSION['tipo'])) {
                 <img src="img/tarta.jpg" alt="esfera" width="380" height="370">
             </div>
             <div class="texto">
-            <p class="sinNegrita" style="text-align: justify;"><strong>¿Quieres una tarta personalizada?</strong><br> Prueba con nosotras a seleccionar los sabores y la decoración a tu gusto. </p>                <a class="consultar" href="informacion.php">CONSULTAR</a>
+            <p class="sinNegrita" style="text-align: justify;"><strong>¿Quieres una tarta personalizada?</strong><br> Prueba con nosotras a seleccionar los sabores y la decoración a tu gusto. Accede y personaliza una tarta. </p>                <a class="consultar" href="informacion.php">CONSULTAR</a>
             </div>
 
         </div>
@@ -192,7 +192,7 @@ if (!isset($_SESSION['tipo'])) {
       <div class="modal-content">
         <div class="modal-header">
           <a href="adminProduct.php" class=" btn btn-primary btn-block col-12" role="button">
-            <i class="bi bi-cup-hot"> ADMINISTRAR PRODUCTOS </i>
+              <i class="bi bi-gear"> ADMINISTRAR PRODUCTOS </i>
           </a>
         </div>
         <div class="modal-header">

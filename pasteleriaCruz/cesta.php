@@ -40,6 +40,7 @@ $filasTabla = '';
 $contenidoTicket = '';
 $filasPersonalizar = '';
 $contenidoTartaPersonalizada = '';
+$contenidoBdPersonalizada='';
 
 
 //sesiones
@@ -227,11 +228,8 @@ if (isset($_POST['ticket'])) {
         fclose($fichero);
 
         //añadir contenido de tarta personalizada
-        //consultar el contenido 
-        //1. consulta bd segun el length del session.
-        //2. poner bonito en el fichero
-        //3. añadir al ticket
-        //4. creo q ya
+
+
 
 
 
@@ -300,7 +298,7 @@ if (isset($_POST['ticket'])) {
         $consulta6 = $conexion->conexion->prepare($sql6);
         $consulta6->execute();
 
-        unlink("compra.txt");
+        // unlink("compra.txt");
         $_SESSION['total'] = 0;
         $_SESSION['idProductos'] = [];
         $_SESSION['totalPersonalizada'] = 0;
@@ -433,7 +431,7 @@ if (isset($_POST['vaciar'])) {
 
     </header>
     <?php
-    // echo $fecha_actual;
+  
     // var_dump($_SESSION['idProductos']);
     // echo "IIIIIIIIIIII" . $contenidoCesta;
     ?>

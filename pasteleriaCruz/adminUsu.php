@@ -44,6 +44,7 @@ $mensajeError='';
 
 
 
+
 //sesiones
 if (isset($_POST['usuario'])) {
     $usuario =  trim(stripcslashes(htmlspecialchars($_POST['usuario'])));
@@ -168,7 +169,7 @@ if (isset($_POST['filtroEd'])) {
         $_SESSION['usuariobd'] = $fila['usuario'];
         $_SESSION['nombrebd'] = $fila['nombre'];
         $_SESSION['correobd'] = $fila['correo'];
-        $_SESSION['passwordbd'] = $fila['password'];;
+        // $_SESSION['passwordbd'] = $fila['password'];;
     }
 }
 
@@ -221,7 +222,7 @@ if (isset($_POST['editarr'])) {
 if (isset($_POST['eliminarP'])) {
     $_SESSION['eliminarP'] = $_POST['eliminarP'];
 
-    if ($_SESSION['eliminarP'] == 'todos') {
+     if ($_SESSION['eliminarP'] == 'todos') {
         // $mensaje='debe seleccionar un producto';
     } else if ($_SESSION['eliminarP'] == $_SESSION['usuario']) {
         $mensajeError='Seleccione un usuario que no esté conectado';
@@ -397,13 +398,13 @@ if ($editarUsuario == '') {
                     ?>
                     <span id="errorSabor0" style="display:none; color:red;"></span>
                 </div>
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="password0">Contraseña:</label>
-                    <?php
-                    echo "<input class='form-control' type='text' id='password0' name='password0' value='" . $_SESSION['passwordbd'] . "'>"
-                    ?>
-                    <span id="errorPassword0" style="display:none; color:red;"></span>
-                </div> -->
+                <!--<div class="mb-3">-->
+                <!--    <label class="form-label" for="password0">Contraseña:</label>-->
+                <!--    <?php-->
+                <!--    echo "<input class='form-control' type='text' id='password0' name='password0' value='" . $_SESSION['passwordbd'] . "'>"-->
+                <!--    ?>-->
+                <!--    <span id="errorPassword0" style="display:none; color:red;"></span>-->
+                <!--</div>-->
 
                 <input id="btnEditarUsuario" class="btn btn-dark" style="width: 150px;" value="Editar" name="editarr">
             </form>
@@ -427,7 +428,7 @@ if ($editarUsuario == '') {
                         ?>
                     </select>
                     <input type="submit" class="btn btn-dark" style="width: 150px;" value="ELIMINAR" name="eliminar">
-                    <?php 
+                <?php 
                         echo $mensajeError;
                     ?>
                 </form>

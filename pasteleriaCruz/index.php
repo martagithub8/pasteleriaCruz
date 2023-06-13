@@ -169,7 +169,7 @@ if (isset($_POST['btnIniciarSesion'])) {
                 <img src="img/tarta.jpg" alt="esfera" width="380" height="370">
             </div>
             <div class="texto">
-            <p class="sinNegrita" style="text-align: justify;"><strong>¿Quieres una tarta personalizada?</strong><br> Prueba con nosotras a seleccionar los sabores y la decoración a tu gusto. </p>                <a class="consultar" href="informacion.php">CONSULTAR</a>
+            <p class="sinNegrita" style="text-align: justify;"><strong>¿Quieres una tarta personalizada? Regístrate para acceder</strong><br>Prueba con nosotras a seleccionar los sabores y la decoración a tu gusto.  </p>                <a class="consultar" href="informacion.php">CONSULTAR</a>
             </div>
 
         </div>
