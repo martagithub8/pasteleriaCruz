@@ -22,6 +22,10 @@ if (!isset($_SESSION['precio'])) {
 if (!isset($_SESSION['filtro'])) {
   $_SESSION['filtro'] = '';
 }
+if (!isset($_SESSION['tipo'])) {
+  $_SESSION['tipo'] = '';
+}
+
 
 
 
