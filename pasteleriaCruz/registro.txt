@@ -946,4 +946,30 @@ Producto: Chocolate y Nueces  30 €. Cant: 1
 Total: 135€
 13-06-2023 09:20:47
 
+ Cliente: admin0
+ 
+Producto: Brownie  30 €. Cant: 1
+
+ Producto: Donuts de azucar  2 €. Cant: 1
+
+ 
+Total: 102€
+13-06-2023 09:21:52
+
+ Cliente: admin0
+ 
+Producto: Donuts de azucar  4 €. Cant: 2
+
+ 
+Total: 74€
+13-06-2023 09:22:12
+
+ Cliente: admin0
+ 
+Producto: Chocolate y Nueces  60 €. Cant: 2
+
+ 
+Total: 200€
+13-06-2023 09:25:38
+
  

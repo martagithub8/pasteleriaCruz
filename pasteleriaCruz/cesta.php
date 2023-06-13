@@ -267,16 +267,16 @@ if (isset($_POST['ticket'])) {
 
     //AL IGUALL QUE HACEMOS UN CONTROL PARA COMPRA DE PRODUCTOS. SE HACE AQUI UN CONTROL DE TARTA PERSONALIZADA*************
     if ($_SESSION['idProductos'] != null) {
-        
+        $contador=0;
         //REALIZAMOS EL REGISTRO de personalizada y compra normal
         foreach ($_SESSION['idProductos'] as $contenido) {
-
+            $contador+=1;
             $sqlPersonalizada = "SELECT * FROM tarta_personalizada WHERE id = '" . $contenido . "';";
             $consultaPersonalizada = $conexion->conexion->prepare($sqlPersonalizada);
             $consultaPersonalizada->execute();
 
             while ($fila = $consultaPersonalizada->fetch()) {
-                $contenidoTartaPersonalizada .= "Tarta personalizada nº: ".$fila['id'].". Base: " . $fila['base_fk'] . ". Relleno: " . $fila['relleno_fk'] . ". Decoración: " . $fila['decoracion_fk'] . " ." . $fila['precio'] . "€ \n";
+                $contenidoTartaPersonalizada .= "Tarta personalizada nº: ".$contador.". Base: " . $fila['base_fk'] . ". Relleno: " . $fila['relleno_fk'] . ". Decoración: " . $fila['decoracion_fk'] . " ." . $fila['precio'] . "€ \n";
                 $contenidoBdPersonalizada.= $fila['id'].",";
             }
 
