@@ -315,16 +315,25 @@ if ($listaTartas == '') {
   <header>
     <section id="cabecera">
 
-      <?php
+    <?php
       echo '<div id="login">';
 
 
-      if ($_SESSION['usuario'] != "") {
+      
+
+
+      if ($_SESSION['tipo'] == "administrador") {
         echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
                 <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
-    
+                <div  id="login2"><a href="" data-bs-toggle="modal" data-bs-target="#modalLogin"><i class="bi bi-gear iconHeader"></i></a></div>
+
                 </div>';
-      } else {
+      } else if ($_SESSION['tipo'] == "cliente") {
+        echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
+        <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
+
+        </div>';
+      } else if ($_SESSION['tipo'] == "") {
         echo '<div id="login1"><a href="login.php"><i class="bi bi-person-circle iconHeader"></i></a></div>
                 <div id="login2"><a href="login.php"></a></div>
                       <div id="login2"><a href="index.php"></i></a></div>
@@ -437,7 +446,24 @@ if ($listaTartas == '') {
 
 
 
+  <div class="modal fade" id="modalLogin" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a href="adminProduct.php" class=" btn btn-primary btn-block col-12" role="button">
+            <i class="bi bi-cup-hot"> ADMINISTRAR PRODUCTOS </i>
+          </a>
+        </div>
+        <div class="modal-header">
+          <a href="adminUsu.php" class=" btn btn-primary btn-block col-12" role="button">
+            <i class="bi bi-person-fill-gear"> ADMINISTRAR USUARIO </i>
+          </a>
+        </div>
 
+
+      </div>
+    </div>
+  </div>
 
 </body>
 

@@ -433,7 +433,7 @@ if (isset($_POST['vaciar'])) {
 
     </header>
     <?php
-    echo $fecha_actual;
+    // echo $fecha_actual;
     // var_dump($_SESSION['idProductos']);
     // echo "IIIIIIIIIIII" . $contenidoCesta;
     ?>

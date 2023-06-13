@@ -40,6 +40,7 @@ $cantidadTabla = 0;
 $filasTabla = '';
 $mensaje = '';
 $editarUsuario = '';
+$mensajeError='';
 
 
 
@@ -185,9 +186,9 @@ if (isset($_POST['editarr'])) {
     $consulta2->execute();
 
 
-    $sql4 = "UPDATE usuarios SET password = '" . $_SESSION['password0'] . "' WHERE usuario = '" . $_SESSION['usuariobd'] . "';";
-    $consulta = $conexion->conexion->prepare($sql4);
-    $consulta->execute();
+    // $sql4 = "UPDATE usuarios SET password = '" . $_SESSION['password0'] . "' WHERE usuario = '" . $_SESSION['usuariobd'] . "';";
+    // $consulta = $conexion->conexion->prepare($sql4);
+    // $consulta->execute();
 
     $sql = "UPDATE usuarios SET nombre = '" . $_SESSION['nombre0'] . "' WHERE usuario = '" . $_SESSION['usuariobd'] . "';";
     $consulta = $conexion->conexion->prepare($sql);
@@ -222,8 +223,9 @@ if (isset($_POST['eliminarP'])) {
 
     if ($_SESSION['eliminarP'] == 'todos') {
         // $mensaje='debe seleccionar un producto';
-    } else {
-
+    } else if ($_SESSION['eliminarP'] == $_SESSION['usuario']) {
+        $mensajeError='Seleccione un usuario que no esté conectado';
+    }else{
         $sql = "DELETE FROM usuarios WHERE usuario = '" . $_SESSION['eliminarP'] . "';";
     }
 
@@ -395,13 +397,13 @@ if ($editarUsuario == '') {
                     ?>
                     <span id="errorSabor0" style="display:none; color:red;"></span>
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label class="form-label" for="password0">Contraseña:</label>
                     <?php
                     echo "<input class='form-control' type='text' id='password0' name='password0' value='" . $_SESSION['passwordbd'] . "'>"
                     ?>
                     <span id="errorPassword0" style="display:none; color:red;"></span>
-                </div>
+                </div> -->
 
                 <input id="btnEditarUsuario" class="btn btn-dark" style="width: 150px;" value="Editar" name="editarr">
             </form>
@@ -425,6 +427,9 @@ if ($editarUsuario == '') {
                         ?>
                     </select>
                     <input type="submit" class="btn btn-dark" style="width: 150px;" value="ELIMINAR" name="eliminar">
+                    <?php 
+                        echo $mensajeError;
+                    ?>
                 </form>
             </div>
         </div>

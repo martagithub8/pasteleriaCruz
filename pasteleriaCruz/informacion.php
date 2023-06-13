@@ -15,7 +15,15 @@ while ($fila = $consulta->fetch()) {
 }
 
 if ($_SESSION['tipo'] == "") {
-    header('Location: login.php');
+    // header('Location: login.php');
+    echo '<script>location.href="login.php"</script>';
+
+}
+
+if ($_SESSION['usuario'] == "") {
+    // header('Location: login.php');
+    echo '<script>location.href="login.php"</script>';
+
 }
 
 
@@ -27,6 +35,9 @@ if ($_SESSION['tipo'] == "") {
 //sesiones
 if (!isset($_SESSION['usuario'])) {
     $_SESSION['usuario'] = '';
+}
+if (!isset($_SESSION['tipo'])) {
+    $_SESSION['tipo'] = '';
 }
 
 if (!isset($_SESSION['idProductos'])) {
@@ -145,24 +156,32 @@ function guardarString()
     <header>
         <section id="cabecera">
 
-            <?php
-            echo '<div id="login">';
+        <?php
+      echo '<div id="login">';
 
 
-            if ($_SESSION['usuario'] != "") {
-                echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
+
+      if ($_SESSION['tipo'] == "administrador") {
+        echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
+                
+                <div  id="login2"><a href="" data-bs-toggle="modal" data-bs-target="#modalLogin"><i class="bi bi-gear iconHeader"></i></a></div>
                 <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
-    
+
                 </div>';
-            } else {
-                echo '<div id="login1"><a href="login.php"><i class="bi bi-person-circle iconHeader"></i></a></div>
+      } else if ($_SESSION['tipo'] == "cliente") {
+        echo '<div id="login2"><a href="cesta.php"><i class="bi bi-cart2 iconHeader"></i></a></div>
+        <div id="login2"><a href="cerrarSesion.php"><i class="bi bi-box-arrow-left iconHeader"></i></a></div>
+
+        </div>';
+      } else if ($_SESSION['tipo'] == "") {
+        echo '<div id="login1"><a href="login.php"><i class="bi bi-person-circle iconHeader"></i></a></div>
                 <div id="login2"><a href="login.php"></a></div>
                       <div id="login2"><a href="index.php"></i></a></div>
       
                   </div>';
-            }
+      }
 
-            ?>
+      ?>
 
 
 
@@ -204,7 +223,7 @@ function guardarString()
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item margin">
-                                <a class="nav-link active" aria-current="page" href="personalizar.php">DISEÑA</a>
+                                <a class="nav-link active" aria-current="page" href="informacion.php">DISEÑA</a>
                             </li>
                             <li class="nav-item margin">
                                 <a class="nav-link active " aria-current="page" href="tarta.php">TARTAS</a>
@@ -322,7 +341,24 @@ function guardarString()
 
 
 
+    <div class="modal fade" id="modalLogin" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a href="adminProduct.php" class=" btn btn-primary btn-block col-12" role="button">
+            <i class="bi bi-cup-hot"> ADMINISTRAR PRODUCTOS </i>
+          </a>
+        </div>
+        <div class="modal-header">
+          <a href="adminUsu.php" class=" btn btn-primary btn-block col-12" role="button">
+            <i class="bi bi-person-fill-gear"> ADMINISTRAR USUARIO </i>
+          </a>
+        </div>
 
+
+      </div>
+    </div>
+  </div>
 </body>
 
 <footer>
