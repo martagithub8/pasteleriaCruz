@@ -274,7 +274,7 @@ if (isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['usuario'
             </div>
             <div class="mb-3">
                 <label for="password2" class="form-label">Repetir contraseña:</label>
-                <input type="password" class="form-control" id="password2" name="password2" placeholder="Debe contener entre 5-8 caracteres">
+                <input type="password" class="form-control" id="password2" name="password2" placeholder="Debe contener entre 6-8 caracteres">
                 <span id="errorPassword2" style="display:none; color:red;"></span>
             </div>
 
