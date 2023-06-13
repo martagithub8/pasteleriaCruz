@@ -65,10 +65,10 @@ $sql =
 
     create table compra(
         id int(50) NOT NULL AUTO_INCREMENT,
-        producto_fk varchar(40) NOT NULL,
-        tarta_personalizada_fk varchar(40) NOT NULL,
+        producto_fk varchar(200) NOT NULL,
+        tarta_personalizada_fk varchar(200) NOT NULL,
         precio double NOT NULL,
-        fecha date NOT NULL,
+        fecha varchar(40) NOT NULL,
         usuario_fk varchar(40) NOT NULL,
         PRIMARY KEY(id)  
     );

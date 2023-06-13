@@ -842,4 +842,108 @@ Producto: Barco de chocolate  2 €. Cant: 1
 Total: 72€
 13-06-2023 01:42:16
 
+ Cliente: marta0
+ 
+Producto: Brownie  30 €. Cant: 1
+
+ Producto: Barco relleno de chocolat  2 €. Cant: 1
+
+ 
+Total: 32€
+13-06-2023 08:47:33
+
+ Cliente: marta0
+ 
+Producto: Brownie  30 €. Cant: 1
+
+ 
+Total: 65€
+13-06-2023 08:47:47
+
+ Cliente: marta0
+ 
+Producto: Brownie  60 €. Cant: 2
+
+ 
+Total: 60€
+13-06-2023 08:51:59
+
+ Cliente: marta0
+ 
+Producto: Chocolate y Nueces  60 €. Cant: 2
+
+ Producto: Barco relleno de chocolat  2 €. Cant: 1
+
+ 
+Total: 132€
+13-06-2023 08:53:31
+
+ Cliente: marta0
+ 
+Producto: Donuts de azucar  4 €. Cant: 2
+
+ Producto: Barco de chocolate  4 €. Cant: 2
+
+ 
+Total: 8€
+13-06-2023 08:55:01
+
+ Cliente: marta0
+ 
+Producto: Brownie  30 €. Cant: 1
+
+ Producto: Donuts de azucar  2 €. Cant: 1
+
+ 
+Total: 32€
+13-06-2023 08:55:22
+
+ Cliente: marta0
+ 
+Producto: Chocolate y Nueces  30 €. Cant: 1
+
+ Producto: Donuts de azucar  2 €. Cant: 1
+
+ 
+Total: 102€
+13-06-2023 08:56:00
+
+ Cliente: marta0
+ 
+Producto: Chocolate y Nueces  30 €. Cant: 1
+
+ Producto: Brownie  30 €. Cant: 1
+
+ 
+Total: 60€
+13-06-2023 09:01:07
+
+ Cliente: marta0
+ 
+Producto: Donuts de azucar  2 €. Cant: 1
+
+ Producto: Barco de chocolate  2 €. Cant: 1
+
+ Producto: Chocolate y Nueces  30 €. Cant: 1
+
+ 
+Total: 104€
+13-06-2023 09:02:25
+
+ Cliente: marta0
+ 
+Producto: Brownie  30 €. Cant: 1
+
+ 
+Total: 100€
+13-06-2023 09:04:20
+
+ Cliente: marta0
+ 
+Producto: Chocolate y Nueces  30 €. Cant: 1
+
+ 
+Total: 135€
+13-06-2023 09:20:47
+
  
