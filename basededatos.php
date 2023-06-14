@@ -76,7 +76,7 @@ $sql =
     create table producto(
         id int(50) NOT NULL AUTO_INCREMENT,
         img varchar(100) NOT NULL,
-        nombre varchar(25) NOT NULL,
+        nombre varchar(50) NOT NULL,
         categoria varchar(25) NOT NULL,
         detalle varchar(25) NOT NULL,
         precio double NOT NULL,
