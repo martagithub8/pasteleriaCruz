@@ -98,13 +98,11 @@ function validarEditarUsuario() {
   var nombreValido0 = validarName0();
   var saborValido0 = validarSabor0();
   var correoValido0 = validarCorreo0();
-  var passwordValido0 = validarPassword0();
 
   if (
     nombreValido0 &&
     saborValido0 &&
-    correoValido0 &&
-    passwordValido0 
+    correoValido0 
   ) {
     
       document.getElementById("formEditarUsuario").submit();

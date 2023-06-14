@@ -169,7 +169,7 @@ if (isset($_POST['filtroEd'])) {
         $_SESSION['usuariobd'] = $fila['usuario'];
         $_SESSION['nombrebd'] = $fila['nombre'];
         $_SESSION['correobd'] = $fila['correo'];
-        // $_SESSION['passwordbd'] = $fila['password'];;
+        $_SESSION['passwordbd'] = $fila['password'];
     }
 }
 
@@ -179,17 +179,14 @@ if (isset($_POST['editarr'])) {
     $_SESSION['nombre0'] = $_POST['nombre0'];
     $_SESSION['correo0'] = $_POST['correo0'];
     $_SESSION['usuario0'] = $_POST['usuario0'];
-    $_SESSION['password0'] = md5($_POST['password0']);
+    // $_SESSION['password0'] = md5($_POST['password0']);
 
 
     $sql2 = "UPDATE usuarios SET correo = '" . $_SESSION['correo0'] . "' WHERE usuario = '" . $_SESSION['usuariobd'] . "'; ";
     $consulta2 = $conexion->conexion->prepare($sql2);
     $consulta2->execute();
 
-
-    // $sql4 = "UPDATE usuarios SET password = '" . $_SESSION['password0'] . "' WHERE usuario = '" . $_SESSION['usuariobd'] . "';";
-    // $consulta = $conexion->conexion->prepare($sql4);
-    // $consulta->execute();
+    
 
     $sql = "UPDATE usuarios SET nombre = '" . $_SESSION['nombre0'] . "' WHERE usuario = '" . $_SESSION['usuariobd'] . "';";
     $consulta = $conexion->conexion->prepare($sql);
@@ -398,13 +395,7 @@ if ($editarUsuario == '') {
                     ?>
                     <span id="errorSabor0" style="display:none; color:red;"></span>
                 </div>
-                <!--<div class="mb-3">-->
-                <!--    <label class="form-label" for="password0">Contraseña:</label>-->
-                <!--    <?php-->
-                <!--    echo "<input class='form-control' type='text' id='password0' name='password0' value='" . $_SESSION['passwordbd'] . "'>"-->
-                <!--    ?>-->
-                <!--    <span id="errorPassword0" style="display:none; color:red;"></span>-->
-                <!--</div>-->
+               
 
                 <input id="btnEditarUsuario" class="btn btn-dark" style="width: 150px;" value="Editar" name="editarr">
             </form>
