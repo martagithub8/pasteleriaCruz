@@ -7,7 +7,9 @@ session_unset();
 session_destroy();
 
 //Borrar fichero
-unlink("compra.txt");
+if (file_exists("compra.txt")) {
+    unlink("compra.txt");
+}
 
 $_SESSION['idProductos'] = [];
 $_SESSION['totalPersonalizada'] = 0;
